@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/statusbarRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/test">
+
+    <Button
+        android:id="@+id/btBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="返回"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvText1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#250000ff"
+        android:tag="status"
+        android:text="斯顿手动阀莱克斯顿手动阀莱克斯顿手动阀莱克斯顿手动阀莱克斯顿手动阀莱克斯顿手动阀莱克斯顿手动阀莱克斯顿手动阀莱克斯顿手动阀莱克斯顿手动阀莱克斯顿手动阀莱克斯顿手动阀莱克斯顿手动阀莱克斯顿"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvText2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#2000ff00"
+        android:text="手动阀莱克斯顿手动阀莱克斯顿手动阀莱克斯顿手动阀莱克斯顿手动阀莱克斯顿手动阀莱克斯顿手动阀莱克斯顿手动阀莱克斯顿手动阀莱克斯顿手动阀莱克斯顿手动阀莱克斯顿手动阀莱克斯顿手动阀莱克斯顿手动阀莱克斯顿手动阀莱克斯顿手动阀莱克斯顿手动阀莱克斯顿"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <TextView
+        android:id="@+id/tvContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/tvText1" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvText2"
+        app:layout_constraintTop_toBottomOf="@+id/tvContent">
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="16dp"
+            app:flexWrap="wrap"
+            app:layout_constraintBottom_toTopOf="@+id/tvText2"
+            app:layout_constraintTop_toBottomOf="@+id/etContent">
+
+            <Button
+                android:id="@+id/bt1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:text="系统栏沉浸式"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/bt2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:text="仅状态栏沉浸式"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/bt3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:text="仅底部导航栏沉浸式"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/bt4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:text="全屏开关:开"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/bt5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:text="隐藏状态栏"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/bt6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:text="显示状态栏"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/bt7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:text="隐藏底部导航栏"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/bt8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:text="显示底部导航栏"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/bt9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:text="状态栏和底部导航栏高度"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/bt10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:text="修改状态栏和底部导航栏颜色"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/bt11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:text="是否有底部导航栏"
+                android:textAllCaps="false" />
+
+        </com.google.android.flexbox.FlexboxLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

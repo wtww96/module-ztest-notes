@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:padding="8dp">
+
+    <include
+        android:id="@+id/childView"
+        layout="@layout/layout_include_view" />
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/flexbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        app:flexWrap="wrap"
+        app:layout_constraintTop_toTopOf="parent"
+        app:showDividerHorizontal="middle">
+
+        <Button
+            android:id="@+id/hilt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="3dp"
+            android:padding="15dp"
+            android:text="Hilt依赖注入"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/koin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="3dp"
+            android:padding="15dp"
+            android:text="Koin依赖注入"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="3dp"
+            android:padding="15dp"
+            android:text="registerResult使用"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/lazy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="3dp"
+            android:padding="15dp"
+            android:text="Fragment懒加载"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/dialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="3dp"
+            android:padding="15dp"
+            android:text="弹窗"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/flow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="3dp"
+            android:padding="15dp"
+            android:text="Flow"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/http"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="3dp"
+            android:padding="15dp"
+            android:text="封装的网络库使用"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/gson"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="3dp"
+            android:padding="15dp"
+            android:text="Gson容错处理"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/mmkv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="3dp"
+            android:padding="15dp"
+            android:text="mmkv封装使用"
+            android:textAllCaps="false" />
+
+        <EditText
+            android:id="@+id/etContent"
+            android:layout_width="66dp"
+            android:layout_height="wrap_content" />
+    </com.google.android.flexbox.FlexboxLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/flexbox">
+
+        <com.dp.notes.widget.LogTextView
+            android:id="@+id/logText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            tools:text="阿斯加德教案设计扩大进口数据看阿斯加德教案设计扩大进口数据看" />
+
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

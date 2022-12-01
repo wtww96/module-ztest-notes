@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/livedata"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginVertical="6dp"
+        android:background="#0F07B1CD"
+        android:elevation="2dp"
+        android:gravity="center"
+        android:text="LiveData"
+        android:textSize="20dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/flow1"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="6dp"
+            android:layout_weight="1"
+            android:background="#0F07B1CD"
+            android:elevation="2dp"
+            android:gravity="center"
+            android:text="Flow 冷流1"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/flow2"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="6dp"
+            android:layout_weight="1"
+            android:background="#0F07B1CD"
+            android:elevation="2dp"
+            android:gravity="center"
+            android:text="Flow 冷流2"
+            android:textSize="20dp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/sharedFlow"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginVertical="6dp"
+        android:background="#0F07B1CD"
+        android:elevation="2dp"
+        android:gravity="center"
+        android:text="sharedFlow 热流"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/stateFlow"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginVertical="6dp"
+        android:background="#0F07B1CD"
+        android:elevation="2dp"
+        android:gravity="center"
+        android:text="stateFlow 热流"
+        android:textSize="20dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/flowLifecycle1"
+            android:layout_width="0dp"
+            android:layout_height="58dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="6dp"
+            android:layout_weight="1"
+            android:background="#0F07B1CD"
+            android:elevation="2dp"
+            android:gravity="center"
+            android:text="Flow绑定生命周期:每次onStart后发送,onStop后停止(::::回到后台再回前台就会再次执行流的发送)"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/flowLifecycle2"
+            android:layout_width="0dp"
+            android:layout_height="58dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="6dp"
+            android:layout_weight="1"
+            android:background="#0F07B1CD"
+            android:elevation="2dp"
+            android:gravity="center"
+            android:text="Flow绑定生命周期:onStart后发送,每次onStop后停止(::::只会发送一次数据,回到后台停止发送,再回前台不会再次触发发送流)"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/flowBus"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginVertical="6dp"
+        android:background="#0F07B1CD"
+        android:elevation="2dp"
+        android:gravity="center"
+        android:text="FlowBus"
+        android:textSize="20dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.dp.notes.widget.LogTextView
+            android:id="@+id/logText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingHorizontal="8dp"
+            android:textColor="#000000"
+            android:textSize="12sp"
+            tools:text="阿斯加德教案设计扩大进口数据看阿斯加德教案设计扩大进口数据看" />
+
+    </ScrollView>
+</LinearLayout>

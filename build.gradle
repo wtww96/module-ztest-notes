@@ -1,0 +1,26 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'dagger.hilt.android.plugin'
+    id 'kotlin-parcelize'
+    id 'kotlin-kapt'
+}
+
+apply from: moduleGradle
+
+android {
+    namespace 'com.dp.notes'
+}
+
+dependencies {
+    //hilt
+    implementation deps.Inject.hilt
+    kapt deps.Inject.compiler
+    //Arouter
+    kapt deps.Arouter.compiler
+    //----------------
+    implementation project(':module-common')
+    //----------------
+    implementation deps.Inject.koin
+    implementation deps.Depend.flexbox
+}

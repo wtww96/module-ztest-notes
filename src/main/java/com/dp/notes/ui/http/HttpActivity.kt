@@ -1,0 +1,72 @@
+package com.dp.notes.ui.http
+
+import android.view.View
+import androidx.activity.viewModels
+import com.dp.core.base.BaseActivity
+import com.dp.core.extension.clickEvent
+import com.dp.core.network.observe
+import com.dp.core.network.success
+import com.dp.core.network.util.NetworkUtil
+import com.dp.core.viewbinding.bindings
+import com.dp.notes.databinding.ActivityHttpBinding
+import dagger.hilt.android.AndroidEntryPoint
+
+/**
+ * author Dq
+ * date on 2022/11/1
+ * description 封装的网络请求 使用示例
+ */
+@AndroidEntryPoint
+class HttpActivity : BaseActivity() {
+    private val binding by bindings<ActivityHttpBinding>()
+    private val viewModel by viewModels<HttpViewModel>()
+
+    override fun getLayoutView(): View = binding.root
+
+    override fun initObserve() {
+        NetworkUtil.getNetWorkSpeed(this, 1000) {
+            binding.logText.add("当前网络速率 = $it")
+        }
+
+        //回调api 转 flow流
+        observe(viewModel.rxResult) {
+            binding.logText.add("回调api 转 flow流 livedata通知更新=$this")
+        }
+
+        //Flow流请求 LiveData通知更新
+        observe(viewModel.flowResult) {
+            binding.logText.add("Flow流请求,livedata通知更新=$this")
+        }
+    }
+
+    override fun initListener() {
+        //rxjava封装的网络请求--> 回调api 转 flow流
+        binding.bt1.clickEvent {
+            viewModel.rxRequest()
+        }
+
+        //Flow流请求,LiveData通知更新
+        binding.bt2.clickEvent {
+            viewModel.flowRequest1()
+        }
+
+        //Flow流请求,直接在页面处理更新
+        binding.bt3.clickEvent {
+            //处理 成功和失败 两种场景
+            /*viewModel.flowRequest2().launchIn(this) {
+                success {
+                    binding.text.text = "${it.city} , ${it.realtime.info} , ${it.realtime.direct}"
+                    Log.e("hehe", "flowRequest1_2 success{} ${it.toJson()}")
+                }
+                failure { e, _ ->
+                    Log.e("hehe", "flowRequest1_2 failure{} = $e")
+                }
+            }*/
+
+            //只关心成功结果,如需要显示loading,可直接在viewModel中处理
+            viewModel.flowRequest2().success(this) {
+                binding.logText.add("flow只处理success=${it.text}")
+            }
+        }
+    }
+}
