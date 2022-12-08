@@ -1,13 +1,14 @@
 package com.dp.notes.ui.http
 
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.dp.core.base.BaseViewModel
 import com.dp.core.extension.toJson
+import com.dp.core.network.bean.NetworkResult
 import com.dp.core.network.failure
 import com.dp.core.network.launchIn
 import com.dp.core.network.success
+import com.dp.notes.bean.Test1Bean
 import com.dp.notes.repository.TestRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.onCompletion
@@ -46,6 +47,7 @@ class HttpViewModel @Inject constructor(private val dataSource: TestRepository) 
      * 需要在定义一个LiveData
      */
     fun flowRequest1() {
+        dataSource.requestFlow().asLiveData()
         dataSource.requestFlow().launchIn(viewModelScope) {
             success {
                 flowResult.value = "${it.city} , ${it.realtime.info} , ${it.realtime.direct}"
@@ -54,6 +56,8 @@ class HttpViewModel @Inject constructor(private val dataSource: TestRepository) 
             failure { e, _ ->
                 Log.e("hehe", "flowRequest1_1 失败 = $e")
             }
+        }
+        dataSource.requestFlow().launchIn(viewModelScope) {
         }
     }
 
@@ -69,4 +73,22 @@ class HttpViewModel @Inject constructor(private val dataSource: TestRepository) 
     fun flowRequest2() = dataSource.requestFlow()
         .onStart { showLoading() }
         .onCompletion { hideLoading() }
+
+    fun flowRequest3() = liveData {
+        dataSource.requestFlow().collect {
+            it.success {
+                emit("liveData{} --> success = ${it.city} , ${it.realtime.info} , ${it.realtime.direct}")
+            }
+            it.failure { e, _ ->
+                emit("liveData{} -->  failure = $e")
+            }
+        }
+    }
+
+    fun flowRequest4(): LiveData<NetworkResult<Test1Bean>> = dataSource.requestFlow().asLiveData()
+
+    fun flowRequest5(): LiveData<NetworkResult<Test1Bean>> = dataSource.requestFlow()
+        .onStart { showLoading() }
+        .onCompletion { hideLoading() }
+        .asLiveData()
 }

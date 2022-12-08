@@ -67,6 +67,32 @@ class HttpActivity : BaseActivity() {
             viewModel.flowRequest2().success(this) {
                 binding.logText.add("flow只处理success=${it.text}")
             }
+            /*viewModel.flowRequest3().observe(this) {
+                binding.logText.add("flow 转LiveData =${it}")
+            }
+
+            viewModel.flowRequest3().observe(this, this::xx)
+
+            viewModel.flowRequest4().success(this) {
+                binding.logText.add("flow 转LiveData 只处理success =${it.text}")
+            }
+            viewModel.flowRequest4().success(this, this::xx1)
+            viewModel.flowRequest4().observe(this) {
+                it.success {
+
+                }
+                it.failure { e, data ->
+
+                }
+            }*/
         }
     }
+
+    /*fun xx(txt: String) {
+
+    }
+
+    fun xx1(bean: Test1Bean) {
+
+    }*/
 }
