@@ -48,6 +48,10 @@ class NotesActivity : BaseActivity() {
         FlowBus.with<Int>(KEY_TEST).register(this) {
             binding.logText.add("主页已接收$KEY_TEST 发送的FlowBus数据=$it", true)
         }
+        //FlowBus 事件总线,页面处于可见状态才接受数据
+        FlowBus.with<Int>(KEY_TEST).registerWhenStarted(this) {
+            binding.logText.add("页面处于可见状态 主页已接收$KEY_TEST 发送的FlowBus数据=$it")
+        }
         //软键盘监听
         ImeHelper.addImeChangeCallback(this) {
             onStatus {

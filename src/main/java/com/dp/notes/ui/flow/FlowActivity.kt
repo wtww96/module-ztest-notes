@@ -1,20 +1,21 @@
 package com.dp.notes.ui.flow
 
 import android.view.View
-import androidx.lifecycle.*
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import com.dp.core.base.BaseActivity
 import com.dp.core.event.FlowBus
 import com.dp.core.extension.clickEvent
 import com.dp.core.extension.delayed
+import com.dp.core.network.launchIn
 import com.dp.core.viewbinding.bindings
 import com.dp.notes.constants.EventKeys.KEY_TEST
 import com.dp.notes.databinding.ActivityFlowBinding
 import kotlinx.coroutines.channels.BufferOverflow
-import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import kotlin.random.Random
@@ -32,7 +33,7 @@ class FlowActivity : BaseActivity() {
      * livedata:
      *           1.生命周期感知型组件: 生命周期处于活跃状态,才能更新数据
      *           2.粘性事件: 新的订阅者会收到1条最新的事件
-     *           3.数据不防抖: 重复 setValue 相同的值，订阅者会收到多次 onChanged() 回调--可用过 distinctUntilChanged 扩展函数去重
+     *           3.数据不防抖: 重复 setValue 相同的值，订阅者会收到多次 onChanged() 回调--可用 distinctUntilChanged 扩展函数去重
      *           4.不支持背压: 当数据生产速度 > 数据消费速度时，中间就会有一部分数据被忽略
      *
      * flow冷流:
@@ -42,14 +43,15 @@ class FlowActivity : BaseActivity() {
      *                    热流: 无论是否有订阅者，都可以生产数据并且缓存在内存中(新订阅者订阅后能否收到数据与粘性数据有关)
      *           3.需要订阅收集(collect操作符),才能发送数据
      *           4.每次订阅都会创建一个全新的数据流,重新发送
-     *           5.shareIn/stateIn(scope, Eagerly)-->冷流 转为 热流
+     *           5.数据不防抖,可用 distinctUntilChanged 扩展函数去重
+     *           6.shareIn/stateIn(scope, Eagerly)-->冷流 转为 热流
      *             SharingStarted.Eagerly(热启动式): 立即启动数据流，并保持数据流(直到scope指定的作用域结束)
      *             SharingStarted.Lazily(懒启动式): 在首个订阅者注册时启动，并保持数据流(直到scope指定的作用域结束)
      *
      * sharedFlow热流(不具备生命周期感知能力):
      *            1.默认情况,没有粘性事件
      *            2.没有默认值
-     *            3.数据不防抖
+     *            3.数据不防抖,可用 distinctUntilChanged 扩展函数去重
      *            使用场景:
      *                     1.一次性事件,不需要重放,比如toast,弹窗等ui事件
      *                     2.封装为事件总线FlowBus
@@ -69,8 +71,9 @@ class FlowActivity : BaseActivity() {
      * callbackFlow冷流:
      *            1.没有接收者，不会产生数据。
      *            2.将基于回调的Api转化为数据流
-     *            3.callbackFlow创建的流不会主动关闭，需手动调用close() 或者 外部协程被取消(外部协程绑定生命周期)
-     *            4.调用close() 或者协程被取消 会触发awaitClose{}代码块，可执行释放资源/取消网络请求等相关操作
+     *            3.数据不防抖,可用 distinctUntilChanged 扩展函数去重
+     *            4.callbackFlow创建的流不会主动关闭，需手动调用close() 或者 外部协程被取消(外部协程绑定生命周期)
+     *            5.调用close() 或者协程被取消 会触发awaitClose{}代码块，可执行释放资源/取消网络请求等相关操作
      *
      * ************************************************************************************************************************************
      *
@@ -116,7 +119,11 @@ class FlowActivity : BaseActivity() {
         testFlowBus()
         //FlowBus 事件总线接受数据
         FlowBus.with<Int>(KEY_TEST).register(this) {
-            binding.logText.add("FlowActivity:FlowBus接受数据=$it")
+            binding.logText.add("FlowActivity:FlowBus,register接受数据=$it")
+        }
+        //FlowBus 事件总线,页面处于可见状态才接受数据
+        FlowBus.with<Int>(KEY_TEST).registerWhenStarted(this) {
+            binding.logText.add("FlowActivity:FlowBus,registerWhenStarted接受数据=$it")
         }
     }
 
@@ -125,9 +132,9 @@ class FlowActivity : BaseActivity() {
      */
     private fun testLiveData() {
         val livedata = MutableLiveData<Int>()
-        livedata.observe(this, Observer {
+        livedata.observe(this) {
             binding.logText.add("livedata 订阅,接受数据=$it")
-        })
+        }
         binding.livedata.clickEvent {
             lifecycleScope.launch {
                 (1..5).forEach {
@@ -285,43 +292,73 @@ class FlowActivity : BaseActivity() {
     }
 
     /**
-     * Flow不具备感知生命周期,所有需要绑定页面生命周期,防止内存泄漏或奔溃
+     * Flow不具备感知生命周期,所以需要绑定页面生命周期,防止内存泄漏或奔溃
      */
     private fun testFlowLifecycle() {
         //每次onstart后都会触发:发送数据
         binding.flowLifecycle1.clickEvent {
             //如果是Flow流使用flowWithLifecycle扩展函数,需要注意一点:
-            //发送数据流的代码是否被传入到了repeatOnLifecycle中,如果传入了,每当生命周期>=目标状态都会重新发送数据流
+            //发送数据流的代码是否被传入到了repeatOnLifecycle block中,
+            //如果传入了,每当生命周期>=目标状态都会 重新创建协程,再次执行发送数据代码,会再次接收到数据
             //如下代码就是如此....
-            lifecycleScope.launch {
-                callbackFlow {
-                    binding.logText.add("callbackFlow,flowWithLifecycle delay 2s")
-                    delay(2000)
-                    val data = Random.nextInt(999)
-                    binding.logText.add("callbackFlow,flowWithLifecycle 发送 数据=$data")
-                    trySend(data)
-                    awaitClose {}
-                }.flowWithLifecycle(lifecycle).collect {
-                    binding.logText.add("callbackFlow,flowWithLifecycle 接收 数据=$it")
-                }
+            flow {
+                binding.logText.add("flow,flowWithLifecycle delay 4s")
+                delay(4000)
+                val data = Random.nextInt(666)
+                binding.logText.add("flow,flowWithLifecycle emit 发送 数据=$data")
+                emit(data)
+            }.flowWithLifecycle(lifecycle).launchIn(this) {
+                binding.logText.add("flow,flowWithLifecycle collect 接收 数据=$this")
             }
+            //此写法 等同于 上面flowWithLifecycle扩展函数 的写法
+            /*lifecycleScope.launch {
+                lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    flow {
+                        binding.logText.add("flow,delay 4s")
+                        delay(4000)
+                        val data = Random.nextInt(666)
+                        binding.logText.add("flow,emit 发送 数据=$data")
+                        emit(data)
+                    }.collect {
+                        binding.logText.add("flow,collect 接收 数据=$it")
+                    }
+                }
+            }*/
         }
-        //--------------------
+
+        //---------------------------------------------------------------------------
+
+        //onStart后触发:发送数据 onStop停止发送,再次走onStart 不会再次发送数据
         val flow = MutableSharedFlow<Int>()
-        lifecycleScope.launch {
-            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                flow.collect {
-                    binding.logText.add("sharedFlow,repeatOnLifecycle 接收并send 数据=$it")
-                }
-            }
+        //接受数据时使用flowWithLifecycle,不会接收在低于活跃生命周期时发送的数据
+        flow.flowWithLifecycle(lifecycle).launchIn(this) {
+            binding.logText.add("sharedFlow,flowWithLifecycle 接收 数据=$this")
         }
         binding.flowLifecycle2.clickEvent {
             lifecycleScope.launch {
-                binding.logText.add("sharedFlow,emit delay 2s")
+                binding.logText.add("sharedFlow,emit delay 4s")
                 delay(4000)
                 val data = Random.nextInt(666)
                 binding.logText.add("sharedFlow,emit 发送 数据=$data")
                 flow.emit(data)
+            }
+        }
+
+        //---------------------------------------------------------------------------
+
+        //在进入onStart前一直等待,进入onStart后开启/恢复协程,离开onStart时挂起协程,onDestroy时销毁协程
+        //协程挂起时会暂停发送/接收数据流 协程恢复后会继续发送/接收数据流
+        binding.flowLifecycle3.clickEvent {
+            lifecycleScope.launchWhenStarted {
+                flow {
+                    binding.logText.add("flow,launchWhenStarted delay 4s")
+                    delay(4000)
+                    val data = Random.nextInt(666)
+                    binding.logText.add("flow,launchWhenStarted emit 发送 数据=$data")
+                    emit(data)
+                }.collect {
+                    binding.logText.add("flow,launchWhenStarted collect 接收 数据=$it")
+                }
             }
         }
     }
@@ -332,13 +369,22 @@ class FlowActivity : BaseActivity() {
     private fun testFlowBus() {
         binding.flowBus.clickEvent {
             val random1 = Random.nextInt(999)
-            binding.logText.add("FlowBus 发送数据1=$random1")
+            binding.logText.add("FlowBus 发送数据=$random1")
             FlowBus.with<Int>(KEY_TEST).post(this, random1)
             lifecycleScope.delayed(2000) {
-                val random2 = Random.nextInt(999)
-                binding.logText.add("FlowBus 发送数据22=$random2")
-                FlowBus.with<Int>(KEY_TEST).post(this, random2)
+                binding.logText.add("FlowBus 延迟2s再次发送相同数据=$random1")
+                FlowBus.with<Int>(KEY_TEST).post(this, random1)
             }
         }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        FlowBus.with<Int>(KEY_TEST).post(this, 888888888)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        FlowBus.with<Int>(KEY_TEST).post(999999999)
     }
 }

@@ -73,34 +73,46 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="135dp"
+        android:layout_marginVertical="6dp"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/flowLifecycle1"
             android:layout_width="0dp"
-            android:layout_height="58dp"
+            android:layout_height="match_parent"
             android:layout_marginHorizontal="10dp"
-            android:layout_marginVertical="6dp"
             android:layout_weight="1"
             android:background="#0F07B1CD"
             android:elevation="2dp"
             android:gravity="center"
-            android:text="Flow绑定生命周期:每次onStart后发送,onStop后停止(::::回到后台再回前台就会再次执行流的发送)"
+            android:text="Flow绑定生命周期:每次onStart后发送,onStop后停止发送接收(::::回到后台再回前台会重新触发流的发送,再次接收数据)"
             android:textSize="10sp" />
 
         <TextView
             android:id="@+id/flowLifecycle2"
             android:layout_width="0dp"
-            android:layout_height="58dp"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginVertical="6dp"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
             android:background="#0F07B1CD"
             android:elevation="2dp"
             android:gravity="center"
-            android:text="Flow绑定生命周期:onStart后发送,每次onStop后停止(::::只会发送一次数据,回到后台停止发送,再回前台不会再次触发发送流)"
+            android:text="Flow绑定生命周期:onStart后接收,每次onStop后停止接收(::::只会发送一次数据,回到后台后发送的数据,再回前台不会接收数据,也不会重新触发发送流)"
             android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/flowLifecycle3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="10dp"
+            android:layout_weight="1"
+            android:background="#0F07B1CD"
+            android:elevation="2dp"
+            android:gravity="center"
+            android:text="Flow绑定生命周期:在进入onStart前一直等待,进入onStart后开启/恢复协程,离开onStart时挂起协程,onDestroy时销毁协程协程挂起时会暂停发送/接收数据流 协程恢复后会继续发送/接收数据流"
+            android:textSize="10sp" />
+
     </LinearLayout>
 
     <TextView
@@ -129,4 +141,5 @@
             tools:text="阿斯加德教案设计扩大进口数据看阿斯加德教案设计扩大进口数据看" />
 
     </ScrollView>
+
 </LinearLayout>
