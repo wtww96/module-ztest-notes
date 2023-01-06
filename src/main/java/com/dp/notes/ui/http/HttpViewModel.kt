@@ -1,12 +1,15 @@
 package com.dp.notes.ui.http
 
 import android.util.Log
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.liveData
 import com.dp.core.base.BaseViewModel
 import com.dp.core.extension.toJson
 import com.dp.core.network.bean.NetworkResult
 import com.dp.core.network.failure
-import com.dp.core.network.launchIn
+import com.dp.core.network.launchWithIn
 import com.dp.core.network.success
 import com.dp.notes.bean.Test1Bean
 import com.dp.notes.repository.TestRepository
@@ -30,7 +33,7 @@ class HttpViewModel @Inject constructor(private val dataSource: TestRepository) 
      * rxjava封装的网络请求 转化 为flow流处理
      */
     fun rxRequest() {
-        dataSource.requestRx().launchIn(viewModelScope) {
+        dataSource.requestRx().launchWithIn(this) {
             success {
                 rxResult.value = "${it.city} , ${it.realtime.info} , ${it.realtime.direct}"
                 Log.e("hehe", "rxRequest 成功 = ${it.toJson()}")
@@ -48,7 +51,7 @@ class HttpViewModel @Inject constructor(private val dataSource: TestRepository) 
      */
     fun flowRequest1() {
         dataSource.requestFlow().asLiveData()
-        dataSource.requestFlow().launchIn(viewModelScope) {
+        dataSource.requestFlow().launchWithIn(this) {
             success {
                 flowResult.value = "${it.city} , ${it.realtime.info} , ${it.realtime.direct}"
                 Log.e("hehe", "flowRequest1_1 成功 = ${it.toJson()}")
@@ -56,8 +59,6 @@ class HttpViewModel @Inject constructor(private val dataSource: TestRepository) 
             failure { e, _ ->
                 Log.e("hehe", "flowRequest1_1 失败 = $e")
             }
-        }
-        dataSource.requestFlow().launchIn(viewModelScope) {
         }
     }
 

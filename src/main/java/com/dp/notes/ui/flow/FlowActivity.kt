@@ -1,6 +1,5 @@
 package com.dp.notes.ui.flow
 
-import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -10,6 +9,7 @@ import com.dp.core.extension.clickEvent
 import com.dp.core.extension.delayed
 import com.dp.core.network.launchIn
 import com.dp.core.viewbinding.bindings
+import com.dp.notes.R
 import com.dp.notes.constants.EventKeys.KEY_TEST
 import com.dp.notes.databinding.ActivityFlowBinding
 import kotlinx.coroutines.channels.BufferOverflow
@@ -25,9 +25,8 @@ import kotlin.random.Random
  * date on 2022/10/28
  * description
  */
-class FlowActivity : BaseActivity() {
+class FlowActivity : BaseActivity(R.layout.activity_flow) {
     private val binding by bindings<ActivityFlowBinding>()
-    override fun getLayoutView(): View = binding.root
 
     /**
      * livedata:
@@ -308,7 +307,7 @@ class FlowActivity : BaseActivity() {
                 binding.logText.add("flow,flowWithLifecycle emit 发送 数据=$data")
                 emit(data)
             }.flowWithLifecycle(lifecycle).launchIn(this) {
-                binding.logText.add("flow,flowWithLifecycle collect 接收 数据=$this")
+                binding.logText.add("flow,flowWithLifecycle collect 接收 数据=$it")
             }
             //此写法 等同于 上面flowWithLifecycle扩展函数 的写法
             /*lifecycleScope.launch {
@@ -332,7 +331,7 @@ class FlowActivity : BaseActivity() {
         val flow = MutableSharedFlow<Int>()
         //接受数据时使用flowWithLifecycle,不会接收在低于活跃生命周期时发送的数据
         flow.flowWithLifecycle(lifecycle).launchIn(this) {
-            binding.logText.add("sharedFlow,flowWithLifecycle 接收 数据=$this")
+            binding.logText.add("sharedFlow,flowWithLifecycle 接收 数据=$it")
         }
         binding.flowLifecycle2.clickEvent {
             lifecycleScope.launch {

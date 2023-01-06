@@ -1,14 +1,13 @@
 package com.dp.notes.ui.statusbar
 
-import android.view.View
 import androidx.core.view.WindowInsetsCompat.Type
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.dp.common.route.PageRoute
 import com.dp.core.base.BaseActivity
 import com.dp.core.extension.clickEvent
 import com.dp.core.extension.onBack
-import com.dp.core.windowinsets.*
 import com.dp.core.viewbinding.bindings
+import com.dp.core.windowinsets.*
 import com.dp.notes.R
 import com.dp.notes.databinding.ActivityStatusbarBinding
 
@@ -19,12 +18,10 @@ import com.dp.notes.databinding.ActivityStatusbarBinding
  * description
  */
 @Route(path = PageRoute.ACTIVITY_NOTES_STATUS)
-class StatusbarActivity : BaseActivity() {
+class StatusbarActivity : BaseActivity(R.layout.activity_statusbar) {
     private val binding by bindings<ActivityStatusbarBinding>()
 
     private var isFull = false//默认不是全屏
-
-    override fun getLayoutView(): View = binding.root
 
     override fun initView() {
         //状态栏沉浸式修复高度和添加无逻辑返回

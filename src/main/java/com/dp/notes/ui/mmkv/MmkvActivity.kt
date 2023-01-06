@@ -1,9 +1,9 @@
 package com.dp.notes.ui.mmkv
 
 import android.util.Log
-import android.view.View
 import com.dp.core.base.BaseActivity
 import com.dp.core.viewbinding.bindings
+import com.dp.notes.R
 import com.dp.notes.databinding.ActivityMmkvBinding
 import kotlin.random.Random
 
@@ -12,10 +12,8 @@ import kotlin.random.Random
  * date on 2022/11/14
  * description mmkv封装使用
  */
-class MmkvActivity : BaseActivity() {
+class MmkvActivity : BaseActivity(R.layout.activity_mmkv) {
     private val binding by bindings<ActivityMmkvBinding>()
-
-    override fun getLayoutView(): View = binding.root
 
     override fun initView() {
         Log.e("hehe", "bool1 = ${NotesPreferences.bool}")

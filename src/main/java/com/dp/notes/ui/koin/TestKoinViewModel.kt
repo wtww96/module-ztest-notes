@@ -1,12 +1,10 @@
 package com.dp.notes.ui.koin
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.dp.core.base.BaseViewModel
-import com.dp.core.extension.toJson
-import com.dp.core.network.launchIn
 import com.dp.core.network.failure
+import com.dp.core.network.launchWithIn
 import com.dp.core.network.success
 import com.dp.notes.repository.TestRepository
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -25,7 +23,7 @@ class TestKoinViewModel(private val dataSource: TestRepository) : BaseViewModel(
 
     fun getRequest() {
         showLoading()
-        dataSource.requestRx().launchIn(viewModelScope) {
+        dataSource.requestRx().launchWithIn(this) {
             success {
                 result.value = it.text
                 hideLoading()

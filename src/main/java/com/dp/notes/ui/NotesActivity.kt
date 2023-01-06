@@ -12,6 +12,7 @@ import com.dp.core.network.util.NetworkLiveData
 import com.dp.core.network.util.NetworkUtil
 import com.dp.core.viewbinding.bindings
 import com.dp.core.windowinsets.ImeHelper
+import com.dp.notes.R
 import com.dp.notes.constants.EventKeys.KEY_TEST
 import com.dp.notes.databinding.ActivityNotesBinding
 import com.dp.notes.dialog.ParentDialog
@@ -22,6 +23,7 @@ import com.dp.notes.ui.http.HttpActivity
 import com.dp.notes.ui.koin.TestKoinActivity
 import com.dp.notes.ui.lazy.LazyActivity
 import com.dp.notes.ui.mmkv.MmkvActivity
+import com.dp.notes.ui.snackbar.SnackbarActivity
 
 /**
  * author Dq
@@ -29,11 +31,9 @@ import com.dp.notes.ui.mmkv.MmkvActivity
  * description 主页
  */
 @Route(path = PageRoute.ACTIVITY_NOTES_MAIN)
-class NotesActivity : BaseActivity() {
+class NotesActivity : BaseActivity(R.layout.activity_notes) {
     private val binding by bindings<ActivityNotesBinding>()
     private val launcher = registerIntentResult()
-
-    override fun getLayoutView() = binding.root
 
     override fun initView() {
         //网络速率监听
@@ -110,6 +110,11 @@ class NotesActivity : BaseActivity() {
         //Mmkv封装使用
         binding.mmkv.clickEvent {
             navigateTo<MmkvActivity>()
+        }
+
+        //Snackbar使用
+        binding.snackbar.clickEvent {
+            navigateTo<SnackbarActivity>()
         }
     }
 }

@@ -5,17 +5,18 @@ import com.dp.core.extension.bindAdapter
 import com.dp.core.extension.cacheSize
 import com.dp.core.extension.clickEvent
 import com.dp.core.viewbinding.bindings
+import com.dp.notes.R
 import com.dp.notes.databinding.ActivityLazyBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * author Dq
  * date on 2022/9/16
  * description
  */
-class LazyActivity : BaseActivity() {
+@AndroidEntryPoint
+class LazyActivity : BaseActivity(R.layout.activity_lazy) {
     private val binding by bindings<ActivityLazyBinding>()
-
-    override fun getLayoutView() = binding.root
 
     override fun initView() {
         initFragment()

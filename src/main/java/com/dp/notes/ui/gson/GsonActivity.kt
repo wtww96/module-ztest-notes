@@ -1,14 +1,14 @@
 package com.dp.notes.ui.gson
 
 import android.util.Log
-import android.view.View
 import com.dp.core.base.BaseActivity
 import com.dp.core.extension.clickEvent
 import com.dp.core.extension.fromJson
 import com.dp.core.extension.toJson
-import com.dp.core.windowinsets.fitStatusBar
 import com.dp.core.util.CoreUtil
 import com.dp.core.viewbinding.bindings
+import com.dp.core.windowinsets.fitStatusBar
+import com.dp.notes.R
 import com.dp.notes.databinding.ActivityGsonBinding
 
 /**
@@ -16,10 +16,8 @@ import com.dp.notes.databinding.ActivityGsonBinding
  * date on 2022/11/14
  * description Gson容错处理测试
  */
-class GsonActivity : BaseActivity() {
+class GsonActivity : BaseActivity(R.layout.activity_gson) {
     private val binding by bindings<ActivityGsonBinding>()
-
-    override fun getLayoutView(): View = binding.root
 
     override fun initView() {
         fitStatusBar()

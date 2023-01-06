@@ -11,6 +11,7 @@ import com.dp.core.extension.clickEvent
 import com.dp.core.extension.navigateTo
 import com.dp.core.viewbinding.bindings
 import com.dp.core.windowinsets.*
+import com.dp.notes.R
 import com.dp.notes.databinding.ActivityKeyboardBinding
 import com.dp.notes.databinding.LayoutInputBinding
 
@@ -20,11 +21,9 @@ import com.dp.notes.databinding.LayoutInputBinding
  * description 软键盘相关操作
  */
 @Route(path = PageRoute.ACTIVITY_NOTES_KEYBOARD)
-class KeyboardActivity : BaseActivity() {
+class KeyboardActivity : BaseActivity(R.layout.activity_keyboard) {
     private val binding by bindings<ActivityKeyboardBinding>()
     private var stubBinding: LayoutInputBinding? = null
-
-    override fun getLayoutView(): View = binding.root
 
     override fun initView() {
         binding.tvContent.fitStatusBar(true)

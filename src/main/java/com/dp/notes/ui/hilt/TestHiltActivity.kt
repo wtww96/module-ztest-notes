@@ -1,19 +1,15 @@
 package com.dp.notes.ui.hilt
 
-import android.view.View
-import android.widget.FrameLayout
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
-import androidx.lifecycle.lifecycleScope
 import com.dp.core.base.BaseActivity
 import com.dp.core.extension.clickEvent
 import com.dp.core.network.failure
-import com.dp.core.network.launchIn
-import com.dp.core.network.observe
+import com.dp.core.network.launchWithIn
 import com.dp.core.network.success
-import com.dp.core.windowinsets.fitStatusBar
-import com.dp.core.windowinsets.statusHeight
 import com.dp.core.viewbinding.bindings
+import com.dp.core.windowinsets.fitStatusBar
+import com.dp.notes.R
 import com.dp.notes.databinding.ActivityTestBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -23,24 +19,24 @@ import dagger.hilt.android.AndroidEntryPoint
  * description
  */
 @AndroidEntryPoint
-class TestHiltActivity : BaseActivity() {
+class TestHiltActivity : BaseActivity(R.layout.activity_test) {
     private val binding by bindings<ActivityTestBinding>()
     private val viewModel by viewModels<TestHiltViewModel>()
 
-    override fun getLayoutView(): View = binding.root
-
     override fun initView() {
         fitStatusBar(systemBarColor())
-
         binding.title.text = "Hilt 依赖注入"
         binding.button1.isVisible = false
+    }
+
+    override fun initObserve() {
         //回调接口转Api,通过LiveData更新数据
-        observe(viewModel.rxResult) {
-            binding.textview.add("rxResult接收数据=$this")
+        viewModel.rxResult.observe(this) {
+            binding.textview.add("rxResult接收数据=$it")
         }
 
         //flow流数据,直接返回给Activity,不需要再定义LiveData
-        viewModel.flowRequest2().launchIn(lifecycleScope) {
+        viewModel.flowRequest2().launchWithIn(this) {
             success {
                 binding.textview.add("flowRequest接收数据=${it.text}")
             }
@@ -54,9 +50,6 @@ class TestHiltActivity : BaseActivity() {
         binding.button.clickEvent {
             binding.textview.add("开始请求rxRequest-->")
             viewModel.rxRequest()
-
-            val contentView = findViewById<FrameLayout>(android.R.id.content)
-            contentView.setPadding(200, statusHeight, 0, 0)
         }
     }
 }

@@ -1,14 +1,14 @@
 package com.dp.notes.ui.koin
 
-import android.view.View
 import androidx.lifecycle.lifecycleScope
 import com.dp.core.base.BaseActivity
 import com.dp.core.extension.clickEvent
 import com.dp.core.network.failure
 import com.dp.core.network.launchIn
-import com.dp.core.network.observe
+import com.dp.core.network.launchWithIn
 import com.dp.core.network.success
 import com.dp.core.viewbinding.bindings
+import com.dp.notes.R
 import com.dp.notes.databinding.ActivityTestBinding
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -19,18 +19,16 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  * date on 2022/9/14
  * description
  */
-class TestKoinActivity : BaseActivity() {
+class TestKoinActivity : BaseActivity(R.layout.activity_test) {
     private val binding by bindings<ActivityTestBinding>()
     private val viewModel by viewModel<TestKoinViewModel>()
-
-    override fun getLayoutView(): View = binding.root
 
     override fun initView() {
         binding.title.text = "Koin 依赖注入"
     }
 
     override fun initObserve() {
-        viewModel.requestNew().launchIn(lifecycleScope) {
+        viewModel.requestNew().launchWithIn(this) {
             success {
                 binding.textview.add("flowRequest接收数据=${it.text}")
             }
@@ -39,17 +37,17 @@ class TestKoinActivity : BaseActivity() {
             }
         }
         //更新LiveData
-        observe(viewModel.result) {
-            binding.textview.add("requestRx,通过LiveData更新数据=$this")
+        viewModel.result.observe(this) {
+            binding.textview.add("requestRx,通过LiveData更新数据=$it")
         }
 
         //更新StateFlow
         viewModel.resultState.launchIn(this) {
-            binding.textview.add("更新StateFlow=$this")
+            binding.textview.add("更新StateFlow=$it")
         }
         //更新SharedFlow
         viewModel.resultShared.launchIn(this) {
-            binding.textview.add("更新SharedFlow=$this")
+            binding.textview.add("更新SharedFlow=$it")
         }
     }
 

@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.dp.core.base.BaseViewModel
 import com.dp.core.extension.toJson
 import com.dp.core.network.failure
-import com.dp.core.network.launchIn
+import com.dp.core.network.launchWithIn
 import com.dp.core.network.success
 import com.dp.notes.repository.TestRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,7 +18,7 @@ import javax.inject.Inject
  * description
  */
 @HiltViewModel
-class TestHiltViewModel @Inject constructor(private val dataSource: TestRepository) : BaseViewModel() {
+class TestHiltViewModel @Inject constructor(val dataSource: TestRepository) : BaseViewModel() {
     val rxResult = MutableLiveData<String>()
     val flowResult = MutableLiveData<String>()
 
@@ -26,7 +26,7 @@ class TestHiltViewModel @Inject constructor(private val dataSource: TestReposito
      * rxjava封装的网络请求 转化 为flow流处理
      */
     fun rxRequest() {
-        dataSource.requestRx().launchIn(viewModelScope) {
+        dataSource.requestRx().launchWithIn(this) {
             success {
                 Log.e("hehe", "rxRequest success ${it.text}")
                 rxResult.value = "${it.text}"
@@ -43,7 +43,7 @@ class TestHiltViewModel @Inject constructor(private val dataSource: TestReposito
      * 需要在定义一个LiveData
      */
     fun flowRequest1() {
-        dataSource.requestFlow().launchIn(viewModelScope) {
+        dataSource.requestFlow().launchWithIn(this) {
             success {
                 val data = "${it.city} , ${it.realtime.info} , ${it.realtime.direct}"
             }

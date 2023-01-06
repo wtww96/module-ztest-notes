@@ -8,6 +8,7 @@ import com.dp.core.extension.clickEvent
 import com.dp.core.extension.isEmpty
 import com.dp.core.viewbinding.bindings
 import com.dp.core.windowinsets.*
+import com.dp.notes.R
 import com.dp.notes.databinding.ActivityKeyboardChatBinding
 
 /**
@@ -15,10 +16,8 @@ import com.dp.notes.databinding.ActivityKeyboardChatBinding
  * date on 2022/11/25
  * description 即时聊天页面软键盘布局
  */
-class KeyboardChatActivity : BaseActivity() {
+class KeyboardChatActivity : BaseActivity(R.layout.activity_keyboard_chat) {
     private val binding by bindings<ActivityKeyboardChatBinding>()
-
-    override fun getLayoutView(): View = binding.root
 
     override fun initView() {
         binding.title.fitStatusBar(true)
