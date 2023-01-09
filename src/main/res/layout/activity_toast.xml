@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.flexbox.FlexboxLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    app:flexWrap="wrap">
 
     <Button
         android:id="@+id/bt1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
-        android:text="默认的Snackbar"
+        android:text="显示Snackbar"
         android:textAllCaps="false" />
 
     <Button
@@ -18,5 +20,45 @@
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
         android:text="默认的Toast"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/bt3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:text="长的Toast"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/bt4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:text="Toast一个Int资源文件"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/bt5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:text="Toast一个任意Any"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/bt6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:text="Toast一个巨长文本"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/bt7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:text="短时间连续Toast不同文本"
         android:textAllCaps="false" />
 </com.google.android.flexbox.FlexboxLayout>

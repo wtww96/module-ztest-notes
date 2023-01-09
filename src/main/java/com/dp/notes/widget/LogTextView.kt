@@ -3,8 +3,8 @@ package com.dp.notes.widget
 import android.content.Context
 import android.util.AttributeSet
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.widget.AppCompatTextView
+import com.dp.core.extension.showToast
 import com.dp.core.windowinsets.imeVisible
 
 
@@ -20,7 +20,7 @@ class LogTextView(context: Context, attrs: AttributeSet?) : AppCompatTextView(co
     init {
         setOnLongClickListener {
             clear()
-            Toast.makeText(context, "已清空~~~", Toast.LENGTH_SHORT).show()
+            showToast("已清空~~~")
             false
         }
 
@@ -34,7 +34,7 @@ class LogTextView(context: Context, attrs: AttributeSet?) : AppCompatTextView(co
         sb.append(str.plus("\n"))
         setText(sb.toString())
         Log.e("TestLog", str)
-        if (isToast) Toast.makeText(context, str, Toast.LENGTH_LONG).show()
+        if (isToast) showToast(str, true)
     }
 
     fun clear() {
