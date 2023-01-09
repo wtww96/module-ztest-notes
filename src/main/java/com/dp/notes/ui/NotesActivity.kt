@@ -23,7 +23,7 @@ import com.dp.notes.ui.http.HttpActivity
 import com.dp.notes.ui.koin.TestKoinActivity
 import com.dp.notes.ui.lazy.LazyActivity
 import com.dp.notes.ui.mmkv.MmkvActivity
-import com.dp.notes.ui.snackbar.SnackbarActivity
+import com.dp.notes.ui.toast.ToastActivity
 
 /**
  * author Dq
@@ -112,9 +112,9 @@ class NotesActivity : BaseActivity(R.layout.activity_notes) {
             navigateTo<MmkvActivity>()
         }
 
-        //Snackbar使用
-        binding.snackbar.clickEvent {
-            navigateTo<SnackbarActivity>()
+        //Toast使用
+        binding.toast.clickEvent {
+            navigateTo<ToastActivity>()
         }
     }
 }

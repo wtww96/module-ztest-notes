@@ -102,12 +102,12 @@
             android:textAllCaps="false" />
 
         <Button
-            android:id="@+id/snackbar"
+            android:id="@+id/toast"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="3dp"
             android:padding="15dp"
-            android:text="Snackbar使用"
+            android:text="Toast使用"
             android:textAllCaps="false" />
 
         <EditText
