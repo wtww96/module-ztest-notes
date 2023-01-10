@@ -370,10 +370,10 @@ class FlowActivity : BaseActivity(R.layout.activity_flow) {
             val random1 = Random.nextInt(999)
             binding.logText.add("FlowBus 发送数据=$random1")
             FlowBus.with<Int>(KEY_TEST).post(this, random1)
-            lifecycleScope.delayed(2000) {
+            /*lifecycleScope.delayed(2000) {
                 binding.logText.add("FlowBus 延迟2s再次发送相同数据=$random1")
                 FlowBus.with<Int>(KEY_TEST).post(this, random1)
-            }
+            }*/
         }
     }
 

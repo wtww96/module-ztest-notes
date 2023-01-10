@@ -58,6 +58,23 @@ class NotesActivity : BaseActivity(R.layout.activity_notes) {
                 binding.logText.add("软键盘-->${if (it) "显示" else "隐藏"}")
             }
         }
+
+        //================================================
+
+        /*lifecycleScope.tickFlow(10, {
+            Log.e("hehe", "tickFlow = $it")
+        }, {
+            Log.e("hehe", "tickFlow finish")
+        })
+        lifecycleScope.delayed(3000) {
+            Log.e("hehe", "delayed 3s")
+        }
+        lifecycleScope.poll(2000) {
+            Log.e("hehe", "2s一次轮询")
+        }
+        lifecycleScope.pollWhenStarted(2000) {
+            Log.e("hehe", "2s一次轮询 ,,,, pollWhenStarted")
+        }*/
     }
 
     override fun initListener() {
