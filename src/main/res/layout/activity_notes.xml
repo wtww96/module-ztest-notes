@@ -110,6 +110,15 @@
             android:text="Toast使用"
             android:textAllCaps="false" />
 
+        <Button
+            android:id="@+id/webview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="3dp"
+            android:padding="15dp"
+            android:text="WebView封装使用"
+            android:textAllCaps="false" />
+
         <EditText
             android:id="@+id/etContent"
             android:layout_width="66dp"

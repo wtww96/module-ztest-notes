@@ -24,6 +24,7 @@ import com.dp.notes.ui.koin.TestKoinActivity
 import com.dp.notes.ui.lazy.LazyActivity
 import com.dp.notes.ui.mmkv.MmkvActivity
 import com.dp.notes.ui.toast.ToastActivity
+import com.dp.notes.ui.webview.WebViewUseActivity
 
 /**
  * author Dq
@@ -132,6 +133,11 @@ class NotesActivity : BaseActivity(R.layout.activity_notes) {
         //Toast使用
         binding.toast.clickEvent {
             navigateTo<ToastActivity>()
+        }
+
+        //WebView封装
+        binding.webview.clickEvent {
+            navigateTo<WebViewUseActivity>()
         }
     }
 }

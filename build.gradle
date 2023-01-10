@@ -15,10 +15,10 @@ dependencies {
     kapt deps.Inject.compiler
     //Arouter
     kapt deps.Arouter.compiler
-    //----------------
-    implementation project(':module-common')
-    includeApi(':module-ztest-include')
-    //----------------
     implementation deps.Inject.koin
     implementation deps.Depend.flexbox
+    //----------------
+    implementation project(':module-common')
+    implementation project(':module-webview')
+    includeApi(':module-ztest-include')
 }
