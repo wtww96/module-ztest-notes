@@ -9,7 +9,7 @@ import com.dp.core.extension.onBack
 import com.dp.core.viewbinding.bindings
 import com.dp.core.windowinsets.*
 import com.dp.notes.R
-import com.dp.notes.databinding.ActivityStatusbarBinding
+import com.dp.notes.databinding.NotesActivityStatusbarBinding
 
 
 /**
@@ -18,8 +18,8 @@ import com.dp.notes.databinding.ActivityStatusbarBinding
  * description
  */
 @Route(path = PageRoute.ACTIVITY_NOTES_STATUS)
-class StatusbarActivity : BaseActivity(R.layout.activity_statusbar) {
-    private val binding by bindings<ActivityStatusbarBinding>()
+class StatusbarActivity : BaseActivity(R.layout.notes_activity_statusbar) {
+    private val binding by bindings<NotesActivityStatusbarBinding>()
 
     private var isFull = false//默认不是全屏
 

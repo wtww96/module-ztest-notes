@@ -9,15 +9,15 @@ import com.dp.core.util.CoreUtil
 import com.dp.core.viewbinding.bindings
 import com.dp.core.windowinsets.fitStatusBar
 import com.dp.notes.R
-import com.dp.notes.databinding.ActivityGsonBinding
+import com.dp.notes.databinding.NotesActivityGsonBinding
 
 /**
  * author Dq
  * date on 2022/11/14
  * description Gson容错处理测试
  */
-class GsonActivity : BaseActivity(R.layout.activity_gson) {
-    private val binding by bindings<ActivityGsonBinding>()
+class GsonActivity : BaseActivity(R.layout.notes_activity_gson) {
+    private val binding by bindings<NotesActivityGsonBinding>()
 
     override fun initView() {
         fitStatusBar()

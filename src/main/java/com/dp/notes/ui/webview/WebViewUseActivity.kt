@@ -5,7 +5,7 @@ import com.dp.core.base.BaseActivity
 import com.dp.core.extension.clickEvent
 import com.dp.core.viewbinding.bindings
 import com.dp.notes.R
-import com.dp.notes.databinding.ActivityWebviewUseBinding
+import com.dp.notes.databinding.NotesActivityWebviewUseBinding
 import com.dp.webview.bean.WebParamBean
 
 /**
@@ -13,8 +13,8 @@ import com.dp.webview.bean.WebParamBean
  * date on 2023/1/10
  * description WebView封装使用
  */
-class WebViewUseActivity : BaseActivity(R.layout.activity_webview_use) {
-    private val binding by bindings<ActivityWebviewUseBinding>()
+class WebViewUseActivity : BaseActivity(R.layout.notes_activity_webview_use) {
+    private val binding by bindings<NotesActivityWebviewUseBinding>()
 
     override fun initListener() {
         //普通WebView Activity

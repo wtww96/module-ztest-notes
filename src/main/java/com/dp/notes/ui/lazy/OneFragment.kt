@@ -1,6 +1,5 @@
 package com.dp.notes.ui.lazy
 
-import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.dp.core.base.BaseFragment
@@ -8,7 +7,7 @@ import com.dp.core.extension.cacheSize
 import com.dp.core.network.launchIn
 import com.dp.core.viewbinding.bindings
 import com.dp.notes.R
-import com.dp.notes.databinding.FragmentOneBinding
+import com.dp.notes.databinding.NotesFragmentOneBinding
 import com.dp.notes.ui.http.HttpViewModel
 import com.dp.notes.widget.tablayout.SlidingAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,8 +18,8 @@ import dagger.hilt.android.AndroidEntryPoint
  * description
  */
 @AndroidEntryPoint
-class OneFragment : BaseFragment(R.layout.fragment_one) {
-    private val binding by bindings<FragmentOneBinding>()
+class OneFragment : BaseFragment(R.layout.notes_fragment_one) {
+    private val binding by bindings<NotesFragmentOneBinding>()
     private val viewModel by viewModels<HttpViewModel>()
 
     override fun initView() {

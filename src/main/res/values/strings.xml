@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="toastId">这是一个Int资源id String文本</string>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ExtraTranslation">
+    <string name="notes_toastId" >这是一个Int资源id String文本</string>
 </resources>

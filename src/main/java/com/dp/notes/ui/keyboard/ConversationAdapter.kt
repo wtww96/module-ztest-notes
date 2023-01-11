@@ -33,10 +33,10 @@ internal class ConversationAdapter : RecyclerView.Adapter<RecyclerView.ViewHolde
         val inflater = LayoutInflater.from(parent.context)
         val view = when (viewType) {
             ITEM_TYPE_MESSAGE_SELF -> {
-                inflater.inflate(R.layout.item_message_bubble_self, parent, false)
+                inflater.inflate(R.layout.notes_item_message_bubble_self, parent, false)
             }
             else -> {
-                inflater.inflate(R.layout.item_message_bubble_other, parent, false)
+                inflater.inflate(R.layout.notes_item_message_bubble_other, parent, false)
             }
         }
         return MessageHolder(view)

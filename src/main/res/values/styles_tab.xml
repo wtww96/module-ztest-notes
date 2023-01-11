@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceName">
     <attr name="tl_divider_color" format="color" />
     <attr name="tl_divider_padding" format="dimension" />
     <attr name="tl_divider_width" format="dimension" />

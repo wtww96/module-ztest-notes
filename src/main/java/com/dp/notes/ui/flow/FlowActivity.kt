@@ -6,12 +6,11 @@ import androidx.lifecycle.lifecycleScope
 import com.dp.core.base.BaseActivity
 import com.dp.core.event.FlowBus
 import com.dp.core.extension.clickEvent
-import com.dp.core.extension.delayed
 import com.dp.core.network.launchIn
 import com.dp.core.viewbinding.bindings
 import com.dp.notes.R
 import com.dp.notes.constants.EventKeys.KEY_TEST
-import com.dp.notes.databinding.ActivityFlowBinding
+import com.dp.notes.databinding.NotesActivityFlowBinding
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -25,8 +24,8 @@ import kotlin.random.Random
  * date on 2022/10/28
  * description
  */
-class FlowActivity : BaseActivity(R.layout.activity_flow) {
-    private val binding by bindings<ActivityFlowBinding>()
+class FlowActivity : BaseActivity(R.layout.notes_activity_flow) {
+    private val binding by bindings<NotesActivityFlowBinding>()
 
     /**
      * livedata:

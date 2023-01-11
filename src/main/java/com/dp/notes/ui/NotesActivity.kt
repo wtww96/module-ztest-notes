@@ -14,7 +14,7 @@ import com.dp.core.viewbinding.bindings
 import com.dp.core.windowinsets.ImeHelper
 import com.dp.notes.R
 import com.dp.notes.constants.EventKeys.KEY_TEST
-import com.dp.notes.databinding.ActivityNotesBinding
+import com.dp.notes.databinding.NotesActivityNotesBinding
 import com.dp.notes.dialog.ParentDialog
 import com.dp.notes.ui.flow.FlowActivity
 import com.dp.notes.ui.gson.GsonActivity
@@ -32,8 +32,8 @@ import com.dp.notes.ui.webview.WebViewUseActivity
  * description 主页
  */
 @Route(path = PageRoute.ACTIVITY_NOTES_MAIN)
-class NotesActivity : BaseActivity(R.layout.activity_notes) {
-    private val binding by bindings<ActivityNotesBinding>()
+class NotesActivity : BaseActivity(R.layout.notes_activity_notes) {
+    private val binding by bindings<NotesActivityNotesBinding>()
     private val launcher = registerIntentResult()
 
     override fun initView() {

@@ -10,7 +10,7 @@ import com.dp.core.network.success
 import com.dp.core.viewbinding.bindings
 import com.dp.core.windowinsets.fitStatusBar
 import com.dp.notes.R
-import com.dp.notes.databinding.ActivityTestBinding
+import com.dp.notes.databinding.NotesActivityTestBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -19,8 +19,8 @@ import dagger.hilt.android.AndroidEntryPoint
  * description
  */
 @AndroidEntryPoint
-class TestHiltActivity : BaseActivity(R.layout.activity_test) {
-    private val binding by bindings<ActivityTestBinding>()
+class TestHiltActivity : BaseActivity(R.layout.notes_activity_test) {
+    private val binding by bindings<NotesActivityTestBinding>()
     private val viewModel by viewModels<TestHiltViewModel>()
 
     override fun initView() {

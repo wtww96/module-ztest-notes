@@ -30,7 +30,7 @@
         app:layout_constraintTop_toBottomOf="@+id/title"
         app:reverseLayout="true"
         tools:itemCount="50"
-        tools:listitem="@layout/item_message_bubble_self" />
+        tools:listitem="@layout/notes_item_message_bubble_self" />
 
     <TextView
         android:id="@+id/tvContent"
@@ -47,7 +47,7 @@
 
     <include
         android:id="@+id/inputLinear"
-        layout="@layout/layout_input"
+        layout="@layout/notes_layout_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent" />

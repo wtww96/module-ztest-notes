@@ -9,7 +9,7 @@ import com.dp.core.network.launchWithIn
 import com.dp.core.network.success
 import com.dp.core.viewbinding.bindings
 import com.dp.notes.R
-import com.dp.notes.databinding.ActivityTestBinding
+import com.dp.notes.databinding.NotesActivityTestBinding
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -19,8 +19,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  * date on 2022/9/14
  * description
  */
-class TestKoinActivity : BaseActivity(R.layout.activity_test) {
-    private val binding by bindings<ActivityTestBinding>()
+class TestKoinActivity : BaseActivity(R.layout.notes_activity_test) {
+    private val binding by bindings<NotesActivityTestBinding>()
     private val viewModel by viewModel<TestKoinViewModel>()
 
     override fun initView() {

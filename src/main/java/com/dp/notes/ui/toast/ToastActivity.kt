@@ -7,7 +7,7 @@ import com.dp.core.extension.clickEvent
 import com.dp.core.toast.ToastUtil
 import com.dp.core.viewbinding.bindings
 import com.dp.notes.R
-import com.dp.notes.databinding.ActivityToastBinding
+import com.dp.notes.databinding.NotesActivityToastBinding
 import com.dp.notes.ui.hilt.TestHiltViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,8 +21,8 @@ import kotlinx.coroutines.launch
  * description Toast封装使用
  */
 @AndroidEntryPoint
-class ToastActivity : BaseActivity(R.layout.activity_toast) {
-    private val binding by bindings<ActivityToastBinding>()
+class ToastActivity : BaseActivity(R.layout.notes_activity_toast) {
+    private val binding by bindings<NotesActivityToastBinding>()
     private val viewModel by viewModels<TestHiltViewModel>()
 
     override fun initView() {
@@ -43,7 +43,7 @@ class ToastActivity : BaseActivity(R.layout.activity_toast) {
         }
 
         binding.bt4.clickEvent {
-            ToastUtil.show(R.string.toastId)
+            ToastUtil.show(R.string.notes_toastId)
         }
 
         binding.bt5.clickEvent {

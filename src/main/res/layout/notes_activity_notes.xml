@@ -9,7 +9,7 @@
 
     <include
         android:id="@+id/childView"
-        layout="@layout/layout_include_view" />
+        layout="@layout/notes_layout_include_view" />
 
     <com.google.android.flexbox.FlexboxLayout
         android:id="@+id/flexbox"

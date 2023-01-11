@@ -9,15 +9,15 @@ import com.dp.core.extension.isEmpty
 import com.dp.core.viewbinding.bindings
 import com.dp.core.windowinsets.*
 import com.dp.notes.R
-import com.dp.notes.databinding.ActivityKeyboardChatBinding
+import com.dp.notes.databinding.NotesActivityKeyboardChatBinding
 
 /**
  * author Dq
  * date on 2022/11/25
  * description 即时聊天页面软键盘布局
  */
-class KeyboardChatActivity : BaseActivity(R.layout.activity_keyboard_chat) {
-    private val binding by bindings<ActivityKeyboardChatBinding>()
+class KeyboardChatActivity : BaseActivity(R.layout.notes_activity_keyboard_chat) {
+    private val binding by bindings<NotesActivityKeyboardChatBinding>()
 
     override fun initView() {
         binding.title.fitStatusBar(true)

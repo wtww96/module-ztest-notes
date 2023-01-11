@@ -6,7 +6,7 @@ import com.dp.core.extension.cacheSize
 import com.dp.core.extension.clickEvent
 import com.dp.core.viewbinding.bindings
 import com.dp.notes.R
-import com.dp.notes.databinding.ActivityLazyBinding
+import com.dp.notes.databinding.NotesActivityLazyBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -15,8 +15,8 @@ import dagger.hilt.android.AndroidEntryPoint
  * description
  */
 @AndroidEntryPoint
-class LazyActivity : BaseActivity(R.layout.activity_lazy) {
-    private val binding by bindings<ActivityLazyBinding>()
+class LazyActivity : BaseActivity(R.layout.notes_activity_lazy) {
+    private val binding by bindings<NotesActivityLazyBinding>()
 
     override fun initView() {
         initFragment()

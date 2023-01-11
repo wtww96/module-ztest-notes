@@ -4,15 +4,15 @@ import androidx.core.os.bundleOf
 import com.dp.core.base.BaseFragment
 import com.dp.core.viewbinding.bindings
 import com.dp.notes.R
-import com.dp.notes.databinding.FragmentChildBinding
+import com.dp.notes.databinding.NotesFragmentChildBinding
 
 /**
  * author Dq
  * date on 2022/9/19
  * description
  */
-class ChildFragment : BaseFragment(R.layout.fragment_child) {
-    private val binding by bindings<FragmentChildBinding>()
+class ChildFragment : BaseFragment(R.layout.notes_fragment_child) {
+    private val binding by bindings<NotesFragmentChildBinding>()
 
     private var type = 0
 

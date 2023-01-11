@@ -1,20 +1,19 @@
 package com.dp.notes.ui.lazy
 
-import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
 import com.dp.core.base.BaseFragment
 import com.dp.core.viewbinding.bindings
 import com.dp.notes.R
-import com.dp.notes.databinding.FragmentTwoBinding
+import com.dp.notes.databinding.NotesFragmentTwoBinding
 
 /**
  * author Dq
  * date on 2022/9/19
  * description
  */
-class TwoFragment : BaseFragment(R.layout.fragment_two) {
-    private val binding by bindings<FragmentTwoBinding>()
+class TwoFragment : BaseFragment(R.layout.notes_fragment_two) {
+    private val binding by bindings<NotesFragmentTwoBinding>()
 
     override fun initView() {
         binding.textview.add("Two: initView-->isResumed=$isResumed , isVisible=$isVisible , isHidden=$isHidden")

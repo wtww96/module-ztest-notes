@@ -6,15 +6,15 @@ import com.dp.core.extension.clickEvent
 import com.dp.core.viewbinding.bindings
 import com.dp.core.windowinsets.*
 import com.dp.notes.R
-import com.dp.notes.databinding.FragmentTestBinding
+import com.dp.notes.databinding.NotesFragmentTestBinding
 
 /**
  * author Dq
  * date on 2022/9/19
  * description
  */
-class ThreeFragment : BaseFragment(R.layout.fragment_test) {
-    private val binding by bindings<FragmentTestBinding>()
+class ThreeFragment : BaseFragment(R.layout.notes_fragment_test) {
+    private val binding by bindings<NotesFragmentTestBinding>()
 
     override fun initView() {
         binding.msg.text = "ThreeThreeThree  Fragment"

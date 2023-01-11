@@ -8,15 +8,15 @@ import com.dp.core.extension.dp
 import com.dp.core.viewbinding.bindings
 import com.dp.core.windowinsets.*
 import com.dp.notes.R
-import com.dp.notes.databinding.DialogTest1Binding
+import com.dp.notes.databinding.NotesDialogTest1Binding
 
 /**
  * author Dq
  * date on 2022/10/19
  * description
  */
-class ParentDialog : BaseFragmentDialog(R.layout.dialog_test1) {
-    private val binding by bindings<DialogTest1Binding>()
+class ParentDialog : BaseFragmentDialog(R.layout.notes_dialog_test1) {
+    private val binding by bindings<NotesDialogTest1Binding>()
 
     override fun initView() {
         binding.button.clickEvent {

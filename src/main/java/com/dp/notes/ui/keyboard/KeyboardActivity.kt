@@ -1,7 +1,6 @@
 package com.dp.notes.ui.keyboard
 
 import android.util.Log
-import android.view.View
 import androidx.core.view.isVisible
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.dp.common.route.PageRoute
@@ -12,8 +11,8 @@ import com.dp.core.extension.navigateTo
 import com.dp.core.viewbinding.bindings
 import com.dp.core.windowinsets.*
 import com.dp.notes.R
-import com.dp.notes.databinding.ActivityKeyboardBinding
-import com.dp.notes.databinding.LayoutInputBinding
+import com.dp.notes.databinding.NotesActivityKeyboardBinding
+import com.dp.notes.databinding.NotesLayoutInputBinding
 
 /**
  * author Dq
@@ -21,9 +20,9 @@ import com.dp.notes.databinding.LayoutInputBinding
  * description 软键盘相关操作
  */
 @Route(path = PageRoute.ACTIVITY_NOTES_KEYBOARD)
-class KeyboardActivity : BaseActivity(R.layout.activity_keyboard) {
-    private val binding by bindings<ActivityKeyboardBinding>()
-    private var stubBinding: LayoutInputBinding? = null
+class KeyboardActivity : BaseActivity(R.layout.notes_activity_keyboard) {
+    private val binding by bindings<NotesActivityKeyboardBinding>()
+    private var stubBinding: NotesLayoutInputBinding? = null
 
     override fun initView() {
         binding.tvContent.fitStatusBar(true)
