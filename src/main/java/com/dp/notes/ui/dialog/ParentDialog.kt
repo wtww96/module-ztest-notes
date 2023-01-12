@@ -1,4 +1,4 @@
-package com.dp.notes.dialog
+package com.dp.notes.ui.dialog
 
 
 import android.util.Log
@@ -8,15 +8,15 @@ import com.dp.core.extension.dp
 import com.dp.core.viewbinding.bindings
 import com.dp.core.windowinsets.*
 import com.dp.notes.R
-import com.dp.notes.databinding.NotesDialogTest1Binding
+import com.dp.notes.databinding.NotesDialogTestBinding
 
 /**
  * author Dq
  * date on 2022/10/19
  * description
  */
-class ParentDialog : BaseFragmentDialog(R.layout.notes_dialog_test1) {
-    private val binding by bindings<NotesDialogTest1Binding>()
+class ParentDialog : BaseFragmentDialog(R.layout.notes_dialog_test) {
+    private val binding by bindings<NotesDialogTestBinding>()
 
     override fun initView() {
         binding.button.clickEvent {

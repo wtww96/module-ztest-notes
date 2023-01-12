@@ -1,9 +1,9 @@
-package com.dp.notes.dialog
+package com.dp.notes.ui.dialog
 
 import android.view.Gravity
 import com.dp.core.base.BaseFragmentDialog
 import com.dp.notes.R
-import com.dp.notes.databinding.NotesDialogTest1Binding
+import com.dp.notes.databinding.NotesDialogTestBinding
 import com.dp.core.extension.clickEvent
 import com.dp.core.viewbinding.bindings
 
@@ -12,8 +12,8 @@ import com.dp.core.viewbinding.bindings
  * date on 2022/10/19
  * description
  */
-class ChildDialog : BaseFragmentDialog(R.layout.notes_dialog_test1) {
-    private val binding by bindings<NotesDialogTest1Binding>()
+class ChildDialog : BaseFragmentDialog(R.layout.notes_dialog_test) {
+    private val binding by bindings<NotesDialogTestBinding>()
 
     override fun initView() {
         binding.button.text = "加上健康登记卡数据库"
@@ -21,7 +21,7 @@ class ChildDialog : BaseFragmentDialog(R.layout.notes_dialog_test1) {
     }
 
     override fun dialogGravity(): Int = Gravity.BOTTOM
-    override fun dialogAnim(): Int = com.dp.core.R.style.AnimBottom
+    override fun dialogAnim(): Int = R.style.AnimBottom
 
     companion object {
         fun show(any: Any) {

@@ -15,7 +15,7 @@ import com.dp.core.windowinsets.ImeHelper
 import com.dp.notes.R
 import com.dp.notes.constants.EventKeys.KEY_TEST
 import com.dp.notes.databinding.NotesActivityNotesBinding
-import com.dp.notes.dialog.ParentDialog
+import com.dp.notes.ui.dialog.UseDialogActivity
 import com.dp.notes.ui.flow.FlowActivity
 import com.dp.notes.ui.gson.GsonActivity
 import com.dp.notes.ui.hilt.TestHiltActivity
@@ -107,7 +107,7 @@ class NotesActivity : BaseActivity(R.layout.notes_activity_notes) {
 
         //弹窗测试
         binding.dialog.clickEvent {
-            ParentDialog.show(this)
+            navigateTo<UseDialogActivity>()
         }
 
         //Flow流使用和解析
