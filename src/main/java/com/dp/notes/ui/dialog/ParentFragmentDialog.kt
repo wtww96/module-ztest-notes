@@ -15,12 +15,12 @@ import com.dp.notes.databinding.NotesDialogTestBinding
  * date on 2022/10/19
  * description
  */
-class ParentDialog : BaseFragmentDialog(R.layout.notes_dialog_test) {
+class ParentFragmentDialog : BaseFragmentDialog(R.layout.notes_dialog_test) {
     private val binding by bindings<NotesDialogTestBinding>()
 
     override fun initView() {
         binding.button.clickEvent {
-            ChildDialog.show(this)
+            ChildFragmentDialog.show(this)
             dismiss()
         }
 
@@ -39,7 +39,7 @@ class ParentDialog : BaseFragmentDialog(R.layout.notes_dialog_test) {
 
     companion object {
         fun show(any: Any) {
-            ParentDialog().show(any)
+            ParentFragmentDialog().show(any)
         }
     }
 }

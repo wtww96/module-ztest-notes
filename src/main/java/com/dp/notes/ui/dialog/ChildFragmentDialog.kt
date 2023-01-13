@@ -12,7 +12,7 @@ import com.dp.core.viewbinding.bindings
  * date on 2022/10/19
  * description
  */
-class ChildDialog : BaseFragmentDialog(R.layout.notes_dialog_test) {
+class ChildFragmentDialog : BaseFragmentDialog(R.layout.notes_dialog_test) {
     private val binding by bindings<NotesDialogTestBinding>()
 
     override fun initView() {
@@ -25,7 +25,7 @@ class ChildDialog : BaseFragmentDialog(R.layout.notes_dialog_test) {
 
     companion object {
         fun show(any: Any) {
-            ChildDialog().show(any)
+            ChildFragmentDialog().show(any)
         }
     }
 }

@@ -3,7 +3,6 @@ package com.dp.notes.ui.dialog
 import android.content.Intent
 import com.dp.core.base.BaseActivity
 import com.dp.core.extension.clickEvent
-import com.dp.core.extension.navigateTo
 import com.dp.core.viewbinding.bindings
 import com.dp.notes.R
 import com.dp.notes.databinding.NotesActivityUseDialogBinding
@@ -22,11 +21,11 @@ class UseDialogActivity : BaseActivity(R.layout.notes_activity_use_dialog) {
 
     override fun initListener() {
         binding.bt1.clickEvent {
-            ParentDialog.show(this)
+            ParentFragmentDialog.show(this)
         }
 
         binding.bt2.clickEvent {
-            ChildDialog.show(this)
+            ChildFragmentDialog.show(this)
         }
 
         binding.bt3.clickEvent {
