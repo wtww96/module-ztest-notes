@@ -122,7 +122,9 @@
         <EditText
             android:id="@+id/etContent"
             android:layout_width="66dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="xx" />
+
     </com.google.android.flexbox.FlexboxLayout>
 
     <ScrollView

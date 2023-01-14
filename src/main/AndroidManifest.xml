@@ -98,14 +98,12 @@
             android:name=".ui.dialog.DialogActivity"
             android:exported="false"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
             android:theme="@style/Theme.Activity.Transparent" />
 
         <activity
             android:name=".ui.dialog.DialogBottomActivity"
             android:exported="false"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
             android:theme="@style/Theme.Activity.Transparent" />
 
     </application>

@@ -60,6 +60,8 @@ class NotesActivity : BaseActivity(R.layout.notes_activity_notes) {
             }
         }
 
+        //binding.etContent.focus(2000)
+
         //================================================
 
         /*lifecycleScope.tickFlow(10, {
