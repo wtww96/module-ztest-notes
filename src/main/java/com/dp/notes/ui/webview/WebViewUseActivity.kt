@@ -24,7 +24,7 @@ class WebViewUseActivity : BaseActivity(R.layout.notes_activity_webview_use) {
 
         //传递Bean对象 WebView Activity
         binding.bt2.clickEvent {
-            PageRouteAction.launchWebView(WebParamBean("http://www.cxy521.com/"))
+            PageRouteAction.launchWebView(WebParamBean("http://www.cxy521.com/", statusBarDarkText = false))
         }
     }
 }
