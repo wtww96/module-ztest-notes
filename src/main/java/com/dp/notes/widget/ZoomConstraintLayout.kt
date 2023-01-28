@@ -34,6 +34,13 @@ class ZoomConstraintLayout @JvmOverloads constructor(
         }*/
     }
 
+    override fun onFinishInflate() {
+        /*if (null == zoomView || null == banner) {
+           zoomView = findViewById(R.id.zoomLayout)
+           banner = findViewById(R.id.bannger)
+       }*/
+        super.onFinishInflate()
+    }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
         zoomView?.let { v ->
