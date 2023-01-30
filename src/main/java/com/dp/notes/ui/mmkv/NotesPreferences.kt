@@ -20,6 +20,6 @@ object NotesPreferences {
 
     var strings by mmkv.string("傻逼")
 
-    //var parcelable1 by mmkv.parcelable<MmkvBean>()
+    var parcelable1 by mmkv.parcelable<MmkvBean>()
     var parcelable2 by mmkv.parcelable(MmkvBean("xx"))
 }
