@@ -22,4 +22,5 @@ dependencies {
     implementation project(':module-common')
     implementation project(':module-webview')
     includeApi(':module-ztest-include')
+    //implementation 'com.tencent.mars:mars-xlog:1.2.5'
 }
