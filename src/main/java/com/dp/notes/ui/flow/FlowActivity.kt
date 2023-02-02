@@ -56,9 +56,13 @@ class FlowActivity : BaseActivity(R.layout.notes_activity_flow) {
      *                     3.侧重在事件:更适合通知ui界面的一些事件，比如toast等
      *
      * stateFlow热流(不具备生命周期感知能力):
-     *            是一个特殊的SharedFlow = MutableSharedFlow(replay = 0,onBufferOverflow = BufferOverflow.DROP_OLDEST)
-     *            1.粘性事件，新的订阅者会获得当前的最新事件
-     *            2.有初始默认值，并且在开始订阅时会回调初始值
+     *            是一个特殊的SharedFlow --->
+     *            val shared = MutableSharedFlow(replay = 1,onBufferOverflow = BufferOverflow.DROP_OLDEST)
+     *            shared.tryEmit(initialValue) //初始默认值
+     *            val state = shared.distinctUntilChanged() //数据防抖
+     *
+     *            1.有初始默认值，并且在开始订阅时会回调初始值
+     *            2.粘性事件，新的订阅者会获得当前的最新事件
      *            3.数据防抖
      *            4.最接近LiveData的Flow
      *            使用场景:
