@@ -7,7 +7,7 @@ import com.dp.core.viewbinding.bindings
 import com.dp.notes.R
 import com.dp.notes.databinding.NotesActivityWebviewUseBinding
 import com.dp.webview.bean.WebParamBean
-import com.dp.webview.manager.PageWebAction
+import com.dp.webview.PageWebAction
 
 /**
  * author Dq
