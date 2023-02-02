@@ -16,11 +16,12 @@ dependencies {
     kapt deps.Inject.compiler
     //Arouter
     kapt deps.Arouter.compiler
+    //-------
+    implementation project(':module-common')
+    compileOnly project(':module-webview')
+    includeApi(':module-ztest-include')
+    //-------
     implementation deps.Inject.koin
     implementation deps.Depend.flexbox
-    //----------------
-    implementation project(':module-common')
-    implementation project(':module-webview')
-    includeApi(':module-ztest-include')
     //implementation 'com.tencent.mars:mars-xlog:1.2.5'
 }

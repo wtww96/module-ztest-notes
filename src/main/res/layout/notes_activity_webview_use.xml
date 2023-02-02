@@ -24,6 +24,13 @@
             android:layout_height="wrap_content"
             android:text="传递Bean对象 WebView Activity"
             android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/bt3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="获取 WebViewFragment,自定义界面"
+            android:textAllCaps="false" />
     </com.google.android.flexbox.FlexboxLayout>
 
 </androidx.appcompat.widget.LinearLayoutCompat>
