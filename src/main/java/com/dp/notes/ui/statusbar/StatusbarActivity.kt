@@ -6,6 +6,7 @@ import com.dp.common.route.PageRoute
 import com.dp.core.base.BaseActivity
 import com.dp.core.extension.clickEvent
 import com.dp.core.extension.onBack
+import com.dp.core.extension.showToast
 import com.dp.core.viewbinding.bindings
 import com.dp.core.windowinsets.*
 import com.dp.notes.R
@@ -77,5 +78,10 @@ class StatusbarActivity : BaseActivity(R.layout.notes_activity_statusbar) {
         binding.bt11.clickEvent {
             binding.tvContent.text = "是否有底部导航栏 = ${hasNavigationBar}"
         }
+    }
+
+    override fun onPageBack() {
+        //super.onPageBack()
+        showToast("屏蔽系统返回")
     }
 }
