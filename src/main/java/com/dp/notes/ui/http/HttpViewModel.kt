@@ -9,7 +9,7 @@ import com.dp.core.base.BaseViewModel
 import com.dp.core.extension.toJson
 import com.dp.core.network.bean.NetworkResult
 import com.dp.core.network.failure
-import com.dp.core.network.launchWithIn
+import com.dp.core.network.launchWith
 import com.dp.core.network.success
 import com.dp.notes.bean.Test1Bean
 import com.dp.notes.repository.TestRepository
@@ -33,7 +33,7 @@ class HttpViewModel @Inject constructor(private val dataSource: TestRepository) 
      * rxjava封装的网络请求 转化 为flow流处理
      */
     fun rxRequest() {
-        dataSource.requestRx().launchWithIn(this) {
+        dataSource.requestRx().launchWith(this) {
             success {
                 rxResult.value = "${it.city} , ${it.realtime.info} , ${it.realtime.direct}"
                 Log.e("hehe", "rxRequest 成功 = ${it.toJson()}")
@@ -51,7 +51,7 @@ class HttpViewModel @Inject constructor(private val dataSource: TestRepository) 
      */
     fun flowRequest1() {
         dataSource.requestFlow().asLiveData()
-        dataSource.requestFlow().launchWithIn(this) {
+        dataSource.requestFlow().launchWith(this) {
             success {
                 flowResult.value = "${it.city} , ${it.realtime.info} , ${it.realtime.direct}"
                 Log.e("hehe", "flowRequest1_1 成功 = ${it.toJson()}")

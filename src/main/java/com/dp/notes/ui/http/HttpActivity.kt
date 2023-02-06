@@ -24,15 +24,14 @@ class HttpActivity : BaseActivity(R.layout.notes_activity_http) {
         NetworkUtil.getNetWorkSpeed(this, 1000) {
             binding.logText.add("当前网络速率 = $it")
         }
-
         //回调api 转 flow流
         viewModel.rxResult.observe(this) {
-            binding.logText.add("回调api 转 flow流 livedata通知更新=$this")
+            binding.logText.add("回调api 转 flow流 livedata通知更新=$it")
         }
 
         //Flow流请求 LiveData通知更新
         viewModel.flowResult.observe(this) {
-            binding.logText.add("Flow流请求,livedata通知更新=$this")
+            binding.logText.add("Flow流请求,livedata通知更新=$it")
         }
     }
 
@@ -50,7 +49,7 @@ class HttpActivity : BaseActivity(R.layout.notes_activity_http) {
         //Flow流请求,直接在页面处理更新
         binding.bt3.clickEvent {
             //处理 成功和失败 两种场景
-            /*viewModel.flowRequest2().launchWithIn(this) {
+            /*viewModel.flowRequest2().launchWith(this) {
                 success {
                     binding.text.text = "${it.city} , ${it.realtime.info} , ${it.realtime.direct}"
                     Log.e("hehe", "flowRequest1_2 success{} ${it.toJson()}")
