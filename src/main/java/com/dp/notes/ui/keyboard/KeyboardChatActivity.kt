@@ -1,5 +1,6 @@
 package com.dp.notes.ui.keyboard
 
+import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.core.view.ViewCompat
@@ -19,7 +20,7 @@ import com.dp.notes.databinding.NotesActivityKeyboardChatBinding
 class KeyboardChatActivity : BaseActivity(R.layout.notes_activity_keyboard_chat) {
     private val binding by bindings<NotesActivityKeyboardChatBinding>()
 
-    override fun initView() {
+    override fun initView(bundle: Bundle?) {
         binding.title.fitStatusBar(true)
         binding.recyclerView.adapter = ConversationAdapter()
         binding.tvContent.text = "软键盘状态 : ${if (imeVisible()) "显示" else "隐藏"}"

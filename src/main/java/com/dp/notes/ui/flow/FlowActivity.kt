@@ -1,5 +1,6 @@
 package com.dp.notes.ui.flow
 
+import android.os.Bundle
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -106,7 +107,7 @@ class FlowActivity : BaseActivity(R.layout.notes_activity_flow) {
      *                //注意：运行到此处时，生命周期已经处于 DESTROYED 状态！
      *            }
      */
-    override fun initView() {
+    override fun initView(bundle: Bundle?) {
         //livedata
         testLiveData()
         //Flow 冷流

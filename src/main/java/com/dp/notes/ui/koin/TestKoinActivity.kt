@@ -1,5 +1,6 @@
 package com.dp.notes.ui.koin
 
+import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
 import com.dp.core.base.BaseActivity
 import com.dp.core.extension.clickEvent
@@ -23,7 +24,7 @@ class TestKoinActivity : BaseActivity(R.layout.notes_activity_test) {
     private val binding by bindings<NotesActivityTestBinding>()
     private val viewModel by viewModel<TestKoinViewModel>()
 
-    override fun initView() {
+    override fun initView(bundle: Bundle?) {
         binding.title.text = "Koin 依赖注入"
     }
 

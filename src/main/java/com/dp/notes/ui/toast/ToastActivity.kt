@@ -1,5 +1,6 @@
 package com.dp.notes.ui.toast
 
+import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.dp.core.base.BaseActivity
@@ -25,7 +26,7 @@ class ToastActivity : BaseActivity(R.layout.notes_activity_toast) {
     private val binding by bindings<NotesActivityToastBinding>()
     private val viewModel by viewModels<TestHiltViewModel>()
 
-    override fun initView() {
+    override fun initView(bundle: Bundle?) {
         viewModel.rxRequest()
     }
 

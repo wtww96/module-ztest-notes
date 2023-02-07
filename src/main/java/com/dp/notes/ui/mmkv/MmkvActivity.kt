@@ -1,5 +1,6 @@
 package com.dp.notes.ui.mmkv
 
+import android.os.Bundle
 import android.util.Log
 import com.dp.core.base.BaseActivity
 import com.dp.core.viewbinding.bindings
@@ -15,7 +16,7 @@ import kotlin.random.Random
 class MmkvActivity : BaseActivity(R.layout.notes_activity_mmkv) {
     private val binding by bindings<NotesActivityMmkvBinding>()
 
-    override fun initView() {
+    override fun initView(bundle: Bundle?) {
         Log.e("hehe", "bool1 = ${NotesPreferences.bool}")
         NotesPreferences.bool = true
         Log.e("hehe", "bool2 = ${NotesPreferences.bool}\n")

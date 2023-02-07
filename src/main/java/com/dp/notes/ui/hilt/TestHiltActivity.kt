@@ -1,5 +1,6 @@
 package com.dp.notes.ui.hilt
 
+import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import com.dp.core.base.BaseActivity
@@ -23,7 +24,7 @@ class TestHiltActivity : BaseActivity(R.layout.notes_activity_test) {
     private val binding by bindings<NotesActivityTestBinding>()
     private val viewModel by viewModels<TestHiltViewModel>()
 
-    override fun initView() {
+    override fun initView(bundle: Bundle?) {
         fitStatusBar(systemBarColor())
         binding.title.text = "Hilt 依赖注入"
         binding.button1.isVisible = false

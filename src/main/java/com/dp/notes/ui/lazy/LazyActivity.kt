@@ -1,5 +1,6 @@
 package com.dp.notes.ui.lazy
 
+import android.os.Bundle
 import com.dp.core.base.BaseActivity
 import com.dp.core.extension.bindAdapter
 import com.dp.core.extension.cacheSize
@@ -18,7 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class LazyActivity : BaseActivity(R.layout.notes_activity_lazy) {
     private val binding by bindings<NotesActivityLazyBinding>()
 
-    override fun initView() {
+    override fun initView(bundle: Bundle?) {
         initFragment()
     }
 

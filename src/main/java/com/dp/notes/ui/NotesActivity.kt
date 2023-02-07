@@ -1,6 +1,7 @@
 package com.dp.notes.ui
 
 import android.content.Intent
+import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.dp.common.route.PageRoute
 import com.dp.core.base.BaseActivity
@@ -36,7 +37,7 @@ class NotesActivity : BaseActivity(R.layout.notes_activity_notes) {
     private val binding by bindings<NotesActivityNotesBinding>()
     private val launcher = registerIntentResult()
 
-    override fun initView() {
+    override fun initView(bundle: Bundle?) {
         //网络速率监听
         NetworkUtil.getNetWorkSpeed(this) {
             binding.childView.tvTitle.text = "当前网络速率 = $it"

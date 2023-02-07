@@ -1,5 +1,6 @@
 package com.dp.notes.ui.gson
 
+import android.os.Bundle
 import android.util.Log
 import com.dp.core.base.BaseActivity
 import com.dp.core.extension.clickEvent
@@ -19,7 +20,7 @@ import com.dp.notes.databinding.NotesActivityGsonBinding
 class GsonActivity : BaseActivity(R.layout.notes_activity_gson) {
     private val binding by bindings<NotesActivityGsonBinding>()
 
-    override fun initView() {
+    override fun initView(bundle: Bundle?) {
         fitStatusBar()
     }
 

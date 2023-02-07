@@ -1,5 +1,6 @@
 package com.dp.notes.ui.keyboard
 
+import android.os.Bundle
 import android.util.Log
 import androidx.core.view.isVisible
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -24,7 +25,7 @@ class KeyboardActivity : BaseActivity(R.layout.notes_activity_keyboard) {
     private val binding by bindings<NotesActivityKeyboardBinding>()
     private var stubBinding: NotesLayoutInputBinding? = null
 
-    override fun initView() {
+    override fun initView(bundle: Bundle?) {
         binding.tvContent.fitStatusBar(true)
         binding.tvContent.text = "软键盘状态 : ${if (imeVisible()) "显示" else "隐藏"}"
         //------------------------

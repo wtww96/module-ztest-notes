@@ -1,5 +1,6 @@
 package com.dp.notes.ui.statusbar
 
+import android.os.Bundle
 import androidx.core.view.WindowInsetsCompat.Type
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.dp.common.route.PageRoute
@@ -24,7 +25,7 @@ class StatusbarActivity : BaseActivity(R.layout.notes_activity_statusbar) {
 
     private var isFull = false//默认不是全屏
 
-    override fun initView() {
+    override fun initView(bundle: Bundle?) {
         //状态栏沉浸式修复高度和添加无逻辑返回
         binding.btBack.fitStatusBar().onBack()
     }
