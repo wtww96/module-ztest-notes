@@ -1,12 +1,12 @@
 package com.dp.notes.ui
 
-import android.content.Intent
 import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.dp.common.route.PageRoute
 import com.dp.core.base.BaseActivity
 import com.dp.core.event.FlowBus
 import com.dp.core.extension.clickEvent
+import com.dp.core.extension.intentTo
 import com.dp.core.extension.navigateTo
 import com.dp.core.extension.registerIntentResult
 import com.dp.core.network.util.NetworkLiveData
@@ -94,7 +94,7 @@ class NotesActivity : BaseActivity(R.layout.notes_activity_notes) {
 
         //registerResult使用
         binding.register.clickEvent {
-            launcher.launch(Intent(this, TestRegisterResultActivity::class.java)) { result ->
+            launcher.launch(intentTo<TestRegisterResultActivity>()) { result ->
                 binding.logText.add(
                     "registerResult使用:\n" +
                         "     resultCode=${result.resultCode}\n" +
