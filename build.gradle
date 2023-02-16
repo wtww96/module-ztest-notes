@@ -19,7 +19,7 @@ dependencies {
     //-------
     implementation project(':module-common')
     compileOnly project(':module-webview')
-    includeApi(':module-ztest-include')
+    compileApi(':module-ztest-include')
     //-------
     implementation deps.Inject.koin
     implementation deps.Depend.flexbox
