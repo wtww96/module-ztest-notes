@@ -15,7 +15,7 @@
         android:id="@+id/flexbox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="44dp"
         app:flexWrap="wrap"
         app:layout_constraintTop_toTopOf="parent"
         app:showDividerHorizontal="middle">
@@ -39,12 +39,21 @@
             android:textAllCaps="false" />
 
         <Button
-            android:id="@+id/register"
+            android:id="@+id/register1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="3dp"
             android:padding="15dp"
-            android:text="registerResult使用"
+            android:text="registerResult,页面跳转的使用"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/register2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="3dp"
+            android:padding="15dp"
+            android:text="registerResult,申请权限的使用"
             android:textAllCaps="false" />
 
         <Button

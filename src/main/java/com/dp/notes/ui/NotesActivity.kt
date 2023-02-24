@@ -1,19 +1,21 @@
 package com.dp.notes.ui
 
 import android.os.Bundle
+import android.util.Log
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.dp.common.route.PageRoute
 import com.dp.core.base.BaseActivity
+import com.dp.core.constants.PermissionConst
 import com.dp.core.event.FlowBus
-import com.dp.core.extension.clickEvent
-import com.dp.core.extension.intentTo
-import com.dp.core.extension.navigateTo
-import com.dp.core.extension.registerIntentResult
+import com.dp.core.extension.*
 import com.dp.core.network.util.NetworkLiveData
 import com.dp.core.network.util.NetworkUtil
 import com.dp.core.viewbinding.bindings
 import com.dp.core.windowinsets.ImeHelper
 import com.dp.notes.R
+import com.dp.notes._temp.screenshot.ScreenImageManager
+import com.dp.notes._temp.screenshot.ScreenShotManager
+import com.dp.notes._temp.screenshot.ScreenVideoManager
 import com.dp.notes.constants.EventKeys.KEY_TEST
 import com.dp.notes.databinding.NotesActivityNotesBinding
 import com.dp.notes.ui.dialog.UseDialogActivity
@@ -36,8 +38,11 @@ import com.dp.notes.ui.webview.WebViewUseActivity
 class NotesActivity : BaseActivity(R.layout.notes_activity_notes) {
     private val binding by bindings<NotesActivityNotesBinding>()
     private val launcher = registerIntentResult()
+    private val launcherPermission = registerPermissionResult()
 
     override fun initView(bundle: Bundle?) {
+        registerScreenshot()
+
         //网络速率监听
         NetworkUtil.getNetWorkSpeed(this) {
             binding.childView.tvTitle.text = "当前网络速率 = $it"
@@ -92,14 +97,24 @@ class NotesActivity : BaseActivity(R.layout.notes_activity_notes) {
             navigateTo<TestKoinActivity>()
         }
 
-        //registerResult使用
-        binding.register.clickEvent {
+        //registerResult,页面跳转的使用
+        binding.register1.clickEvent {
             launcher.launch(intentTo<TestRegisterResultActivity>()) { result ->
                 binding.logText.add(
                     "registerResult使用:\n" +
                         "     resultCode=${result.resultCode}\n" +
                         "     result=${result.data?.getStringExtra("backParams")}"
                 )
+            }
+        }
+
+        //registerResult,申请权限的使用
+        binding.register2.clickEvent {
+            launcherPermission.launchP(PermissionConst.STORAGE) { isAllow, asks ->
+                binding.logText.add("存储权限申请结果 = $isAllow")
+                asks.forEach {
+                    binding.logText.add("拒绝且不再询问的权限组 = $it")
+                }
             }
         }
 
@@ -143,4 +158,26 @@ class NotesActivity : BaseActivity(R.layout.notes_activity_notes) {
             navigateTo<WebViewUseActivity>()
         }
     }
+
+    private fun registerScreenshot() {
+        ScreenShotManager.instance.registerListener(
+            {   //处理查询到的最新图片/视频 数据
+                Log.e("hehe", "App 收到要处理的文件数据 =$it")
+                if (it.isImage) {
+                    ScreenImageManager.instance.handleImage(it)
+                } else {
+                    ScreenVideoManager.instance.handleVideo(it)
+                }
+            },
+            {
+                Log.e("hehe", "收到要申请存储权限的请求,uri=$it")
+                launcherPermission.launchP(PermissionConst.STORAGE) { isAllow, asks ->
+                    Log.e("hehe", "存储权限回调结果,isAllow = $isAllow")
+                    //收到存储权限回调,处理数据
+                    ScreenShotManager.instance.handleMediaContentChange(this, it, "dfsdf", "洒洒水所所所")
+                }
+            }
+        )
+    }
+
 }

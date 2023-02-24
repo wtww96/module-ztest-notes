@@ -8,6 +8,12 @@ apply from: moduleGradle
 android {
     namespace 'com.dp.notes'
     resourcePrefix "notes_"
+
+    defaultConfig {
+        ndk {
+            abiFilters "armeabi-v7a", 'arm64-v8a', 'x86_64'
+        }
+    }
 }
 
 dependencies {
@@ -24,4 +30,5 @@ dependencies {
     implementation deps.Inject.koin
     implementation deps.Depend.flexbox
     //implementation 'com.tencent.mars:mars-xlog:1.2.5'
+    implementation 'com.github.microshow:RxFFmpeg:4.9.0-lite'
 }

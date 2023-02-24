@@ -1,4 +1,4 @@
-package com.shjt.jkjz.widget.divider
+package com.dp.notes._temp.multi
 
 import android.graphics.Canvas
 import android.graphics.Color
