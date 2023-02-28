@@ -2,10 +2,10 @@ package com.dp.notes.ui.dialog
 
 import android.view.Gravity
 import com.dp.core.base.BaseFragmentDialog
-import com.dp.notes.R
-import com.dp.notes.databinding.NotesDialogTestBinding
 import com.dp.core.extension.clickEvent
 import com.dp.core.viewbinding.bindings
+import com.dp.notes.R
+import com.dp.notes.databinding.NotesDialogTestBinding
 
 /**
  * author Dq
@@ -21,7 +21,6 @@ class ChildFragmentDialog : BaseFragmentDialog(R.layout.notes_dialog_test) {
     }
 
     override fun dialogGravity(): Int = Gravity.BOTTOM
-    override fun dialogAnim(): Int = R.style.AnimBottom
 
     companion object {
         fun show(any: Any) {
