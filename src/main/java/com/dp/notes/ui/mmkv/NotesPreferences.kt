@@ -8,7 +8,7 @@ import com.dp.core.extension.*
  * description
  */
 object NotesPreferences {
-    var bool by mmkv.boolean()
+    var bool by mmkv.bool()
 
     var intParam by mmkv.int(0)
 
