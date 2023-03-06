@@ -25,7 +25,7 @@ class ThreeFragment : BaseFragment(R.layout.notes_fragment_test) {
         binding.textview.add("Three: lazyInit-->isResumed=$isResumed , isVisible=$isVisible , isHidden=$isHidden")
     }
 
-    override fun lazyResumeInit() {
+    override fun lazyResume() {
         binding.textview.add("Three: lazyResumeInit-->isResumed=$isResumed , isVisible=$isVisible , isHidden=$isHidden")
     }
 

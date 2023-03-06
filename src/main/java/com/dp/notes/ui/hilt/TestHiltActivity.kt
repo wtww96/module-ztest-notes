@@ -9,7 +9,6 @@ import com.dp.core.network.failure
 import com.dp.core.network.launchWith
 import com.dp.core.network.success
 import com.dp.core.viewbinding.bindings
-import com.dp.core.windowinsets.fitStatusBar
 import com.dp.notes.R
 import com.dp.notes.databinding.NotesActivityTestBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,7 +24,6 @@ class TestHiltActivity : BaseActivity(R.layout.notes_activity_test) {
     private val viewModel by viewModels<TestHiltViewModel>()
 
     override fun initView(bundle: Bundle?) {
-        fitStatusBar(systemBarColor())
         binding.title.text = "Hilt 依赖注入"
         binding.button1.isVisible = false
     }

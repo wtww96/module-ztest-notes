@@ -43,7 +43,7 @@ class OneFragment : BaseFragment(R.layout.notes_fragment_one) {
         binding.viewPager.setCurrentItem(1, false)
     }
 
-    override fun lazyResumeInit() {
+    override fun lazyResume() {
         binding.textview.add("One: lazyResumeInit-->isResumed=$isResumed , isVisible=$isVisible , isHidden=$isHidden")
     }
 

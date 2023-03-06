@@ -22,7 +22,7 @@ class FiveFragment : BaseFragment(R.layout.notes_fragment_test) {
         binding.textview.add("Five: lazyInit-->isResumed=$isResumed , isVisible=$isVisible , isHidden=$isHidden")
     }
 
-    override fun lazyResumeInit() {
+    override fun lazyResume() {
         binding.textview.add("Five: lazyResumeInit-->isResumed=$isResumed , isVisible=$isVisible , isHidden=$isHidden")
     }
 }
