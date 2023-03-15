@@ -1,7 +1,9 @@
 package com.dp.notes.ui.lazy
 
+import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.RecyclerView
 import com.dp.core.base.BaseFragment
 import com.dp.core.extension.cacheSize
 import com.dp.core.network.launchIn
@@ -28,7 +30,8 @@ class OneFragment : BaseFragment(R.layout.notes_fragment_one) {
 
     override fun lazyInit() {
         binding.textview.add("One: lazyInit-->isResumed=$isResumed , isVisible=$isVisible , isHidden=$isHidden")
-        val titles = arrayOf("关注", "探索", "新人", "其他", "关注", "探索", "新人", "其他")
+        val titles = arrayOf("关注1", "探索2", "新人3", "其他4", "关注5", "探索6", "新人7")
+        (binding.viewPager.getChildAt(0) as RecyclerView).overScrollMode = View.OVER_SCROLL_NEVER
         binding.viewPager.cacheSize = 3
         binding.viewPager.adapter = object : SlidingAdapter(this) {
             override fun getItemCount(): Int = titles.size

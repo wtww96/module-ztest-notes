@@ -36,7 +36,9 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
 /**
- * 滑动TabLayout,对于ViewPager的依赖性强
+ * author Dq
+ * date on 2023/3/9
+ * description 滑动TabLayout ViewPager2 适配 rtl
  */
 public class SlidingTabLayout2 extends HorizontalScrollView {
     private Context mContext;
@@ -104,11 +106,11 @@ public class SlidingTabLayout2 extends HorizontalScrollView {
     private static final int TEXT_BOLD_WHEN_SELECT = 1;
     private static final int TEXT_BOLD_BOTH = 2;
     private float mTextsize;
-    private float mTextSelectsize;//选中的文字大小
+    private float mTextSelectsize = -1;//选中的文字大小
     private int mTextSelectColor;
     private int mTextUnselectColor;
     private int mTextBold;
-    private boolean mTextSelectBold;//选中的tab是否加粗
+    private boolean mTextSelectBold = false;//选中的tab是否加粗
     private boolean mTextAllCaps;
 
     private int mLastScrollX;
@@ -287,13 +289,12 @@ public class SlidingTabLayout2 extends HorizontalScrollView {
      */
     private void addTab(final int position, String title, View tabView) {
         TextView tv_tab_title = tabView.findViewById(R.id.tv_tab_title);
-        if (tv_tab_title != null) {
-            if (title != null)
-                tv_tab_title.setText(title);
+        if (tv_tab_title != null && title != null) {
+            tv_tab_title.setText(title);
         }
-
         tabView.setOnClickListener(v -> {
             int position1 = mTabsContainer.indexOfChild(v);
+            position1 = getRtlPosition(position1);
             if (position1 != -1) {
                 if (mViewPager.getCurrentItem() != position1) {
                     if (mSnapOnTabClick) {
@@ -684,6 +685,10 @@ public class SlidingTabLayout2 extends HorizontalScrollView {
         mSnapOnTabClick = snapOnTabClick;
     }
 
+    public void setTextSelectBold(boolean textSelectBold) {
+        mTextSelectBold = textSelectBold;
+    }
+
     public int getTabCount() {
         return mTabCount;
     }
@@ -785,8 +790,6 @@ public class SlidingTabLayout2 extends HorizontalScrollView {
         TextView tv_tab_title = tabView.findViewById(R.id.tv_tab_title);
         return tv_tab_title;
     }
-
-    //setter and getter
 
     // show MsgTipView
     private Paint mTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
