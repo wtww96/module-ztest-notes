@@ -1,6 +1,7 @@
 package com.dp.notes.ui.lazy
 
 import android.os.Bundle
+import android.util.Log
 import com.dp.core.base.BaseActivity
 import com.dp.core.extension.bindAdapter
 import com.dp.core.extension.cacheSize
@@ -33,6 +34,7 @@ class LazyActivity : BaseActivity(R.layout.notes_activity_lazy) {
 
     private fun initFragment() {
         binding.viewpager.bindAdapter(this, 5) {
+            Log.e("hehe", "LazyActivity  index=$it")
             when (it) {
                 0 -> OneFragment()
                 1 -> TwoFragment()
@@ -42,6 +44,7 @@ class LazyActivity : BaseActivity(R.layout.notes_activity_lazy) {
             }
         }.apply {
             cacheSize = 5
+            offscreenPageLimit = 5
             isUserInputEnabled = false
         }
     }

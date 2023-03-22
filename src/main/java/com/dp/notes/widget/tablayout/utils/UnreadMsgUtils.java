@@ -3,6 +3,7 @@ package com.dp.notes.widget.tablayout.utils;
 
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.dp.notes.widget.tablayout.MsgView;
@@ -18,7 +19,7 @@ public class UnreadMsgUtils {
         if (msgView == null) {
             return;
         }
-        RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) msgView.getLayoutParams();
+        ViewGroup.LayoutParams lp = msgView.getLayoutParams();
         DisplayMetrics dm = msgView.getResources().getDisplayMetrics();
         msgView.setVisibility(View.VISIBLE);
         if (num <= 0) {//圆点,设置默认宽高

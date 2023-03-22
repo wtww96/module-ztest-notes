@@ -14,10 +14,10 @@ import com.dp.notes.databinding.NotesFragmentChildBinding
 class ChildFragment : BaseFragment(R.layout.notes_fragment_child) {
     private val binding by bindings<NotesFragmentChildBinding>()
 
-    private var type = 0
+    private var type = ""
 
     override fun initView() {
-        arguments?.let { type = it.getInt("type") }
+        arguments?.let { type = it.getString("type", "") }
         binding.textview.clear()
         binding.textview.add("ChildFragment: initView type=$type isResumed=$isResumed , isVisible=$isVisible , isHidden=$isHidden")
     }
@@ -48,7 +48,7 @@ class ChildFragment : BaseFragment(R.layout.notes_fragment_child) {
     }
 
     companion object {
-        fun newInstance(type: Int) = ChildFragment().apply {
+        fun newInstance(type: String) = ChildFragment().apply {
             arguments = bundleOf("type" to type)
         }
     }

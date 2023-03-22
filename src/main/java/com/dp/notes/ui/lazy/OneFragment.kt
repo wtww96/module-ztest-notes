@@ -30,20 +30,23 @@ class OneFragment : BaseFragment(R.layout.notes_fragment_one) {
 
     override fun lazyInit() {
         binding.textview.add("One: lazyInit-->isResumed=$isResumed , isVisible=$isVisible , isHidden=$isHidden")
-        val titles = arrayOf("关注1", "探索2", "新人3", "其他4", "关注5", "探索6", "新人7")
+        val titles = arrayOf("关注1", "探索2", "新人3", "其他4", "关注5")
         (binding.viewPager.getChildAt(0) as RecyclerView).overScrollMode = View.OVER_SCROLL_NEVER
+        binding.viewPager.offscreenPageLimit = titles.size
         binding.viewPager.cacheSize = 3
         binding.viewPager.adapter = object : SlidingAdapter(this) {
             override fun getItemCount(): Int = titles.size
 
             override fun createFragment(position: Int): Fragment {
-                return ChildFragment.newInstance(position)
+                return ChildFragment.newInstance(titles[position])
             }
 
-            override fun getPageTitle(position: Int): CharSequence = titles[position]
+            override fun getPageTitle(position: Int): CharSequence {
+                return  titles[position]
+            }
         }
         binding.tabLayout.setViewPager(binding.viewPager)
-        binding.viewPager.setCurrentItem(1, false)
+        binding.tabLayout.setCurrentTab(1)
     }
 
     override fun lazyResume() {

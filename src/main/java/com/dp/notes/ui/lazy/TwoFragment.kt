@@ -21,13 +21,13 @@ class TwoFragment : BaseFragment(R.layout.notes_fragment_two) {
 
     override fun lazyInit() {
         binding.textview.add("Two: lazyInit-->isResumed=$isResumed , isVisible=$isVisible , isHidden=$isHidden")
-        val titles = arrayOf("关注", "探索", "新人", "其他", "关注", "探索", "新人", "其他")
+        val titles = arrayOf("关注1", "探索2", "新人3", "其他4", "关注5", "探索6", "新人7", "其他8")
         binding.viewPager.offscreenPageLimit = 2
         binding.viewPager.adapter = object : FragmentPagerAdapter(childFragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
             override fun getCount(): Int = titles.size
 
             override fun getItem(position: Int): Fragment {
-                return ChildFragment.newInstance(position)
+                return ChildFragment.newInstance(titles[position])
             }
 
             override fun getPageTitle(position: Int): CharSequence = titles[position]
