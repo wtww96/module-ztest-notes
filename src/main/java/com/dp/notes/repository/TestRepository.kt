@@ -1,7 +1,7 @@
 package com.dp.notes.repository
 
 import com.dp.core.base.IRepository
-import com.dp.core.network.FlowResp
+import com.dp.core.network.FlowRes
 import com.dp.notes.bean.Test1Bean
 
 /**
@@ -11,8 +11,8 @@ import com.dp.notes.bean.Test1Bean
  */
 interface TestRepository : IRepository {
 
-    fun requestRx(): FlowResp<Test1Bean>
+    fun requestRx(): FlowRes<Test1Bean>
 
-    fun requestFlow(): FlowResp<Test1Bean>
+    fun requestFlow(): FlowRes<Test1Bean>
 }
 

@@ -340,6 +340,12 @@ public class SlidingTabLayout2 extends HorizontalScrollView {
         @Override
         public void onPageSelected(int position) {
             updateTabSelection(position);
+            //tab点击切换不带动画时需要invalidate()
+            //因为ViewPager2不执行onPageScrolled方法,Indicator的位置不会改变,需要兼容以下
+            if (mSnapOnTabClick && Math.abs(mCurrentTab - position) > 1) {
+                mCurrentTab = position;
+                invalidate();
+            }
         }
     };
 

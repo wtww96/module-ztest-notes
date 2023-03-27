@@ -26,13 +26,15 @@ class GsonActivity : BaseActivity(R.layout.notes_activity_gson) {
 
     override fun initListener() {
         binding.button.clickEvent {
-            val str = CoreUtil.instance.getJson("gsonStr1.json")
-            val bean = str.fromJson<GsonBean>()!!
+            val str = CoreUtil.instance.getJson("gsonStr1.json").replace("stringTest3","xxxxx")
+            val bean = str.fromJson<GsonBean>()
             Log.e("hehe", "bean1 = ${bean.toJson()}")
             Log.e("hehe", "bean2 = ${bean}")
             binding.logText.add("stringTest4 = ${bean.stringTest4}  stringTest5 = ${bean.stringTest5}")
+            Log.e("hehe", "stringTest1 = ${bean.stringTest1} ")
             Log.e("hehe", "stringTest4 = ${bean.stringTest4}  stringTest5 = ${bean.stringTest5}")
             Log.e("hehe", "longTest3 = ${bean.longTest3}  longTest4 = ${bean.longTest4}")
+            Log.e("hehe", "stringTest3 = ${bean.stringTest3}  ")
         }
 
         binding.button2.clickEvent {
