@@ -22,4 +22,6 @@ interface ApiService {
     @UrlName("weather")
     @GET("weather/index?format=2&cityname=上海&key=fb06910058de37c52e1273fe7e1f0277")
     suspend fun queryWeatherFlow(): BaseResponse<Test1Bean>
+
+    suspend fun queryWeatherFlowx(): String
 }
