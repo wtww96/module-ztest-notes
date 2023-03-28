@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.dp.core.base.BaseViewModel
 import com.dp.core.network.failure
-import com.dp.core.network.launchWith
+import com.dp.core.network.wrap
 import com.dp.core.network.success
 import com.dp.notes.repository.TestRepository
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -23,7 +23,7 @@ class TestKoinViewModel(private val dataSource: TestRepository) : BaseViewModel(
 
     fun getRequest() {
         showLoading()
-        dataSource.requestRx().launchWith(this) {
+        dataSource.requestRx().wrap(this) {
             success {
                 result.value = it.text
                 hideLoading()

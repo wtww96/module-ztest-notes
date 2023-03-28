@@ -49,7 +49,7 @@ class HttpActivity : BaseActivity(R.layout.notes_activity_http) {
         //Flow流请求,直接在页面处理更新
         binding.bt3.clickEvent {
             //处理 成功和失败 两种场景
-            /*viewModel.flowRequest2().launchWith(this) {
+            /*viewModel.flowRequest2().wrap(this) {
                 success {
                     binding.text.text = "${it.city} , ${it.realtime.info} , ${it.realtime.direct}"
                     Log.e("hehe", "flowRequest1_2 success{} ${it.toJson()}")

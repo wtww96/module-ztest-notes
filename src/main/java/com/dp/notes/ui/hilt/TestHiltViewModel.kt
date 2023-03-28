@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.dp.core.base.BaseViewModel
 import com.dp.core.extension.toJson
 import com.dp.core.network.failure
-import com.dp.core.network.launchWith
+import com.dp.core.network.wrap
 import com.dp.core.network.success
 import com.dp.notes.repository.TestRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -25,7 +25,7 @@ class TestHiltViewModel @Inject constructor(val dataSource: TestRepository) : Ba
      * rxjava封装的网络请求 转化 为flow流处理
      */
     fun rxRequest() {
-        dataSource.requestRx().launchWith(this) {
+        dataSource.requestRx().wrap(this) {
             success {
                 Log.e("hehe", "rxRequest success ${it.text}")
                 rxResult.value = "${it.text}"
@@ -42,7 +42,7 @@ class TestHiltViewModel @Inject constructor(val dataSource: TestRepository) : Ba
      * 需要在定义一个LiveData
      */
     fun flowRequest1() {
-        dataSource.requestFlow().launchWith(this) {
+        dataSource.requestFlow().wrap(this) {
             success {
                 val data = "${it.city} , ${it.realtime.info} , ${it.realtime.direct}"
             }

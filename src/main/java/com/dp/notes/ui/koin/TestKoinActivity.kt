@@ -6,7 +6,7 @@ import com.dp.core.base.BaseActivity
 import com.dp.core.extension.clickEvent
 import com.dp.core.network.failure
 import com.dp.core.network.launchIn
-import com.dp.core.network.launchWith
+import com.dp.core.network.wrap
 import com.dp.core.network.success
 import com.dp.core.viewbinding.bindings
 import com.dp.notes.R
@@ -29,7 +29,7 @@ class TestKoinActivity : BaseActivity(R.layout.notes_activity_test) {
     }
 
     override fun initObserve() {
-        viewModel.requestNew().launchWith(this) {
+        viewModel.requestNew().wrap(this) {
             success {
                 binding.textview.add("flowRequest接收数据=${it.text}")
             }
