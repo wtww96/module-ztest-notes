@@ -2,6 +2,7 @@ package com.dp.notes.ui.lazy
 
 import android.os.Bundle
 import android.util.Log
+import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.dp.core.base.BaseActivity
 import com.dp.core.extension.bindAdapter
 import com.dp.core.extension.cacheSize
@@ -30,11 +31,16 @@ class LazyActivity : BaseActivity(R.layout.notes_activity_lazy) {
         binding.three.clickEvent { setCurrentTab(2) }
         binding.four.clickEvent { setCurrentTab(3) }
         binding.five.clickEvent { setCurrentTab(4) }
+
+        binding.viewpager.registerOnPageChangeCallback(object :OnPageChangeCallback(){
+            override fun onPageSelected(position: Int) {
+                Log.e("hehe","onPageSelected, position = $position")
+            }
+        })
     }
 
     private fun initFragment() {
         binding.viewpager.bindAdapter(this, 5) {
-            Log.e("hehe", "LazyActivity  index=$it")
             when (it) {
                 0 -> OneFragment()
                 1 -> TwoFragment()
@@ -47,6 +53,7 @@ class LazyActivity : BaseActivity(R.layout.notes_activity_lazy) {
             offscreenPageLimit = 5
             isUserInputEnabled = false
         }
+        binding.viewpager.setCurrentItem(1,false)
     }
 
     /***
