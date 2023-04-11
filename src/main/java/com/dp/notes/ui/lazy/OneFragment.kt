@@ -11,7 +11,7 @@ import com.dp.core.viewbinding.bindings
 import com.dp.notes.R
 import com.dp.notes.databinding.NotesFragmentOneBinding
 import com.dp.notes.ui.http.HttpViewModel
-import com.dp.notes.widget.tablayout.SlidingAdapter
+import com.dp.common.widget.tablayout.SlidingAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 /**

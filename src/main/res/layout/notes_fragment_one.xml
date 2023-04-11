@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.dp.notes.widget.tablayout.SlidingTabLayout2
+    <com.dp.common.widget.tablayout.SlidingTabLayout2
         android:id="@+id/tabLayout"
         android:layout_width="wrap_content"
         android:layout_height="45dp"
