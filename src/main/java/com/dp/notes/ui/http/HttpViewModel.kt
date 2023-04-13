@@ -1,10 +1,7 @@
 package com.dp.notes.ui.http
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.liveData
+import androidx.lifecycle.*
 import com.dp.core.base.BaseViewModel
 import com.dp.core.extension.toJson
 import com.dp.core.network.*
@@ -12,10 +9,14 @@ import com.dp.core.network.bean.NetworkResult
 import com.dp.notes.bean.Test1Bean
 import com.dp.notes.repository.TestRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.zip
+import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlin.system.measureTimeMillis
 
 
 /**
@@ -134,5 +135,60 @@ class HttpViewModel @Inject constructor(private val dataSource: TestRepository) 
             .launchIn(this) {
                 Log.e("hehe", "zip launchIn =$it")
             }
+    }
+
+    /**
+     * 用 async await 处理网络请求,可用于一个请求需要拿到另一个请求的结果作为参数去调用的场景
+     * async:开启一个带Deferred<T> 返回值的协程作用域(注意:不是挂起函数)
+     * await:用于获取async协程作用域返回的Deferred<T>中T的值(注意:是挂起函数,要等await拿到返回值后才会走后面的代码,要注意await的调用时机)
+     * eg:下面三个例子
+     */
+    fun flowRequestAsync() {
+        viewModelScope.launch {
+            Log.e("hehe", "launch init")
+            val time = measureTimeMillis {
+                Log.e("hehe", "measureTimeMillis init")
+                //await直接跟在async{ }后面:需要等{ }中的逻辑走完,await拿到返回值才会走后续代码
+                /*val value1 = async { doSomethingUsefulOne() }.await()
+                Log.e("hehe", "value111 = $value1")
+                val value2 = async { doSomethingUsefulTwo() }.await()
+                Log.e("hehe", "value222 = $value1")*/
+
+                //调用async{ },再接着调用第二个async{ },然后再去一个一个调用await
+                //两个async中的代码块都是并行触发
+                /*val async1 = async { doSomethingUsefulOne() }
+                Log.e("hehe", "async111 触发完毕-----")
+                val async2 = async { doSomethingUsefulTwo() }
+                Log.e("hehe", "async222 触发完毕-----")
+                val value1 = async1.await()
+                Log.e("hehe", "value111 = $value1")
+                val value2 = async2.await()
+                Log.e("hehe", "value222 = $value2")*/
+
+                val async1 = async { doSomethingUsefulOne() }
+                Log.e("hehe", "async111 触发完毕-----")
+                val value1 = async1.await()
+                Log.e("hehe", "value111 = $value1")
+                val async2 = async { doSomethingUsefulTwo() }
+                Log.e("hehe", "async222 触发完毕-----")
+                val value2 = async2.await()
+                Log.e("hehe", "value222 = $value2")
+
+                Log.e("hehe", "合并结果 = ${value1 + value2}")
+            }
+            Log.e("hehe", "Completed time = $time")
+        }
+    }
+
+    private suspend fun doSomethingUsefulOne(): Int {
+        Log.e("hehe", "doSomethingUsefulOne 11111")
+        delay(1000L)
+        return 666
+    }
+
+    private suspend fun doSomethingUsefulTwo(): Int {
+        Log.e("hehe", "doSomethingUsefulTwo 222222")
+        delay(2000L)
+        return 888
     }
 }
