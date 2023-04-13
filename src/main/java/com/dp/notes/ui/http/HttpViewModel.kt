@@ -7,15 +7,14 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.liveData
 import com.dp.core.base.BaseViewModel
 import com.dp.core.extension.toJson
+import com.dp.core.network.*
 import com.dp.core.network.bean.NetworkResult
-import com.dp.core.network.failure
-import com.dp.core.network.wrap
-import com.dp.core.network.success
 import com.dp.notes.bean.Test1Bean
 import com.dp.notes.repository.TestRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
+import kotlinx.coroutines.flow.zip
 import javax.inject.Inject
 
 
@@ -92,4 +91,48 @@ class HttpViewModel @Inject constructor(private val dataSource: TestRepository) 
         .onStart { showLoading() }
         .onCompletion { hideLoading() }
         .asLiveData()
+
+    /**
+     * zip 操作符 合并多个请求结果
+     * 多个网络请求是 并行执行 的
+     */
+    fun flowRequestZip() {
+        //多个接口拿到的都是Flow<NetworkResult<T>>数据格式,内部包了一层NetworkResult,
+        //很多请求下合并多个请求结果是不需要关注失败的情况,所以只需要拿到成功结果合并即可
+
+        //写法1:
+        /*dataSource.requestRx(" 第一 ")
+            .zip(dataSource.requestFlow()) { data1, data2 ->
+                val value1 = if (data1 is SuccessResult) {
+                    data1.data.text
+                } else if (data1 is FailedResult) {
+                    data1.throwable.message ?: "Failed"
+                } else {
+                    "data1 null"
+                }
+
+                val value2 = if (data2 is SuccessResult) {
+                    data2.data.text
+                } else if (data2 is FailedResult) {
+                    data2.throwable.message ?: "Failed"
+                } else {
+                    "data2 null"
+                }
+                value1.plus("  -----  " + value2)
+            }
+            .launchIn(this) {
+                Log.e("hehe", "zip launchIn =$it")
+            }*/
+
+        //写法2:添加 NetworkResult<T>.asData 扩展函数,直接拿到成功的结果,失败就为null
+        dataSource.requestRx(" 第一 ")
+            .zip(dataSource.requestFlow()) { data1, data2 ->
+                val value1 = data1.asData()?.text
+                val value2 = data2.asData()?.text ?: "data2 失败"
+                value1.plus("  -----  " + value2)
+            }
+            .launchIn(this) {
+                Log.e("hehe", "zip launchIn =$it")
+            }
+    }
 }

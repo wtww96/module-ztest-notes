@@ -29,6 +29,13 @@
         android:text="Flow流请求,直接在页面处理更新"
         android:textAllCaps="false" />
 
+    <Button
+        android:id="@+id/bt4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Flow zip 合并多个接口处理结果"
+        android:textAllCaps="false" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

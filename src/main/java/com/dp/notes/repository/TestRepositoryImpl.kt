@@ -1,6 +1,6 @@
 package com.dp.notes.repository
 
-import com.dp.core.network.FlowRes
+import com.dp.core.network.FlowNet
 import com.dp.core.network.NetworkManager
 import com.dp.core.network.flowRequest
 import com.dp.core.network.rxjava.flowRxRequest
@@ -18,11 +18,11 @@ import javax.inject.Inject
 class TestRepositoryImpl @Inject constructor() : TestRepository {
     private val api by lazy { NetworkManager.instance.getApi<ApiService>() }
 
-    override fun requestRx(): FlowRes<Test1Bean> {
+    override fun requestRx(params: String): FlowNet<Test1Bean> {
         return flowRxRequest(api.queryWeatherRx())
     }
 
-    override fun requestFlow(): FlowRes<Test1Bean> {
+    override fun requestFlow(): FlowNet<Test1Bean> {
         return flowRequest { api.queryWeatherFlow() }
     }
 }

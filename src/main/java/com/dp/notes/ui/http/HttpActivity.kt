@@ -82,6 +82,11 @@ class HttpActivity : BaseActivity(R.layout.notes_activity_http) {
                 }
             }*/
         }
+
+        //Flow zip 合并多个接口处理结果
+        binding.bt4.clickEvent {
+            viewModel.flowRequestZip()
+        }
     }
 
     /*fun xx(txt: String) {

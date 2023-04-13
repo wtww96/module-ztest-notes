@@ -14,6 +14,7 @@ import retrofit2.http.GET
 
 interface ApiService {
     //@GET("https://v.juhe.cn/weather/index?format=2&cityname=上海&key=fb06910058de37c52e1273fe7e1f0277")
+    //@GET("http://apis.juhe.cn/simpleWeather/query?city=上海&key=6359ed4768376c1f109968e64d91e43a")
 
     //@UrlName("test1")
     @GET("simpleWeather/query?city=上海&key=6359ed4768376c1f109968e64d91e43a")
