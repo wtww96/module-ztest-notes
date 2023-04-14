@@ -27,6 +27,7 @@ class UseDialogActivity : BaseActivity(R.layout.notes_activity_use_dialog) {
 
         binding.bt2.clickEvent {
             ChildFragmentDialog.show(this)
+            //DefaultDialog.show(supportFragmentManager)
         }
 
         binding.bt3.clickEvent {
