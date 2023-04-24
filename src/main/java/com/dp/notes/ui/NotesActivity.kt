@@ -41,7 +41,8 @@ class NotesActivity : BaseActivity(R.layout.notes_activity_notes) {
     private val launcherPermission = registerPermissionResult()
 
     override fun initView(bundle: Bundle?) {
-        registerScreenshot()
+        //监听截屏/录屏 没有出来销毁逻辑,有内存泄漏
+        //registerScreenshot()
 
         //网络速率监听
         NetworkUtil.getNetWorkSpeed(this) {
