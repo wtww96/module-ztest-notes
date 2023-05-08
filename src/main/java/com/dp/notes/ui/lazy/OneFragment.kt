@@ -4,14 +4,15 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
+import com.dp.common.widget.tablayout.SlidingAdapter
 import com.dp.core.base.BaseFragment
 import com.dp.core.extension.cacheSize
+import com.dp.core.extension.pollWhenStarted
 import com.dp.core.network.launchIn
 import com.dp.core.viewbinding.bindings
 import com.dp.notes.R
 import com.dp.notes.databinding.NotesFragmentOneBinding
 import com.dp.notes.ui.http.HttpViewModel
-import com.dp.common.widget.tablayout.SlidingAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -26,6 +27,9 @@ class OneFragment : BaseFragment(R.layout.notes_fragment_one) {
 
     override fun initView() {
         binding.textview.add("One: initView-->isResumed=$isResumed , isVisible=$isVisible , isHidden=$isHidden")
+        viewLifecycleOwner.lifecycle.pollWhenStarted(1000) {
+
+        }
     }
 
     override fun lazyInit() {
@@ -42,7 +46,7 @@ class OneFragment : BaseFragment(R.layout.notes_fragment_one) {
             }
 
             override fun getPageTitle(position: Int): CharSequence {
-                return  titles[position]
+                return titles[position]
             }
         }
         binding.tabLayout.setViewPager(binding.viewPager)
