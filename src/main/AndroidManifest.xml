@@ -89,6 +89,12 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name=".ui.state.StateActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".ui.dialog.UseDialogActivity"
             android:exported="false"
             android:launchMode="singleTop"
