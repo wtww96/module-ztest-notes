@@ -27,6 +27,7 @@ import com.dp.notes.ui.koin.TestKoinActivity
 import com.dp.notes.ui.lazy.LazyActivity
 import com.dp.notes.ui.mmkv.MmkvActivity
 import com.dp.notes.ui.state.StateActivity
+import com.dp.notes.ui.tablayout.TabLayoutActivity
 import com.dp.notes.ui.toast.ToastActivity
 import com.dp.notes.ui.webview.WebViewUseActivity
 
@@ -104,8 +105,8 @@ class NotesActivity : BaseActivity(R.layout.notes_activity_notes) {
             launcher.launch(intentTo<TestRegisterResultActivity>()) { result ->
                 binding.logText.add(
                     "registerResult使用:\n" +
-                            "     resultCode=${result.resultCode}\n" +
-                            "     result=${result.data?.getStringExtra("backParams")}"
+                        "     resultCode=${result.resultCode}\n" +
+                        "     result=${result.data?.getStringExtra("backParams")}"
                 )
             }
         }
@@ -158,6 +159,11 @@ class NotesActivity : BaseActivity(R.layout.notes_activity_notes) {
         //WebView封装
         binding.webview.clickEvent {
             navigateTo<WebViewUseActivity>()
+        }
+
+        //tabLayout
+        binding.tabLayout.clickEvent {
+            navigateTo<TabLayoutActivity>()
         }
 
         //页面状态管理

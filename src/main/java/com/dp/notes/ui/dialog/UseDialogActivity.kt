@@ -16,6 +16,8 @@ import com.dp.notes.databinding.NotesActivityUseDialogBinding
 class UseDialogActivity : BaseActivity(R.layout.notes_activity_use_dialog) {
     private val binding by bindings<NotesActivityUseDialogBinding>()
 
+    private val hideDialog by lazy { ChildFragmentDialog() }
+
     override fun initView(bundle: Bundle?) {
 
     }
@@ -26,7 +28,8 @@ class UseDialogActivity : BaseActivity(R.layout.notes_activity_use_dialog) {
         }
 
         binding.bt2.clickEvent {
-            ChildFragmentDialog.show(this)
+            hideDialog.show(this)
+            //ChildFragmentDialog.show(this)
             //DefaultDialog.show(supportFragmentManager)
         }
 
