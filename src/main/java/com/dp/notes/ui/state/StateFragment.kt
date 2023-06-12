@@ -17,7 +17,7 @@ import kotlinx.coroutines.delay
  * date on 2023/5/21
  * description
  */
-class StateFragment : BaseFragment(R.layout.notes_fragment_child) {
+class StateFragment : BaseFragment(R.layout.notes_fragment_state) {
     private val binding by bindings<NotesFragmentChildBinding>()
 
     private var type = ""

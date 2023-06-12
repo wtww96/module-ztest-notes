@@ -1,32 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="16dp"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-    <com.dp.common.widget.tablayout.SlidingTabLayout2
-        android:id="@+id/tabLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_gravity="center"
-        android:layout_marginLeft="8dp"
-        android:overScrollMode="never"
-        app:tl_indicator_color="#ff0000"
-        app:tl_indicator_corner_radius="2dp"
-        app:tl_indicator_height="3dp"
-        app:tl_indicator_margin_bottom="5.5dp"
-        app:tl_indicator_width="18dp"
-        app:tl_tab_padding="12dp"
-        app:tl_textSelectBold="true"
-        app:tl_textSelectColor="#00ff00"
-        app:tl_textSelectsize="19sp"
-        app:tl_textUnselectColor="#808080"
-        app:tl_textsize="16sp" />
-
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPager"
+    <Button
+        android:id="@+id/btn1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:text="单Activity,布局根View"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/btn2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:text="单Activity,布局子View"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/btn3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:text="ViewPager2+Fragment"
+        android:textAllCaps="false" />
+
 </LinearLayout>

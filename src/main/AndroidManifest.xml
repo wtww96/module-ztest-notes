@@ -95,6 +95,24 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name=".ui.state.StateParentActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.state.StateChildActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.state.StateViewPagerActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".ui.tablayout.TabLayoutActivity"
             android:exported="false"
             android:launchMode="singleTop"

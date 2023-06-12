@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.dp.core.loadsir.LoadLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:text="讲课费萨科技对方就卡死的借口就撒肯德基扩散"></TextView>
+</com.dp.core.loadsir.LoadLayout>
