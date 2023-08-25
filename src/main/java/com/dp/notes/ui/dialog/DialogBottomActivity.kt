@@ -2,6 +2,7 @@ package com.dp.notes.ui.dialog
 
 import android.os.Bundle
 import com.dp.core.base.BaseTransparentActivity
+import com.dp.core.extension.clickEvent
 import com.dp.core.viewbinding.bindings
 import com.dp.notes.R
 import com.dp.notes.databinding.NotesDialogBottomBinding
@@ -18,5 +19,8 @@ class DialogBottomActivity : BaseTransparentActivity(R.layout.notes_dialog_botto
     }
 
     override fun initListener() {
+        binding.button.clickEvent {
+            ParentFragmentDialog.show(this)
+        }
     }
 }
