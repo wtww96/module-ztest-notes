@@ -1,11 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.dp.core.loadsir.LoadLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
 
     <TextView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:layout_gravity="center"
-        android:text="讲课费萨科技对方就卡死的借口就撒肯德基扩散"></TextView>
-</com.dp.core.loadsir.LoadLayout>
+        android:background="#000000"
+        android:gravity="center"
+        android:text="讲课费萨科技对方就卡死的借口就撒肯德基扩散"
+        android:textColor="@color/white" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:text="加载中" />
+
+        <Button
+            android:id="@+id/btn2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:text="空状态" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_gravity="center"
+        android:background="#80999999"
+        android:gravity="center"
+        android:lineSpacingExtra="5dp"
+        android:padding="30dp"
+        android:text="副驾驶的进口分就开始打几分更合适的粉红色的叫个鸡快速点击改款副驾驶的进口分就开始打几分更合适的粉红色的叫个鸡快速点击改款副驾驶的进口分就开始打几分更合适的粉红色的叫个鸡快速点击改款副驾驶的进口分就开始打几分更合适的粉红色的叫个鸡快速点击改款" />
+
+</LinearLayout>

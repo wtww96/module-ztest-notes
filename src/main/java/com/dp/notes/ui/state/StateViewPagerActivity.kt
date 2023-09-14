@@ -27,7 +27,7 @@ class StateViewPagerActivity : BaseActivity(R.layout.notes_activity_state_viewpa
             override fun getItemCount(): Int = titles.size
 
             override fun createFragment(position: Int): Fragment {
-                return StateFragment.newInstance(titles[position])
+                return StateFragment2.newInstance(titles[position])
             }
 
             override fun getPageTitle(position: Int): CharSequence {

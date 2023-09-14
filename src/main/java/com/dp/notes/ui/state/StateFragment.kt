@@ -9,7 +9,7 @@ import com.dp.core.extension.delayed
 import com.dp.core.extension.showToast
 import com.dp.core.viewbinding.bindings
 import com.dp.notes.R
-import com.dp.notes.databinding.NotesFragmentChildBinding
+import com.dp.notes.databinding.NotesFragmentStateBinding
 import kotlinx.coroutines.delay
 
 /**
@@ -18,7 +18,7 @@ import kotlinx.coroutines.delay
  * description
  */
 class StateFragment : BaseFragment(R.layout.notes_fragment_state) {
-    private val binding by bindings<NotesFragmentChildBinding>()
+    private val binding by bindings<NotesFragmentStateBinding>()
 
     private var type = ""
 
