@@ -141,6 +141,12 @@ class HttpViewModel @Inject constructor(private val dataSource: TestRepository) 
      * 用 async await 处理网络请求,可用于一个请求需要拿到另一个请求的结果作为参数去调用的场景
      * async:开启一个带Deferred<T> 返回值的协程作用域(注意:不是挂起函数)
      * await:用于获取async协程作用域返回的Deferred<T>中T的值(注意:是挂起函数,要等await拿到返回值后才会走后面的代码,要注意await的调用时机)
+     *
+     * async { funtion() }.await() / async { funtion() }
+     * 不管有不有.await(),都会先触发async中的代码块
+     * .await()是用来等async中的代码块执行完后获取其结果
+     * { }后面不调用.await(),也同样会触发代码块
+     *
      * eg:下面三个例子
      */
     fun flowRequestAsync() {
@@ -156,27 +162,27 @@ class HttpViewModel @Inject constructor(private val dataSource: TestRepository) 
 
                 //调用async{ },再接着调用第二个async{ },然后再去一个一个调用await
                 //两个async中的代码块都是并行触发
-                val async1 = async { doSomethingUsefulOne() }
+                /*val async1 = async { doSomethingUsefulOne() }
                 Log.e("hehe", "async111 触发完毕-----")
                 val async2 = async { doSomethingUsefulTwo() }
                 Log.e("hehe", "async222 触发完毕-----")
+                val value2 = async2.await()
+                Log.e("hehe", "value222 = $value2")
+                val value1 = async1.await()
+                Log.e("hehe", "value111 = $value1")*/
+
+                //--------------------------
+                val async1 = async { doSomethingUsefulOne() }
+                Log.e("hehe", "async111 触发完毕-----")
                 val value1 = async1.await()
                 Log.e("hehe", "value111 = $value1")
+
+                val async2 = async { doSomethingUsefulTwo() }
+                Log.e("hehe", "async222 触发完毕-----")
                 val value2 = async2.await()
                 Log.e("hehe", "value222 = $value2")
 
-                //--------------------------
-                /*val async1 = async { doSomethingUsefulOne() }
-                Log.e("hehe", "async111 触发完毕-----")
-                val value1 = async1.await()
-                Log.e("hehe", "value111 = $value1")
-
-                val async2 = async { doSomethingUsefulTwo() }
-                Log.e("hehe", "async222 触发完毕-----")
-                val value2 = async2.await()
-                Log.e("hehe", "value222 = $value2")*/
-
-                Log.e("hehe", "合并结果 = ${value1 + value2}")
+                //Log.e("hehe", "合并结果 = ${value1 + value2}")
             }
             Log.e("hehe", "Completed time = $time")
         }
@@ -185,12 +191,14 @@ class HttpViewModel @Inject constructor(private val dataSource: TestRepository) 
     private suspend fun doSomethingUsefulOne(): Int {
         Log.e("hehe", "doSomethingUsefulOne 11111")
         delay(1000L)
+        Log.e("hehe", "doSomethingUsefulOne 11111---------")
         return 666
     }
 
     private suspend fun doSomethingUsefulTwo(): Int {
         Log.e("hehe", "doSomethingUsefulTwo 222222")
         delay(2000L)
+        Log.e("hehe", "doSomethingUsefulOne 222222---------")
         return 888
     }
 }
