@@ -148,7 +148,7 @@ class HttpViewModel @Inject constructor(private val dataSource: TestRepository) 
             Log.e("hehe", "launch init")
             val time = measureTimeMillis {
                 Log.e("hehe", "measureTimeMillis init")
-                //await直接跟在async{ }后面:需要等{ }中的逻辑走完,await拿到返回值才会走后续代码
+                //await直接跟在async{ }后面,会先触发{ }中的代码块,直到执行完成await拿到返回值才会走后续代码
                 /*val value1 = async { doSomethingUsefulOne() }.await()
                 Log.e("hehe", "value111 = $value1")
                 val value2 = async { doSomethingUsefulTwo() }.await()
@@ -156,23 +156,25 @@ class HttpViewModel @Inject constructor(private val dataSource: TestRepository) 
 
                 //调用async{ },再接着调用第二个async{ },然后再去一个一个调用await
                 //两个async中的代码块都是并行触发
-                /*val async1 = async { doSomethingUsefulOne() }
-                Log.e("hehe", "async111 触发完毕-----")
-                val async2 = async { doSomethingUsefulTwo() }
-                Log.e("hehe", "async222 触发完毕-----")
-                val value1 = async1.await()
-                Log.e("hehe", "value111 = $value1")
-                val value2 = async2.await()
-                Log.e("hehe", "value222 = $value2")*/
-
                 val async1 = async { doSomethingUsefulOne() }
                 Log.e("hehe", "async111 触发完毕-----")
+                val async2 = async { doSomethingUsefulTwo() }
+                Log.e("hehe", "async222 触发完毕-----")
                 val value1 = async1.await()
                 Log.e("hehe", "value111 = $value1")
+                val value2 = async2.await()
+                Log.e("hehe", "value222 = $value2")
+
+                //--------------------------
+                /*val async1 = async { doSomethingUsefulOne() }
+                Log.e("hehe", "async111 触发完毕-----")
+                val value1 = async1.await()
+                Log.e("hehe", "value111 = $value1")
+
                 val async2 = async { doSomethingUsefulTwo() }
                 Log.e("hehe", "async222 触发完毕-----")
                 val value2 = async2.await()
-                Log.e("hehe", "value222 = $value2")
+                Log.e("hehe", "value222 = $value2")*/
 
                 Log.e("hehe", "合并结果 = ${value1 + value2}")
             }
