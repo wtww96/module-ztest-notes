@@ -119,6 +119,12 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name=".ui.tablayout.TabLayoutNewActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".ui.dialog.UseDialogActivity"
             android:exported="false"
             android:launchMode="singleTop"

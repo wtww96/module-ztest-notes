@@ -2,7 +2,7 @@ package com.dp.notes.ui.state
 
 import androidx.core.os.bundleOf
 import androidx.lifecycle.lifecycleScope
-import com.dp.common.widget.state.StateView
+import com.dp.core.loadsir.state_test.StateView
 import com.dp.core.base.BaseFragment
 import com.dp.core.extension.clickEvent
 import com.dp.core.extension.delayed

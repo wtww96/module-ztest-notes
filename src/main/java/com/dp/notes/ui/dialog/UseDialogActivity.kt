@@ -8,6 +8,7 @@ import com.dp.core.viewbinding.bindings
 import com.dp.notes.R
 import com.dp.notes.databinding.NotesActivityUseDialogBinding
 
+
 /**
  * author Dq
  * date on 2023/1/11
@@ -24,6 +25,7 @@ class UseDialogActivity : BaseActivity(R.layout.notes_activity_use_dialog) {
 
     override fun initListener() {
         binding.bt1.clickEvent {
+            //TestDialog(this).show()
             ParentFragmentDialog.show(this)
         }
 

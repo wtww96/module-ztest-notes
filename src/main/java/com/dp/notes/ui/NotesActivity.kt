@@ -28,6 +28,7 @@ import com.dp.notes.ui.lazy.LazyActivity
 import com.dp.notes.ui.mmkv.MmkvActivity
 import com.dp.notes.ui.state.StateActivity
 import com.dp.notes.ui.tablayout.TabLayoutActivity
+import com.dp.notes.ui.tablayout.TabLayoutNewActivity
 import com.dp.notes.ui.toast.ToastActivity
 import com.dp.notes.ui.webview.WebViewUseActivity
 
@@ -164,6 +165,11 @@ class NotesActivity : BaseActivity(R.layout.notes_activity_notes) {
         //tabLayout
         binding.tabLayout.clickEvent {
             navigateTo<TabLayoutActivity>()
+
+        }
+        binding.tabLayout.setOnLongClickListener {
+            navigateTo<TabLayoutNewActivity>()
+            true
         }
 
         //页面状态管理
