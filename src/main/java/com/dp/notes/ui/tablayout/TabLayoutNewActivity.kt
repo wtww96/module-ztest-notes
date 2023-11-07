@@ -4,11 +4,14 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2
 import com.dp.core.base.BaseActivity
 import com.dp.core.viewbinding.bindings
 import com.dp.notes.R
 import com.dp.notes.databinding.NotesActivityTablayoutNewBinding
 import com.dp.notes.ui.lazy.ChildFragment
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayout.Tab
 import com.google.android.material.tabs.TabLayoutMediator
 
 /**
@@ -36,5 +39,25 @@ class TabLayoutNewActivity : BaseActivity(R.layout.notes_activity_tablayout_new)
             //tab.icon = com.dp.common.R.drawable.common_icon_test1.resToDrawable()
         }
         mediator.attach()
+
+        binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                Log.e("hehe", " onPageSelected  position=$position")
+            }
+        })
+        binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: Tab?) {
+                Log.e("hehe", " onTabSelected  tab=${tab?.position}")
+            }
+
+            override fun onTabUnselected(tab: Tab?) {
+                Log.e("hehe", " onTabUnselected  tab=${tab?.position}")
+            }
+
+            override fun onTabReselected(tab: Tab?) {
+                Log.e("hehe", " onTabReselected  tab=${tab?.position}")
+            }
+        })
+        //binding.viewPager.setCurrentItem(1)
     }
 }
