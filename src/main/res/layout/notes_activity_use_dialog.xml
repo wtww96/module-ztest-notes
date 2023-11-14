@@ -38,4 +38,12 @@
         android:text="底部Activity Dialog"
         android:textAllCaps="false" />
 
+    <Button
+        android:id="@+id/bt5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:text="隐藏 Dialog"
+        android:textAllCaps="false" />
+
 </com.google.android.flexbox.FlexboxLayout>

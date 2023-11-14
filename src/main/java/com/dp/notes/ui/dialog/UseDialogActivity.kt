@@ -1,10 +1,10 @@
 package com.dp.notes.ui.dialog
 
 import android.content.Intent
-import android.os.Bundle
 import com.dp.core.base.BaseActivity
 import com.dp.core.extension.clickEvent
 import com.dp.core.viewbinding.bindings
+import com.dp.core.viewbinding.onDestroy
 import com.dp.notes.R
 import com.dp.notes.databinding.NotesActivityUseDialogBinding
 
@@ -17,11 +17,7 @@ import com.dp.notes.databinding.NotesActivityUseDialogBinding
 class UseDialogActivity : BaseActivity(R.layout.notes_activity_use_dialog) {
     private val binding by bindings<NotesActivityUseDialogBinding>()
 
-    private val hideDialog by lazy { ChildFragmentDialog() }
-
-    override fun initView(bundle: Bundle?) {
-
-    }
+    private var hideDialog: HideDialog? = null
 
     override fun initListener() {
         binding.bt1.clickEvent {
@@ -30,8 +26,7 @@ class UseDialogActivity : BaseActivity(R.layout.notes_activity_use_dialog) {
         }
 
         binding.bt2.clickEvent {
-            hideDialog.show(this)
-            //ChildFragmentDialog.show(this)
+            ChildFragmentDialog.show(this)
             //DefaultDialog.show(supportFragmentManager)
         }
 
@@ -43,6 +38,13 @@ class UseDialogActivity : BaseActivity(R.layout.notes_activity_use_dialog) {
         binding.bt4.clickEvent {
             startActivity(Intent(this, DialogBottomActivity::class.java))
             //navigateTo<DialogBottomActivity>()
+        }
+
+        binding.bt5.clickEvent {
+            hideDialog = hideDialog ?: HideDialog().onDestroy {
+                hideDialog = null
+            }
+            hideDialog?.show(this)
         }
     }
 }
