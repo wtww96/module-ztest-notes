@@ -198,5 +198,4 @@ class NotesActivity : BaseActivity(R.layout.notes_activity_notes) {
             }
         )
     }
-
 }

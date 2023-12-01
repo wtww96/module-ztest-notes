@@ -18,6 +18,8 @@ class HideDialog : BaseFragmentDialogHide(R.layout.notes_dialog_test) {
 
     override fun initView() {
         Log.e("hehe", " ------------- initView")
+        //弹窗弹出时,点击事件可以穿透到下面的View
+        //dialog?.window?.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL, WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL)
     }
 
     override fun initListener() {
@@ -28,31 +30,6 @@ class HideDialog : BaseFragmentDialogHide(R.layout.notes_dialog_test) {
             hide()
         }
         dialog?.setOnDismissListener { }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        Log.e("hehe", " ------------- onStart")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.e("hehe", " ------------- onResume")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.e("hehe", " ------------- onPause")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.e("hehe", " ------------- onStop")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.e("hehe", " ------------- onDestroy")
     }
 
     override fun dialogGravity(): Int = Gravity.BOTTOM
