@@ -39,6 +39,36 @@ class ParentFragmentDialog : BaseFragmentDialog(R.layout.notes_dialog_test) {
         }
     }
 
+    override fun onStart() {
+        super.onStart()
+        Log.e("hehe", ">>>>>>>>>>> onStart")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.e("hehe", ">>>>>>>>>>> onResume")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.e("hehe", ">>>>>>>>>>> onPause")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.e("hehe", ">>>>>>>>>>> onStop")
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Log.e("hehe", ">>>>>>>>>>> onDestroyView")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.e("hehe", ">>>>>>>>>>> onDestroy")
+    }
+
     override fun dialogHMargin(): Int = 20.dp
 
     companion object {
