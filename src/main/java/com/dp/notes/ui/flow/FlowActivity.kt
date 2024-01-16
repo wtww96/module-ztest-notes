@@ -54,7 +54,7 @@ class FlowActivity : BaseActivity(R.layout.notes_activity_flow) {
      *            使用场景:
      *                     1.一次性事件,不需要重放,比如toast,弹窗等ui事件
      *                     2.封装为事件总线FlowBus
-     *                     3.侧重在事件:更适合通知ui界面的一些事件，比如toast等
+     *                     3.侧重在事件:更适合通知ui界面的一些事件，比如toast，实时事件等
      *
      * stateFlow热流(不具备生命周期感知能力):
      *            是一个特殊的SharedFlow --->
