@@ -1,6 +1,5 @@
 package com.dp.notes.ui.dialog
 
-
 import android.util.Log
 import android.view.WindowManager
 import com.dp.core.base.BaseFragmentDialog
