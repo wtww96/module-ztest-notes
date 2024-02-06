@@ -1,6 +1,7 @@
 package com.dp.notes.ui.state
 
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.lifecycleScope
 import com.dp.core.base.BaseActivity
 import com.dp.core.extension.clickEvent
@@ -25,7 +26,9 @@ class StateParentActivity : BaseActivity(R.layout.notes_activity_state_parent) {
     private lateinit var loadSir: LoadLayout
 
     override fun initView(bundle: Bundle?) {
-        loadSir = LoadSir.register(this)
+        loadSir = LoadSir.register(this) {
+            Log.e("hehe", "StateParentActivity   空状态点击重新加了")
+        }
         //loadSir.show<SuccessState>()
         //loadSir.show<LoadingPage>()
         lifecycleScope.delayed(1000) {
