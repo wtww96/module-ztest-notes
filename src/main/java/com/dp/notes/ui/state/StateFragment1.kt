@@ -7,9 +7,9 @@ import com.dp.core.extension.clickEvent
 import com.dp.core.extension.delayed
 import com.dp.core.loadsir.LoadLayout
 import com.dp.core.loadsir.LoadSir
-import com.dp.core.loadsir.state.EmptyPage
-import com.dp.core.loadsir.state.LoadingPage
-import com.dp.core.loadsir.state.SuccessState
+import com.dp.common.state.EmptyPage
+import com.dp.common.state.LoadingPage
+import com.dp.core.loadsir.SuccessState
 import com.dp.core.viewbinding.bindings
 import com.dp.notes.R
 import com.dp.notes.databinding.NotesFragmentState1Binding
