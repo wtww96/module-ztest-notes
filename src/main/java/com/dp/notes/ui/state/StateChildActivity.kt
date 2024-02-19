@@ -10,6 +10,7 @@ import com.dp.core.loadsir.LoadLayout
 import com.dp.core.loadsir.LoadSir
 import com.dp.common.state.EmptyPage
 import com.dp.common.state.LoadingPage
+import com.dp.core.extension.navigateTo
 import com.dp.core.loadsir.SuccessState
 import com.dp.core.viewbinding.bindings
 import com.dp.notes.R
@@ -50,9 +51,13 @@ class StateChildActivity : BaseActivity(R.layout.notes_activity_state_child) {
 
         binding.btn2.clickEvent {
             loadSir.show<EmptyPage>()
-            lifecycleScope.delayed(15000) {
-                loadSir.show<SuccessState>()
-            }
+//            lifecycleScope.delayed(15000) {
+//                loadSir.show<SuccessState>()
+//            }
+        }
+
+        binding.btn3.clickEvent {
+            navigateTo<StateParentActivity>()
         }
     }
 }
