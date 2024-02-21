@@ -41,9 +41,6 @@ class StateFragment2 : BaseFragment(R.layout.notes_fragment_state2) {
         }
     }
 
-    override fun initListener() {
-    }
-
     companion object {
         fun newInstance(type: String) = StateFragment2().apply {
             arguments = bundleOf("type" to type)
