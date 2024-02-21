@@ -15,10 +15,17 @@ import com.dp.core.loadsir.PageState
 class ErrorPage : PageState() {
 
     override fun createView(context: Context): View = AppCompatTextView(context).apply {
-        Log.e("hehe", "EmptyPage createView***********************")
         text = "我是错误的页面"
         textSize = 30f
         setBackgroundColor(Color.parseColor("#ff0000"))
         //layoutParams = FrameLayout.LayoutParams(100.dp, 100.dp).apply { gravity = Gravity.CENTER }
+    }
+
+    override fun onAttach(context: Context, view: View) {
+        Log.e("hehe", "333333333333333-->Error*Page onAttach $this")
+    }
+
+    override fun onDetach() {
+        Log.e("hehe", "333333333333333-->Error*Page onDetach $this")
     }
 }
