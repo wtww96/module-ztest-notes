@@ -24,20 +24,28 @@
             android:id="@+id/btn1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="5dp"
+            android:layout_marginHorizontal="2dp"
             android:text="加载中" />
 
         <Button
             android:id="@+id/btn2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="5dp"
+            android:layout_marginHorizontal="2dp"
             android:text="空状态" />
+
         <Button
             android:id="@+id/btn3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="5dp"
+            android:layout_marginHorizontal="2dp"
+            android:text="错误状态" />
+
+        <Button
+            android:id="@+id/btn4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="2dp"
             android:text="下个页面" />
     </LinearLayout>
 

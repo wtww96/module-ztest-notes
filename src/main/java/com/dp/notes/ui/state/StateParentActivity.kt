@@ -27,7 +27,7 @@ class StateParentActivity : BaseActivity(R.layout.notes_activity_state_parent) {
 
     override fun initView(bundle: Bundle?) {
         loadSir = LoadSir.register(this) {
-            Log.e("hehe", "StateParentActivity   空状态点击重新加了")
+            Log.e("hehe", "两个按钮   空状态点击重新加了")
         }
         //loadSir.show<SuccessState>()
         //loadSir.show<LoadingPage>()

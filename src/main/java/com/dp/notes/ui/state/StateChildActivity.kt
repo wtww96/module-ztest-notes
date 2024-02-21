@@ -3,14 +3,14 @@ package com.dp.notes.ui.state
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.lifecycleScope
+import com.dp.common.state.EmptyPage
+import com.dp.common.state.LoadingPage
 import com.dp.core.base.BaseActivity
 import com.dp.core.extension.clickEvent
 import com.dp.core.extension.delayed
+import com.dp.core.extension.navigateTo
 import com.dp.core.loadsir.LoadLayout
 import com.dp.core.loadsir.LoadSir
-import com.dp.common.state.EmptyPage
-import com.dp.common.state.LoadingPage
-import com.dp.core.extension.navigateTo
 import com.dp.core.loadsir.SuccessState
 import com.dp.core.viewbinding.bindings
 import com.dp.notes.R
@@ -27,8 +27,9 @@ class StateChildActivity : BaseActivity(R.layout.notes_activity_state_child) {
     private lateinit var loadSir: LoadLayout
 
     override fun initView(bundle: Bundle?) {
-        loadSir = LoadSir.register(binding.textView) {
-            Log.e("hehe", "空状态点击重新加了")
+        //ErrorPage 只添加到临时缓存中
+        loadSir = LoadSir.register(binding.textView, ErrorPage()) {
+            Log.e("hehe", "四个按钮   空状态点击重新加了")
         }
         lifecycleScope.delayed(1000) {
             loadSir.show<SuccessState>()
@@ -57,6 +58,12 @@ class StateChildActivity : BaseActivity(R.layout.notes_activity_state_child) {
         }
 
         binding.btn3.clickEvent {
+            //全局未配置,局部未配置,直接使用,反射,缓存
+            //局部配置,直接使用
+            loadSir.show<ErrorPage>()
+        }
+
+        binding.btn4.clickEvent {
             navigateTo<StateParentActivity>()
         }
     }
