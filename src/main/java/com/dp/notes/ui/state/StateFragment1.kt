@@ -5,8 +5,6 @@ import androidx.lifecycle.lifecycleScope
 import com.dp.core.base.BaseFragment
 import com.dp.core.extension.clickEvent
 import com.dp.core.extension.delayed
-import com.dp.core.loadsir.LoadLayout
-import com.dp.core.loadsir.LoadSir
 import com.dp.common.state.EmptyPage
 import com.dp.common.state.LoadingPage
 import com.dp.core.loadsir.SuccessState
@@ -22,15 +20,13 @@ import kotlin.random.Random
  */
 class StateFragment1 : BaseFragment(R.layout.notes_fragment_state1) {
     private val binding by bindings<NotesFragmentState1Binding>()
-    private lateinit var loadSir: LoadLayout
     private var type = ""
 
+    override fun register() = binding.textview
     override fun initView() {
         arguments?.let { type = it.getString("type", "") }
         binding.textview.clear()
         binding.textview.add("ChildFragment: initView type=$type isResumed=$isResumed , isVisible=$isVisible , isHidden=$isHidden")
-
-        loadSir = LoadSir.register(binding.textview)
     }
 
     override fun lazyInit() {
@@ -39,6 +35,10 @@ class StateFragment1 : BaseFragment(R.layout.notes_fragment_state1) {
         lifecycleScope.delayed(1000) {
             loadSir.show<SuccessState>()
         }
+    }
+
+    override fun onReload() {
+
     }
 
     override fun initListener() {
