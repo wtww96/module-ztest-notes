@@ -5,15 +5,11 @@ import android.util.Log
 import androidx.lifecycle.lifecycleScope
 import com.dp.common.state.EmptyPage
 import com.dp.common.state.LoadingPage
-import com.dp.core.base.BaseActivity
+import com.dp.core.base.BaseBindingActivity
 import com.dp.core.extension.clickEvent
 import com.dp.core.extension.delayed
 import com.dp.core.extension.navigateTo
-import com.dp.core.loadsir.LoadLayout
-import com.dp.core.loadsir.LoadSir
 import com.dp.core.loadsir.SuccessState
-import com.dp.core.viewbinding.bindings
-import com.dp.notes.R
 import com.dp.notes.databinding.NotesActivityStateChildBinding
 import kotlin.random.Random
 
@@ -22,19 +18,20 @@ import kotlin.random.Random
  * date on 2023/6/2
  * description
  */
-class StateChildActivity : BaseActivity(R.layout.notes_activity_state_child) {
-    private val binding by bindings<NotesActivityStateChildBinding>()
-    private lateinit var loadSir: LoadLayout
+class StateChildActivity : BaseBindingActivity<NotesActivityStateChildBinding>() {
 
+    override fun register() = binding.textView
     override fun initView(bundle: Bundle?) {
         //ErrorPage 只添加到临时缓存中
-        loadSir = LoadSir.register(binding.textView, ErrorPage()) {
-            Log.e("hehe", "四个按钮   空状态点击重新加了")
-        }
+        loadSir.registerStates(ErrorPage())
         lifecycleScope.delayed(1000) {
             loadSir.show<SuccessState>()
             //loadSir.show(SuccessState())
         }
+    }
+
+    override fun onReload() {
+        Log.e("hehe", "四个按钮   空状态点击重新加了")
     }
 
     override fun initListener() {

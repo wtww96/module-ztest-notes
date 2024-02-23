@@ -4,11 +4,9 @@ import android.util.Log
 import androidx.core.os.bundleOf
 import androidx.lifecycle.lifecycleScope
 import com.dp.common.state.EmptyPage
-import com.dp.core.base.BaseFragment
+import com.dp.core.base.BaseBindingFragment
 import com.dp.core.extension.delayed
 import com.dp.core.loadsir.SuccessState
-import com.dp.core.viewbinding.bindings
-import com.dp.notes.R
 import com.dp.notes.databinding.NotesFragmentState2Binding
 import kotlin.random.Random
 
@@ -17,13 +15,11 @@ import kotlin.random.Random
  * date on 2023/5/21
  * description
  */
-class StateFragment2 : BaseFragment(R.layout.notes_fragment_state2) {
-    private val binding by bindings<NotesFragmentState2Binding>()
+class StateFragment2 : BaseBindingFragment<NotesFragmentState2Binding>() {
     private var type = ""
 
     //override fun register() = binding.scrollview
-    override fun registerRoot() = true
-
+    override fun register() = binding.root
     override fun initView() {
         arguments?.let { type = it.getString("type", "") }
         binding.textview.clear()
@@ -50,6 +46,12 @@ class StateFragment2 : BaseFragment(R.layout.notes_fragment_state2) {
 
     override fun onReload() {
         Log.e("hehe", "StateFragment2 点击状态页重新加载")
+    }
+
+    override fun onDestroyView() {
+        Log.e("hehe", "onDestroyView   111111111111111")
+        super.onDestroyView()
+        Log.e("hehe", "onDestroyView   222222222222222")
     }
 
     companion object {
