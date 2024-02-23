@@ -61,4 +61,14 @@
         android:layout_margin="4dp"
         android:text="短时间连续Toast不同文本"
         android:textAllCaps="false" />
+
+    <com.dp.common.widget.MarqueeTextView
+        android:id="@+id/tvText1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ff0000"
+        android:padding="5dp"
+        android:text="大师大师多废的时间估计都是对发送大师大师多大师大师多废的时间估计都是对发送大师大师多大师大师多废的时间估计都是对发送大师大师多"
+        android:textColor="@color/white"
+        android:textSize="17sp" />
 </com.google.android.flexbox.FlexboxLayout>
