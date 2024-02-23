@@ -3,10 +3,9 @@ package com.dp.notes.ui.toast
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.dp.core.base.BaseActivity
+import com.dp.core.base.BaseBindingActivity
 import com.dp.core.extension.clickEvent
 import com.dp.core.toast.ToastUtil
-import com.dp.core.viewbinding.bindings
 import com.dp.notes.R
 import com.dp.notes.databinding.NotesActivityToastBinding
 import com.dp.notes.ui.hilt.TestHiltViewModel
@@ -22,8 +21,7 @@ import kotlinx.coroutines.launch
  * description Toast封装使用
  */
 @AndroidEntryPoint
-class ToastActivity : BaseActivity(R.layout.notes_activity_toast) {
-    private val binding by bindings<NotesActivityToastBinding>()
+class ToastActivity : BaseBindingActivity<NotesActivityToastBinding>() {
     private val viewModel by viewModels<TestHiltViewModel>()
 
     override fun initView(bundle: Bundle?) {

@@ -3,13 +3,11 @@ package com.dp.notes.ui.hilt
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
-import com.dp.core.base.BaseActivity
+import com.dp.core.base.BaseBindingActivity
 import com.dp.core.extension.clickEvent
 import com.dp.core.network.failure
 import com.dp.core.network.wrap
 import com.dp.core.network.success
-import com.dp.core.viewbinding.bindings
-import com.dp.notes.R
 import com.dp.notes.databinding.NotesActivityTestBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,8 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
  * description
  */
 @AndroidEntryPoint
-class TestHiltActivity : BaseActivity(R.layout.notes_activity_test) {
-    private val binding by bindings<NotesActivityTestBinding>()
+class TestHiltActivity : BaseBindingActivity<NotesActivityTestBinding>() {
     private val viewModel by viewModels<TestHiltViewModel>()
 
     override fun initView(bundle: Bundle?) {

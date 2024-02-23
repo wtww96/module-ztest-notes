@@ -5,12 +5,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.dp.common.widget.tablayout.SlidingAdapter
-import com.dp.core.base.BaseFragment
+import com.dp.core.base.BaseBindingFragment
 import com.dp.core.extension.cacheSize
 import com.dp.core.extension.pollWhenStarted
 import com.dp.core.network.launchIn
-import com.dp.core.viewbinding.bindings
-import com.dp.notes.R
 import com.dp.notes.databinding.NotesFragmentOneBinding
 import com.dp.notes.ui.http.HttpViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,8 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
  * description
  */
 @AndroidEntryPoint
-class OneFragment : BaseFragment(R.layout.notes_fragment_one) {
-    private val binding by bindings<NotesFragmentOneBinding>()
+class OneFragment : BaseBindingFragment<NotesFragmentOneBinding>() {
     private val viewModel by viewModels<HttpViewModel>()
 
     override fun initView() {

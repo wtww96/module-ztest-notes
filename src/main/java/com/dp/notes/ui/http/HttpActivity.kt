@@ -1,12 +1,10 @@
 package com.dp.notes.ui.http
 
 import androidx.activity.viewModels
-import com.dp.core.base.BaseActivity
+import com.dp.core.base.BaseBindingActivity
 import com.dp.core.extension.clickEvent
 import com.dp.core.network.successIn
 import com.dp.core.network.util.NetworkUtil
-import com.dp.core.viewbinding.bindings
-import com.dp.notes.R
 import com.dp.notes.databinding.NotesActivityHttpBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -16,8 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
  * description 封装的网络请求 使用示例
  */
 @AndroidEntryPoint
-class HttpActivity : BaseActivity(R.layout.notes_activity_http) {
-    private val binding by bindings<NotesActivityHttpBinding>()
+class HttpActivity : BaseBindingActivity<NotesActivityHttpBinding>() {
     private val viewModel by viewModels<HttpViewModel>()
 
     override fun initObserve() {

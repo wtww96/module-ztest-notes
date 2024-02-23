@@ -2,14 +2,12 @@ package com.dp.notes.ui.state
 
 import androidx.core.os.bundleOf
 import androidx.lifecycle.lifecycleScope
-import com.dp.core.base.BaseFragment
-import com.dp.core.extension.clickEvent
-import com.dp.core.extension.delayed
 import com.dp.common.state.EmptyPage
 import com.dp.common.state.LoadingPage
+import com.dp.core.base.BaseBindingFragment
+import com.dp.core.extension.clickEvent
+import com.dp.core.extension.delayed
 import com.dp.core.loadsir.SuccessState
-import com.dp.core.viewbinding.bindings
-import com.dp.notes.R
 import com.dp.notes.databinding.NotesFragmentState1Binding
 import kotlin.random.Random
 
@@ -18,8 +16,7 @@ import kotlin.random.Random
  * date on 2023/5/21
  * description
  */
-class StateFragment1 : BaseFragment(R.layout.notes_fragment_state1) {
-    private val binding by bindings<NotesFragmentState1Binding>()
+class StateFragment1 : BaseBindingFragment<NotesFragmentState1Binding>() {
     private var type = ""
 
     override fun register() = binding.textview

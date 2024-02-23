@@ -3,12 +3,10 @@ package com.dp.notes.ui.lazy
 import android.os.Bundle
 import android.util.Log
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
-import com.dp.core.base.BaseActivity
+import com.dp.core.base.BaseBindingActivity
 import com.dp.core.extension.bindAdapter
 import com.dp.core.extension.cacheSize
 import com.dp.core.extension.clickEvent
-import com.dp.core.viewbinding.bindings
-import com.dp.notes.R
 import com.dp.notes.databinding.NotesActivityLazyBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -18,8 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
  * description
  */
 @AndroidEntryPoint
-class LazyActivity : BaseActivity(R.layout.notes_activity_lazy) {
-    private val binding by bindings<NotesActivityLazyBinding>()
+class LazyActivity : BaseBindingActivity<NotesActivityLazyBinding>() {
 
     override fun initView(bundle: Bundle?) {
         initFragment()

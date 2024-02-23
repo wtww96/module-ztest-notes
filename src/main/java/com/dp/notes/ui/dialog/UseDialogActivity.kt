@@ -1,11 +1,9 @@
 package com.dp.notes.ui.dialog
 
 import android.content.Intent
-import com.dp.core.base.BaseActivity
+import com.dp.core.base.BaseBindingActivity
 import com.dp.core.extension.clickEvent
-import com.dp.core.viewbinding.bindings
-import com.dp.core.viewbinding.onDestroy
-import com.dp.notes.R
+import com.dp.core.extension.onDestroy
 import com.dp.notes.databinding.NotesActivityUseDialogBinding
 
 
@@ -14,9 +12,7 @@ import com.dp.notes.databinding.NotesActivityUseDialogBinding
  * date on 2023/1/11
  * description Dialog使用
  */
-class UseDialogActivity : BaseActivity(R.layout.notes_activity_use_dialog) {
-    private val binding by bindings<NotesActivityUseDialogBinding>()
-
+class UseDialogActivity : BaseBindingActivity<NotesActivityUseDialogBinding>() {
     private var hideDialog: HideDialog? = null
 
     override fun initListener() {
