@@ -23,7 +23,7 @@ class StateChildActivity : BaseBindingActivity<NotesActivityStateChildBinding>()
     override fun register() = binding.textView
     override fun initView(bundle: Bundle?) {
         //ErrorPage 只添加到临时缓存中
-        loadSir.registerStates(ErrorPage())
+        //loadSir.registerStates(ErrorPage())
         lifecycleScope.delayed(1000) {
             loadSir.show<SuccessState>()
             //loadSir.show(SuccessState())
