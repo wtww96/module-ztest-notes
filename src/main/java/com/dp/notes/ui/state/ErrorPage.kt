@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Color
 import android.util.Log
 import android.view.View
+import android.view.ViewParent
 import androidx.appcompat.widget.AppCompatTextView
 import com.dp.core.loadsir.PageState
 
@@ -21,11 +22,11 @@ class ErrorPage : PageState() {
         //layoutParams = FrameLayout.LayoutParams(100.dp, 100.dp).apply { gravity = Gravity.CENTER }
     }
 
-    override fun onAttach(context: Context, view: View) {
+    override fun onAttach(view: View, parent: ViewParent?) {
         Log.e("hehe", "333333333333333-->Error*Page onAttach $this")
     }
 
-    override fun onDetach() {
+    override fun onDetach(parent: ViewParent?) {
         Log.e("hehe", "333333333333333-->Error*Page onDetach $this")
     }
 }

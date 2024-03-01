@@ -10,6 +10,7 @@ import com.dp.core.extension.clickEvent
 import com.dp.core.extension.delayed
 import com.dp.core.loadsir.SuccessState
 import com.dp.notes.databinding.NotesActivityStateParentBinding
+import kotlinx.coroutines.delay
 import kotlin.random.Random
 
 /**
@@ -34,20 +35,18 @@ class StateParentActivity : BaseBindingActivity<NotesActivityStateParentBinding>
 
     override fun initListener() {
         binding.btn1.clickEvent {
-            val isFlag = Random.nextInt(10) % 2 == 0
             loadSir.show<LoadingPage>()
             lifecycleScope.delayed(2000) {
-//                if (isFlag) {
-                loadSir.show<EmptyPage>(false)
-//                } else {
-//                    loadSir.show<SuccessState>()
-//                }
+                loadSir.show<EmptyPage>(useAnim = false).apply {
+                    delay(2000)
+                    loadSir.show<SuccessState>()
+                }
             }
         }
 
         binding.btn2.clickEvent {
-            loadSir.show<EmptyPage>()
-            lifecycleScope.delayed(5000) {
+            loadSir.show<EmptyPage>(Random.nextInt(5, 8))
+            lifecycleScope.delayed(3000) {
                 loadSir.show<SuccessState>()
             }
         }

@@ -44,7 +44,7 @@ class StateFragment1 : BaseBindingFragment<NotesFragmentState1Binding>() {
             loadSir.show<LoadingPage>()
             lifecycleScope.delayed(2000) {
                 if (isFlag) {
-                    loadSir.show<EmptyPage>(false)
+                    loadSir.show<EmptyPage>(useAnim = false)
                 } else {
                     loadSir.show<SuccessState>()
                 }

@@ -40,7 +40,7 @@ class StateChildActivity : BaseBindingActivity<NotesActivityStateChildBinding>()
             loadSir.show<LoadingPage>()
             lifecycleScope.delayed(2000) {
                 if (isFlag) {
-                    loadSir.show<EmptyPage>(false)
+                    loadSir.show<EmptyPage>(useAnim = false)
                 } else {
                     loadSir.show<SuccessState>()
                 }
@@ -48,7 +48,7 @@ class StateChildActivity : BaseBindingActivity<NotesActivityStateChildBinding>()
         }
 
         binding.btn2.clickEvent {
-            loadSir.show<EmptyPage>()
+            loadSir.show<EmptyPage>(Random.nextInt(3))
 //            lifecycleScope.delayed(15000) {
 //                loadSir.show<SuccessState>()
 //            }
