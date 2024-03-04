@@ -22,11 +22,11 @@ class ErrorPage : PageState() {
         //layoutParams = FrameLayout.LayoutParams(100.dp, 100.dp).apply { gravity = Gravity.CENTER }
     }
 
-    override fun onAttach(view: View, parent: ViewParent?) {
-        Log.e("hehe", "333333333333333-->Error*Page onAttach $this")
+    override fun onAttach(parent: ViewParent?) {
+        Log.e("hehe", "333333333333333-->Error*Page onAttach $this , view=$view")
     }
 
     override fun onDetach(parent: ViewParent?) {
-        Log.e("hehe", "333333333333333-->Error*Page onDetach $this")
+        Log.e("hehe", "333333333333333-->Error*Page onDetach $this , view=$view")
     }
 }

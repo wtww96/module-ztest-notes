@@ -45,7 +45,7 @@ class StateParentActivity : BaseBindingActivity<NotesActivityStateParentBinding>
         }
 
         binding.btn2.clickEvent {
-            loadSir.show<EmptyPage>(Random.nextInt(5, 8))
+            loadSir.show<EmptyPage> { it.updateView(Random.nextInt(5, 8)) }
             lifecycleScope.delayed(3000) {
                 loadSir.show<SuccessState>()
             }
