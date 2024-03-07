@@ -20,23 +20,28 @@
   "booleanTest1": false,
   "booleanTest2": true,
   "stringTest1": null,
-  "stringTest2": "",
+  "stringTest2": "null",
   "stringTest3": "字符串",
-  "intTest1": 1,
-  "intTest2": -2,
+  "stringTest4": 8888,
+  "intTest1": 1.6,
+  "intTest3": "33.3",
+  "intTest5": "w",
   "longTest1": 90000000000000009,
-  "longTest2": -90000000000000009,
-  "longTest3": null,
+  "longTest2": "658",
+  "longTest3": "658.33",
+  "longTest4": 888.88,
+  "longTest5": "444发给水电费",
   "floatTest1": 1.1,
   "floatTest2": -1.1,
   "doubleTest1": 2.1111111112,
   "doubleTest2": -2.1111111112,
   "bigDecimal1": 2.1111111111111112,
   "bigDecimal2": 90000000000000009,
-  "bean1": {},
+  "bean1_test": {},
   "bean2": {
     "number": 12345
   },
+  "bean3":[],
   "map1": {
     "1": false
   },
@@ -44,7 +49,7 @@
     "number": 123456789
   },
   "jsonObject": {
-    "key": "value"
+    "key_xx": "value_yy"
   },
   "jsonArray": [
     true,

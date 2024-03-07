@@ -11,6 +11,7 @@ import com.dp.core.viewbinding.bindings
 import com.dp.core.windowinsets.fitStatusBar
 import com.dp.notes.R
 import com.dp.notes.databinding.NotesActivityGsonBinding
+import com.google.gson.internal.bind.TypeAdapters
 
 /**
  * author Dq
@@ -26,15 +27,23 @@ class GsonActivity : BaseActivity(R.layout.notes_activity_gson) {
 
     override fun initListener() {
         binding.button.clickEvent {
-            val str = CoreUtil.instance.getJson("gsonStr1.json").replace("stringTest3","xxxxx")
+            TypeAdapters.STRING
+            val str = CoreUtil.instance.getJson("gsonStr1.json").replace("stringTest3", "xxxxx")
+            Log.e("hehe", "fromJson------------>")
             val bean = str.fromJson<GsonBean>()
             Log.e("hehe", "bean1 = ${bean.toJson()}")
             Log.e("hehe", "bean2 = ${bean}")
-            binding.logText.add("stringTest4 = ${bean.stringTest4}  stringTest5 = ${bean.stringTest5}")
-            Log.e("hehe", "stringTest1 = ${bean.stringTest1} ")
-            Log.e("hehe", "stringTest4 = ${bean.stringTest4}  stringTest5 = ${bean.stringTest5}")
-            Log.e("hehe", "longTest3 = ${bean.longTest3}  longTest4 = ${bean.longTest4}")
-            Log.e("hehe", "stringTest3 = ${bean.stringTest3}  ")
+//            binding.logText.add("stringTest4 = ${bean.stringTest4}  stringTest5 = ${bean.stringTest5}")
+//            Log.e("hehe", "stringTest1 = ${bean.stringTest1} ")
+//            Log.e("hehe", "stringTest4 = ${bean.stringTest4}  stringTest5 = ${bean.stringTest5}")
+//            Log.e("hehe", "longTest3 = ${bean.longTest3}  longTest4 = ${bean.longTest4}")
+//            Log.e("hehe", "stringTest3 = ${bean.stringTest3}  ")
+
+//            Log.e("hehe", "longTest1 = ${bean.longTest1}")
+//            Log.e("hehe", "longTest2 = ${bean.longTest2}")
+//            Log.e("hehe", "longTest3 = ${bean.longTest3}")
+//            Log.e("hehe", "longTest4 = ${bean.longTest4}")
+//            Log.e("hehe", "longTest5 = ${bean.longTest5}")
         }
 
         binding.button2.clickEvent {

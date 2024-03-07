@@ -1,7 +1,11 @@
 package com.dp.notes.ui.gson
 
-import org.json.JSONObject
+import com.dp.core.network.gson.IntegerTypeAdapter
+import com.dp.core.network.gson.JSONObjectTypeAdapter
+import com.google.gson.annotations.JsonAdapter
+import com.google.gson.annotations.SerializedName
 import org.json.JSONArray
+import org.json.JSONObject
 import java.math.BigDecimal
 
 /**
@@ -30,6 +34,7 @@ data class GsonBean(
 
     val intTest1: Int,
     val intTest2: Int,
+    @JsonAdapter(IntegerTypeAdapter::class)
     val intTest3: Int,
     val intTest4: Int,
     val intTest5: Int,
@@ -56,9 +61,12 @@ data class GsonBean(
     val bigDecimal2: BigDecimal,
     val bigDecimal3: BigDecimal,
 
+    @SerializedName("bean1_test")
     val bean1: TestBean,
     val bean2: TestBean,
-    val bean3: TestBean,
+    //@JsonAdapter(JSONObjectTypeAdapter::class)
+    //@JsonAdapter(XTypeAdapter::class)
+    val bean3: TestBean?,
 
     val map1: Map<String, String>,
     val map2: Map<String, String>,
@@ -67,5 +75,5 @@ data class GsonBean(
 )
 
 data class TestBean(
-    val number: Int
+    val number: Int = 666
 )
