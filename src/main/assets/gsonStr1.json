@@ -41,7 +41,9 @@
   "bean2": {
     "number": 12345
   },
-  "bean3":[],
+  "bean3":{
+    "cnm": 666
+  },
   "map1": {
     "1": false
   },

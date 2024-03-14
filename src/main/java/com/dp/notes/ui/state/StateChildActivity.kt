@@ -57,7 +57,8 @@ class StateChildActivity : BaseBindingActivity<NotesActivityStateChildBinding>()
         binding.btn3.clickEvent {
             //全局未配置,局部未配置,直接使用,反射,缓存
             //局部配置,直接使用
-            loadSir.show<ErrorPage>()
+            //loadSir.show<ErrorPage>()
+            loadSir.showOnce(ErrorPage())
         }
 
         binding.btn4.clickEvent {
