@@ -3,7 +3,7 @@ plugins {
     id 'dagger.hilt.android.plugin'
 }
 
-apply from: moduleGradle
+apply from: "../gradle/base.build.gradle"
 
 android {
     namespace 'com.dp.notes'
@@ -17,18 +17,19 @@ android {
 }
 
 dependencies {
-    //hilt
-    implementation deps.Inject.hilt
-    kapt deps.Inject.compiler
-    //Arouter
-    kapt deps.Arouter.compiler
-    //-------
     implementation project(':module-common')
     compileOnly project(':module-webview')
     compileApi(':module-ztest-include')
-    //-------
-    implementation deps.Inject.koin
-    implementation deps.Depend.flexbox
+
+    //hilt
+    implementation libs.hilt.android
+    kapt libs.hilt.compiler
+    //Arouter
+    kapt libs.arouter.compiler
+
+    implementation libs.koin.android
+    implementation libs.flexbox
+
     //implementation 'com.tencent.mars:mars-xlog:1.2.5'
     implementation 'com.github.microshow:RxFFmpeg:4.9.0-lite'
     //implementation 'com.scwang.smart:refresh-layout-kernel:2.0.6'

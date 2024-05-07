@@ -21,7 +21,7 @@ class ParentFragmentDialog : BaseFragmentDialog<NotesDialogTestBinding>() {
 
     override fun register() = binding.text
     override fun initView() {
-        //弹窗弹出时,点击事件可以穿透到下面的View
+        //window窗口区域以外的点击事件传递给下层window,区域以内的点击事件自己处理
         dialog?.window?.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL, WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL)
 
         lifecycleScope.launch {
