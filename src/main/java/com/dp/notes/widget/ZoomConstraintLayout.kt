@@ -6,6 +6,9 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.updateLayoutParams
+import kotlin.math.abs
+import kotlin.math.max
+import kotlin.math.min
 
 /**
  * author Dq
@@ -63,10 +66,10 @@ class ZoomConstraintLayout @JvmOverloads constructor(
                 }
                 MotionEvent.ACTION_MOVE -> {
                     if (y == 0 || (y != 0 && isZooming)) {
-                        if ((ev.y - downY > 0 && Math.abs(ev.y - downY) > Math.abs(ev.x - downX)) || isZooming) {
+                        if ((ev.y - downY > 0 && abs(ev.y - downY) > abs(ev.x - downX)) || isZooming) {
                             isZooming = true
-                            var distance = Math.max(((ev.y - downY) * mScrollRate).toInt(), 0)
-                            distance = Math.min(distance, 400)
+                            var distance = max(((ev.y - downY) * mScrollRate).toInt(), 0)
+                            distance = min(distance, 400)
                             startZoom(distance.toFloat())
                             return false
                         }

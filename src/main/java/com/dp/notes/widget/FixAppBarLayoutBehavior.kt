@@ -1,4 +1,4 @@
-package com.area.target.widget
+package com.dp.notes.widget
 
 import android.content.Context
 import android.util.AttributeSet

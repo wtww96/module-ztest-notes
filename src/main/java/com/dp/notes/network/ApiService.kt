@@ -1,8 +1,8 @@
 package com.dp.notes.network
 
 import com.dp.core.network.annotation.UrlName
+import com.dp.core.network.bean.BaseResponse
 import com.dp.notes.bean.Test1Bean
-import com.dq.network.bean.BaseResponse
 import io.reactivex.Observable
 import retrofit2.http.GET
 

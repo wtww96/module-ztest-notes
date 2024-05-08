@@ -38,7 +38,7 @@ class ChildFragmentDialog : BaseFragmentDialog<NotesDialogTestBinding>() {
         dialog?.setCanceledOnTouchOutside(true)
         // 监听取消事件，取消时只隐藏弹窗
         dialog?.setOnCancelListener {
-            (it as Dialog)?.hide()
+            (it as Dialog).hide()
         }
     }
 

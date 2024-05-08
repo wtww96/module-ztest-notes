@@ -19,6 +19,9 @@ import com.dp.core.extension.screenSize
 import java.lang.ref.WeakReference
 import java.util.*
 import kotlin.LazyThreadSafetyMode.NONE
+import kotlin.math.abs
+import kotlin.math.pow
+import kotlin.math.sqrt
 
 
 /**
@@ -44,7 +47,7 @@ class ItemAnimHelper constructor(activity: Activity) {
 
     //屏幕对角线:用于计算动画时长
     private val screenDiagonal by lazy(NONE) {
-        Math.sqrt(Math.pow(scWidth.toDouble(), 2.0) + Math.pow(screenSize.y.toDouble(), 2.0))
+        sqrt(scWidth.toDouble().pow(2.0) + screenSize.y.toDouble().pow(2.0))
     }
 
     init {
@@ -86,10 +89,10 @@ class ItemAnimHelper constructor(activity: Activity) {
             layoutParams = MarginLayoutParams(startView.width, startView.height).apply {
                 topMargin = startLocation[1]
                 //适配RTL
-                if (isRtl()) {
-                    marginStart = scWidth - startLocation[0] - startView.width
+                marginStart = if (isRtl()) {
+                    scWidth - startLocation[0] - startView.width
                 } else {
-                    marginStart = startLocation[0]
+                    startLocation[0]
                 }
             }
             pivotX = 0f
@@ -116,11 +119,11 @@ class ItemAnimHelper constructor(activity: Activity) {
         val endY = endLocation[1] - startLocation[1]
 
         //起点View和终点View的直线距离(x,y坐标)
-        val diagonal = Math.abs(
-            Math.sqrt(Math.pow(startLocation[0] - endLocation[0].toDouble(), 2.0) + Math.pow(startLocation[1] - endLocation[1].toDouble(), 2.0))
+        val diagonal = abs(
+            sqrt((startLocation[0] - endLocation[0].toDouble()).pow(2.0) + (startLocation[1] - endLocation[1].toDouble()).pow(2.0))
         )
         //不同的平移距离,动画执行的时间不同
-        val animTime = Math.max(maxTime * (diagonal / screenDiagonal), 400.0).toLong()
+        val animTime = (maxTime * (diagonal / screenDiagonal)).coerceAtLeast(400.0).toLong()
         //开始平移缩放动画
         v.animate()
             .translationX(endX.toFloat())

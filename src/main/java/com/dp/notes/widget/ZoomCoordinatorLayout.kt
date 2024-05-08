@@ -1,4 +1,4 @@
-package com.area.target.widget
+package com.dp.notes.widget
 
 import android.animation.ValueAnimator
 import android.content.Context
@@ -8,6 +8,8 @@ import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.updateLayoutParams
+import kotlin.math.abs
+import kotlin.math.max
 
 /**
  * author Dq
@@ -54,8 +56,8 @@ class ZoomCoordinatorLayout @JvmOverloads constructor(
                 }
                 MotionEvent.ACTION_MOVE -> {
                     if (y == 0) {
-                        if (Math.abs(ev.y - downY) > Math.abs(ev.x - downX)) {
-                            val distance = Math.max(((ev.y - downY) * mScrollRate).toInt(), 0)
+                        if (abs(ev.y - downY) > abs(ev.x - downX)) {
+                            val distance = max(((ev.y - downY) * mScrollRate).toInt(), 0)
                             startZoom(distance.toFloat())
                         }
                     } else {

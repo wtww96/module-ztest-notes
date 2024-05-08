@@ -32,7 +32,7 @@ class LogTextView(context: Context, attrs: AttributeSet?) : AppCompatTextView(co
 
     fun add(str: String, isToast: Boolean = false) {
         sb.append(str.plus("\n"))
-        setText(sb.toString())
+        text = sb.toString()
         Log.e("TestLog", str)
         if (isToast) showToast(str, true)
     }
@@ -40,7 +40,7 @@ class LogTextView(context: Context, attrs: AttributeSet?) : AppCompatTextView(co
     fun clear() {
         context
         sb.clear()
-        setText(sb.toString())
+        text = sb.toString()
     }
 
 }

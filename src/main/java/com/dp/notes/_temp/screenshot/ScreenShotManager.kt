@@ -183,9 +183,9 @@ class ScreenShotManager private constructor() {
         sb.append(SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.getDefault()).format(Calendar.getInstance().time))
         watermarkView = TextView(activity).apply {
             text = sb.toString()
-            setTextSize(15f)
+            textSize = 15f
             setTextColor(Color.parseColor("#80ff0000"))
-            setTypeface(Typeface.defaultFromStyle(Typeface.BOLD))
+            typeface = Typeface.defaultFromStyle(Typeface.BOLD)
             gravity = Gravity.END or Gravity.BOTTOM
             setPadding(0, 0, 380, 500)
             setShadowLayer(2f, 2f, 2f, Color.parseColor("#66000000"))

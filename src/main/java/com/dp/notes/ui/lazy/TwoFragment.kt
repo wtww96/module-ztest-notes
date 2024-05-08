@@ -2,6 +2,7 @@ package com.dp.notes.ui.lazy
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.dp.core.base.BaseFragment
 import com.dp.core.viewbinding.bindings
 import com.dp.notes.R
@@ -23,6 +24,7 @@ class TwoFragment : BaseFragment(R.layout.notes_fragment_two) {
         binding.textview.add("Two: lazyInit-->isResumed=$isResumed , isVisible=$isVisible , isHidden=$isHidden")
         val titles = arrayOf("关注1", "探索2", "新人3", "其他4", "关注5", "探索6", "新人7", "其他8")
         binding.viewPager.offscreenPageLimit = 2
+
         binding.viewPager.adapter = object : FragmentPagerAdapter(childFragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
             override fun getCount(): Int = titles.size
 

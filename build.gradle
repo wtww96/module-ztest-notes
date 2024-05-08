@@ -23,7 +23,7 @@ dependencies {
     //hilt
     implementation libs.hilt.android
     kapt libs.hilt.compiler
-    //Arouter
+    //ARouter
     kapt libs.arouter.compiler
 
     implementation libs.koin.android
