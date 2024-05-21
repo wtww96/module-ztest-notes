@@ -27,8 +27,7 @@ class ItemDivider : RecyclerView.ItemDecoration() {
         val position = parent.getChildAdapterPosition(view)
         val spanCount = (parent.layoutManager as GridLayoutManager).spanCount
         val spanIndex = (view.layoutParams as GridLayoutManager.LayoutParams).spanIndex
-        val currentLineItemType = parent.adapter?.getItemViewType(position)
-        when (currentLineItemType) {
+        when (val currentLineItemType = parent.adapter?.getItemViewType(position)) {
             ItemTopBtn -> {
                 outRect.left = (5 * (spanCount - 1 - spanIndex)).dp
                 outRect.right = (5 * spanIndex).dp
