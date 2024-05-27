@@ -156,10 +156,18 @@ class HttpViewModel @Inject constructor(private val dataSource: TestRepository) 
                 Log.e("hehe", "measureTimeMillis init")
                 //await直接跟在async{ }后面,会先触发{ }中的代码块,直到执行完成await拿到返回值才会走后续代码
                 //串行触发  总耗时3s
-                val value1 = async { doSomethingUsefulOne() }.await()
+                /*val value1 = async { doSomethingUsefulOne() }.await()
                 Log.e("hehe", "value111 = $value1")
                 val value2 = async { doSomethingUsefulTwo() }.await()
+                Log.e("hehe", "value222 = $value2")*/
+
+                //此场景:并行触发  总耗时2s
+                val async1 = async { doSomethingUsefulOne() }
+                Log.e("hehe", "async111 触发完毕-----")
+                val value2 = async { doSomethingUsefulTwo() }.await()
                 Log.e("hehe", "value222 = $value2")
+                val value1 = async1.await()
+                Log.e("hehe", "value111 = $value1")
 
                 //调用async{ },再接着调用第二个async{ },然后再去一个一个调用await
                 //两个async中的代码块都是并行触发  总耗时2s
