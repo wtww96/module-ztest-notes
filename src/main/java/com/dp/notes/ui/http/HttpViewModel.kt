@@ -11,6 +11,10 @@ import com.dp.notes.repository.TestRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.zip
@@ -162,12 +166,12 @@ class HttpViewModel @Inject constructor(private val dataSource: TestRepository) 
                 Log.e("hehe", "value222 = $value2")*/
 
                 //此场景:并行触发  总耗时2s
-                val async1 = async { doSomethingUsefulOne() }
+                /*val async1 = async { doSomethingUsefulOne() }
                 Log.e("hehe", "async111 触发完毕-----")
                 val value2 = async { doSomethingUsefulTwo() }.await()
                 Log.e("hehe", "value222 = $value2")
                 val value1 = async1.await()
-                Log.e("hehe", "value111 = $value1")
+                Log.e("hehe", "value111 = $value1")*/
 
                 //调用async{ },再接着调用第二个async{ },然后再去一个一个调用await
                 //两个async中的代码块都是并行触发  总耗时2s
@@ -191,22 +195,73 @@ class HttpViewModel @Inject constructor(private val dataSource: TestRepository) 
                 val value2 = async2.await()
                 Log.e("hehe", "value222 = $value2")*/
                 //Log.e("hehe", "合并结果 = ${value1 + value2}")
+
+
+                //zip合并2个请求 此场景:并行触发  总耗时3s
+                val async1 = async { doSomethingUsefulOneFlow() }
+                Log.e("hehe", "async111 触发完毕-----")
+                val async2 = async { doSomethingUsefulTwoFlow() }
+                Log.e("hehe", "async222 触发完毕-----")
+                async1.await().zip(async2.await()) { x, y ->
+                    Log.e("hehe", "zip合并请求完成 x=$x  y=$y")
+                }.launchIn(this)
+
+                //combine合并2个以上请求 此场景:并行触发  总耗时3s
+                val async11 = async { doSomethingUsefulOneFlow() }
+                Log.e("hehe", "async**111 触发完毕-----")
+                val async22 = async { doSomethingUsefulTwoFlow() }
+                Log.e("hehe", "async**222 触发完毕-----")
+                val async33 = async { doSomethingUsefulThreeFlow() }
+                Log.e("hehe", "async**333 触发完毕-----")
+                combine(async11.await(), async22.await(), async33.await()) { x, y, z ->
+                    Log.e("hehe", "combine合并请求完成 x=$x  y=$y  z=$z")
+                }.launchIn(this)
             }
+
             Log.e("hehe", "Completed time = $time")
         }
     }
 
     private suspend fun doSomethingUsefulOne(): Int {
         Log.e("hehe", "doSomethingUsefulOne 11111")
-        delay(1000L)
+        delay(987)
         Log.e("hehe", "doSomethingUsefulOne 11111---------")
         return 666
     }
 
     private suspend fun doSomethingUsefulTwo(): Int {
         Log.e("hehe", "doSomethingUsefulTwo 222222")
-        delay(2000L)
+        delay(2132)
         Log.e("hehe", "doSomethingUsefulOne 222222---------")
         return 888
+    }
+
+    private suspend fun doSomethingUsefulThree(): Int {
+        Log.e("hehe", "doSomethingUsefulThree 333333333")
+        delay(1275)
+        Log.e("hehe", "doSomethingUsefulThree 333333333---------")
+        return 1275
+    }
+
+
+    private suspend fun doSomethingUsefulOneFlow(): Flow<Int> {
+        Log.e("hehe", "doSomethingUsefulOne 11111")
+        delay(1000)
+        Log.e("hehe", "doSomethingUsefulOne 11111---------")
+        return flowOf(666)
+    }
+
+    private suspend fun doSomethingUsefulTwoFlow(): Flow<Int> {
+        Log.e("hehe", "doSomethingUsefulTwo 222222")
+        delay(3000)
+        Log.e("hehe", "doSomethingUsefulOne 222222---------")
+        return flowOf(888)
+    }
+
+    private suspend fun doSomethingUsefulThreeFlow(): Flow<Int> {
+        Log.e("hehe", "doSomethingUsefulThree 333333333")
+        delay(2000)
+        Log.e("hehe", "doSomethingUsefulThree 333333333---------")
+        return flowOf(1275)
     }
 }
