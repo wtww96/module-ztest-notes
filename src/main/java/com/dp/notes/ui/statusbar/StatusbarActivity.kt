@@ -7,9 +7,22 @@ import com.dp.common.route.PageRoute
 import com.dp.core.base.BaseActivity
 import com.dp.core.extension.clickEvent
 import com.dp.core.extension.onBack
+import com.dp.core.extension.scHeight
+import com.dp.core.extension.screenSize
 import com.dp.core.extension.showToast
 import com.dp.core.viewbinding.bindings
-import com.dp.core.windowinsets.*
+import com.dp.core.windowinsets.fitStatusBar
+import com.dp.core.windowinsets.fullScreen
+import com.dp.core.windowinsets.hasNavigationBar
+import com.dp.core.windowinsets.hideNavigation
+import com.dp.core.windowinsets.hideStatus
+import com.dp.core.windowinsets.immerse
+import com.dp.core.windowinsets.navigationColor
+import com.dp.core.windowinsets.navigationHeight
+import com.dp.core.windowinsets.showNavigation
+import com.dp.core.windowinsets.showStatus
+import com.dp.core.windowinsets.statusColor
+import com.dp.core.windowinsets.statusHeight
 import com.dp.notes.R
 import com.dp.notes.databinding.NotesActivityStatusbarBinding
 
@@ -28,6 +41,12 @@ class StatusbarActivity : BaseActivity(R.layout.notes_activity_statusbar) {
     override fun initView(bundle: Bundle?) {
         //状态栏沉浸式修复高度和添加无逻辑返回
         binding.btBack.fitStatusBar().onBack()
+
+        binding.tvContent.text = "状态栏高度:${statusHeight}" +
+                "\n底部导航栏高度:${navigationHeight}" +
+                "\n手机屏幕可用高度,像素px:${scHeight}" +
+                "\n手机屏幕真实高度,像素px:${screenSize.y}" +
+                "\n是否有底部导航栏11:${hasNavigationBar}"
     }
 
     override fun initListener() {
@@ -68,7 +87,7 @@ class StatusbarActivity : BaseActivity(R.layout.notes_activity_statusbar) {
         //状态栏和底部导航栏高度
         binding.bt9.clickEvent {
             binding.tvContent.text = "状态栏高度:${statusHeight}" +
-                "\n底部导航栏高度:${navigationHeight}"
+                    "\n底部导航栏高度:${navigationHeight}"
         }
         //修改状态栏和底部导航栏颜色
         binding.bt10.clickEvent {
@@ -77,7 +96,7 @@ class StatusbarActivity : BaseActivity(R.layout.notes_activity_statusbar) {
         }
         //是否有底部导航栏
         binding.bt11.clickEvent {
-            binding.tvContent.text = "是否有底部导航栏 = ${hasNavigationBar}"
+            binding.tvContent.text = "是否有底部导航栏 = $hasNavigationBar"
         }
     }
 

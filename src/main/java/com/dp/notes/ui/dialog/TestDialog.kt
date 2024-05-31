@@ -3,6 +3,7 @@ package com.dp.notes.ui.dialog
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.WindowManager.LayoutParams
 import com.dp.notes.R
@@ -13,7 +14,7 @@ import com.dp.notes.R
  * date on 2023/11/1
  * description
  */
-class TestDialog(context: Context) : Dialog(context) {
+class TestDialog(context: Context) : Dialog(context, R.style.Theme_Dialog_Base) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,5 +31,12 @@ class TestDialog(context: Context) : Dialog(context) {
         window!!.attributes = params
 
         setContentView(R.layout.notes_dialog_test)
+    }
+
+    override fun show() {
+        kotlin.runCatching { super.show() }.onFailure {
+            it.printStackTrace()
+            Log.e("hehe", "show Catching=$it")
+        }
     }
 }
