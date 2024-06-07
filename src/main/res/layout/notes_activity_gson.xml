@@ -10,14 +10,14 @@
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Gson容错处理"
+        android:text="Gson容错处理,Kotlin"
         android:textAllCaps="false" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="获取指定字段值"
+        android:text="Gson容错处理,Java"
         android:textAllCaps="false" />
 
     <ScrollView

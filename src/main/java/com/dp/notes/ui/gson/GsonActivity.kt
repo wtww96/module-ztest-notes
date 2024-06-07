@@ -11,7 +11,6 @@ import com.dp.core.viewbinding.bindings
 import com.dp.core.windowinsets.fitStatusBar
 import com.dp.notes.R
 import com.dp.notes.databinding.NotesActivityGsonBinding
-import com.google.gson.internal.bind.TypeAdapters
 
 /**
  * author Dq
@@ -27,12 +26,11 @@ class GsonActivity : BaseActivity(R.layout.notes_activity_gson) {
 
     override fun initListener() {
         binding.button.clickEvent {
-            TypeAdapters.STRING
             val str = CoreUtil.instance.getJson("gsonStr1.json").replace("stringTest3", "xxxxx")
             Log.e("hehe", "fromJson------------>")
             val bean = str.fromJson<GsonBean>()
             Log.e("hehe", "bean1 = ${bean.toJson()}")
-            Log.e("hehe", "bean2 = ${bean}")
+            Log.e("hehe", "bean2 = $bean")
 //            binding.logText.add("stringTest4 = ${bean.stringTest4}  stringTest5 = ${bean.stringTest5}")
 //            Log.e("hehe", "stringTest1 = ${bean.stringTest1} ")
 //            Log.e("hehe", "stringTest4 = ${bean.stringTest4}  stringTest5 = ${bean.stringTest5}")
@@ -47,7 +45,9 @@ class GsonActivity : BaseActivity(R.layout.notes_activity_gson) {
         }
 
         binding.button2.clickEvent {
-
+            val bean = CoreUtil.instance.getJson("gsonStr2.json").fromJson<JavaGsonBean>()
+            Log.e("hehe", "bean = ${bean.toJson()}")
+            Log.e("hehe", "stringTest1=${bean.stringTest1.length}   stringTest2=${bean.stringTest2.length}")
         }
     }
 }
