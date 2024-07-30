@@ -14,5 +14,7 @@ interface TestRepository : IRepository {
     fun requestRx(params: String = ""): FlowNet<Test1Bean>
 
     fun requestFlow(): FlowNet<Test1Bean>
+
+    fun requestFlowList(): FlowNet<List<Test1Bean>>
 }
 

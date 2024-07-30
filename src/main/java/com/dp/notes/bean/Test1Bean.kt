@@ -11,7 +11,7 @@ data class Test1Bean(
     val realtime: Realtime,
 ) {
     val text: String
-        get() = "${city} , ${realtime.info} , ${realtime.direct}"
+        get() = "$city , ${realtime.info} , ${realtime.direct}"
 }
 
 data class Realtime(
@@ -22,7 +22,9 @@ data class Realtime(
     val power: String,
     val temperature: String,
     val wid: String,
-)
+) {
+    constructor() : this("", "", "", "", "", "", "")
+}
 
 data class Wid(
     val day: String,

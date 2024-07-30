@@ -6,6 +6,7 @@ import com.dp.core.base.BaseViewModel
 import com.dp.core.extension.toJson
 import com.dp.core.network.*
 import com.dp.core.network.bean.NetworkResult
+import com.dp.notes.bean.Realtime
 import com.dp.notes.bean.Test1Bean
 import com.dp.notes.repository.TestRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,7 +17,9 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
+import kotlinx.coroutines.flow.retry
 import kotlinx.coroutines.flow.zip
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -64,6 +67,28 @@ class HttpViewModel @Inject constructor(private val dataSource: TestRepository) 
                 Log.e("hehe", "flowRequest1_1 失败 = $e")
             }
         }
+        dataSource.requestFlow()
+            .onStart {
+                Log.e("hehe", "flowRequest1_1 --------- flow.getData---onStart")
+                //emit(Test1Bean("onStart", emptyList(), Realtime()))
+            }
+            .onEach {
+                Log.e("hehe", "flowRequest1_1 --------- flow.getData=$it")
+            }.launchIn(viewModelScope)
+
+        dataSource.requestFlow().getOrNull()
+            .onStart {
+                Log.e("hehe", "flowRequest1_1 --------- flow.getOrNull---onStart")
+            }
+            .onEach {
+                Log.e("hehe", "flowRequest1_1 --------- flow.getOrNull")
+            }.launchIn(viewModelScope)
+
+        dataSource.requestFlowList().getOrList().onStart {
+            Log.e("hehe", "flowRequest1_1 --------- flow.getOrDefault---onStart")
+        }.onEach {
+            Log.e("hehe", "flowRequest1_1 --------- flow.getOrDefault")
+        }.launchIn(viewModelScope)
     }
 
     /**

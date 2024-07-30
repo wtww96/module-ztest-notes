@@ -2,10 +2,12 @@ package com.dp.notes.repository
 
 import com.dp.core.network.FlowNet
 import com.dp.core.network.NetworkManager
+import com.dp.core.network.bean.NetworkResult
 import com.dp.core.network.flowRequest
 import com.dp.core.network.rxjava.flowRxRequest
 import com.dp.notes.bean.Test1Bean
 import com.dp.notes.network.ApiService
+import kotlinx.coroutines.flow.flowOf
 import javax.inject.Inject
 
 /**
@@ -24,5 +26,9 @@ class TestRepositoryImpl @Inject constructor() : TestRepository {
 
     override fun requestFlow(): FlowNet<Test1Bean> {
         return flowRequest { api.queryWeatherFlow() }
+    }
+
+    override fun requestFlowList(): FlowNet<List<Test1Bean>> {
+        return flowOf(NetworkResult.SuccessResult(emptyList()))
     }
 }
