@@ -1,7 +1,6 @@
 package com.dp.notes.ui.gson
 
-import com.dp.core.network.gson.IntegerTypeAdapter
-import com.dp.core.network.gson.JSONObjectTypeAdapter
+import com.dp.core.network.gson.type.IntegerTypeAdapter
 import com.google.gson.annotations.JsonAdapter
 import com.google.gson.annotations.SerializedName
 import org.json.JSONArray
@@ -32,7 +31,7 @@ data class GsonBean(
     val stringTest4: String,
     val stringTest5: String,
 
-    val intTest1: Int,
+    val intTest1: Int? = null,
     val intTest2: Int,
     @JsonAdapter(IntegerTypeAdapter::class)
     val intTest3: Int,

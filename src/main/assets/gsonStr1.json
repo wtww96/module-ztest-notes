@@ -23,7 +23,7 @@
   "stringTest2": "null",
   "stringTest3": "字符串",
   "stringTest4": 8888,
-  "intTest1": 1.6,
+  "intTest1": "0.99",
   "intTest3": "33.3",
   "intTest5": "w",
   "longTest1": 90000000000000009,

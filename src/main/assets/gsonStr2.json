@@ -1,4 +1,6 @@
 {
-  "stringTest1": null,
-  "stringTest2": "null"
+  "stringTest1": "0.99",
+  "intTest1": "1.99",
+  "longTest1": "2.99",
+  "boolTest1": "3.99"
 }

@@ -7,5 +7,7 @@ package com.dp.notes.ui.gson;
  */
 public class JavaGsonBean {
     public String stringTest1;
-    public String stringTest2;
+    public int intTest1;
+    public long longTest1;
+    public boolean boolTest1;
 }

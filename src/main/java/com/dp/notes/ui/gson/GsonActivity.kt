@@ -45,9 +45,13 @@ class GsonActivity : BaseActivity(R.layout.notes_activity_gson) {
         }
 
         binding.button2.clickEvent {
+            val bean = CoreUtil.instance.getJson("gsonStr2.json").fromJson<GsonBean1>()
+            Log.e("hehe", "bean = $bean")
+        }
+
+        binding.button3.clickEvent {
             val bean = CoreUtil.instance.getJson("gsonStr2.json").fromJson<JavaGsonBean>()
             Log.e("hehe", "bean = ${bean.toJson()}")
-            Log.e("hehe", "stringTest1=${bean.stringTest1.length}   stringTest2=${bean.stringTest2.length}")
         }
     }
 }
