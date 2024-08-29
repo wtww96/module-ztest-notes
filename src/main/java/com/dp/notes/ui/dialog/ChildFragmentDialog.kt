@@ -6,6 +6,7 @@ import android.view.Gravity
 import android.view.KeyEvent
 import com.dp.core.base.BaseFragmentDialog
 import com.dp.core.extension.clickEvent
+import com.dp.core.extension.dp
 import com.dp.notes.databinding.NotesDialogTestBinding
 
 /**
@@ -58,6 +59,10 @@ class ChildFragmentDialog : BaseFragmentDialog<NotesDialogTestBinding>() {
     }
 
     override fun dialogGravity(): Int = Gravity.BOTTOM
+    override fun dimAmount(): Float = 0f
+//    override fun dialogHeight(): Int = LayoutParams.MATCH_PARENT
+//    override fun dialogHeight(): Int = LayoutParams.WRAP_CONTENT
+    override fun dialogHeight(): Int = 500.dp
 
     companion object {
         fun show(any: Any) {
