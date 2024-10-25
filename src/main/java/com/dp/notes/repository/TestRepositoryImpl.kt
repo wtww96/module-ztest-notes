@@ -4,6 +4,7 @@ import com.dp.core.network.FlowNet
 import com.dp.core.network.NetworkManager
 import com.dp.core.network.bean.NetworkResult
 import com.dp.core.network.flowRequest
+import com.dp.core.network.flowRequestAny
 import com.dp.core.network.rxjava.flowRxRequest
 import com.dp.notes.bean.Test1Bean
 import com.dp.notes.network.ApiService
@@ -30,5 +31,9 @@ class TestRepositoryImpl @Inject constructor() : TestRepository {
 
     override fun requestFlowList(): FlowNet<List<Test1Bean>> {
         return flowOf(NetworkResult.SuccessResult(emptyList()))
+    }
+
+    override fun testRequest(): FlowNet<String> {
+        return flowRequestAny { api.testRequest() }
     }
 }

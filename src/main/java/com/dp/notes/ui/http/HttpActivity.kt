@@ -18,7 +18,7 @@ class HttpActivity : BaseBindingActivity<NotesActivityHttpBinding>() {
     private val viewModel by viewModels<HttpViewModel>()
 
     override fun initObserve() {
-        NetworkUtil.getNetWorkSpeed(this, 1000) {
+        NetworkUtil.getNetWorkSpeed(this, 1000 * 60) {
             binding.logText.add("当前网络速率 = $it")
         }
         //回调api 转 flow流
@@ -36,6 +36,8 @@ class HttpActivity : BaseBindingActivity<NotesActivityHttpBinding>() {
         //rxjava封装的网络请求--> 回调api 转 flow流
         binding.bt1.clickEvent {
             viewModel.rxRequest()
+            //viewModel.testRequest()
+            //Handler().postDelayed({ finish() }, 300)
         }
 
         //Flow流请求,LiveData通知更新

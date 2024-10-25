@@ -36,6 +36,17 @@ class HttpViewModel @Inject constructor(private val dataSource: TestRepository) 
     val rxResult = MutableLiveData<String>()
     val flowResult = MutableLiveData<String>()
 
+    fun testRequest() {
+        dataSource.testRequest().wrap(this) {
+            success {
+                Log.e("hehe", "testRequest 成功 = $it")
+            }
+            failure { e, _ ->
+                Log.e("hehe", "testRequest 失败 = $e")
+            }
+        }
+    }
+
     /**
      * rxjava封装的网络请求 转化 为flow流处理
      */

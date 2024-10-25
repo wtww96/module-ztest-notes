@@ -16,5 +16,7 @@ interface TestRepository : IRepository {
     fun requestFlow(): FlowNet<Test1Bean>
 
     fun requestFlowList(): FlowNet<List<Test1Bean>>
+
+    fun testRequest(): FlowNet<String>
 }
 
