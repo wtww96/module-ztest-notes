@@ -18,7 +18,7 @@ interface ApiService {
     //@GET("http://apis.juhe.cn/simpleWeather/query?city=上海&key=6359ed4768376c1f109968e64d91e43a")
 
     //@UrlName("test1")
-    //@Headers("Cache-Control: public, max-age=" + 60 * 10)
+    @Headers("Cache-Control: public, max-age=" + 60 * 10)
     @GET("simpleWeather/query?city=上海&key=6359ed4768376c1f109968e64d91e43a")
     fun queryWeatherRx(): Observable<BaseResponse<Test1Bean>>
 
