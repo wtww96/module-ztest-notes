@@ -10,6 +10,12 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name=".ui._temp.TempActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".ui.hilt.TestHiltActivity"
             android:exported="false"
             android:launchMode="singleTop"

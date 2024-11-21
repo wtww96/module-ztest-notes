@@ -18,6 +18,7 @@ import com.dp.notes._temp.screenshot.ScreenShotManager
 import com.dp.notes._temp.screenshot.ScreenVideoManager
 import com.dp.notes.constants.EventKeys.KEY_TEST
 import com.dp.notes.databinding.NotesActivityNotesBinding
+import com.dp.notes.ui._temp.TempActivity
 import com.dp.notes.ui.dialog.UseDialogActivity
 import com.dp.notes.ui.flow.FlowActivity
 import com.dp.notes.ui.gson.GsonActivity
@@ -106,8 +107,8 @@ class NotesActivity : BaseActivity(R.layout.notes_activity_notes) {
             launcher.launch(intentTo<TestRegisterResultActivity>()) { result ->
                 binding.logText.add(
                     "registerResult使用:\n" +
-                        "     resultCode=${result.resultCode}\n" +
-                        "     result=${result.data?.getStringExtra("backParams")}"
+                            "     resultCode=${result.resultCode}\n" +
+                            "     result=${result.data?.getStringExtra("backParams")}"
                 )
             }
         }
@@ -165,11 +166,14 @@ class NotesActivity : BaseActivity(R.layout.notes_activity_notes) {
         //tabLayout
         binding.tabLayout.clickEvent {
             navigateTo<TabLayoutActivity>()
-
         }
         binding.tabLayout.setOnLongClickListener {
             navigateTo<TabLayoutNewActivity>()
             true
+        }
+
+        binding.other.clickEvent {
+            navigateTo<TempActivity>()
         }
 
         //页面状态管理

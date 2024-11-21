@@ -2,5 +2,6 @@
   "stringTest1": "0.99",
   "intTest1": "1.99",
   "longTest1": "2.99",
-  "boolTest1": "3.99"
+  "boolTest1": "3.99",
+  "name":null
 }

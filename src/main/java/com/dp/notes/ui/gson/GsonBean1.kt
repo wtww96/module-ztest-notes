@@ -6,8 +6,15 @@ package com.dp.notes.ui.gson
  * description
  */
 data class GsonBean1(
-    val stringTest1: String? = null,
-    val intTest1: Int? = null,
-    val longTest1: Long? = null,
+    val stringTest1: String? ,
+    val intTest1: Int?,
+    val longTest1: Long?,
+    val name: String ,
+    val boolTest1: Boolean?,
+    val rewards: List<GsonBeanChild1>? ,
+)
+
+data class GsonBeanChild1(
+    val name: String = "",
     val boolTest1: Boolean? = null,
 )
