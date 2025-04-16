@@ -31,7 +31,7 @@ class ParentFragmentDialog : BaseFragmentDialog<NotesDialogTestBinding>() {
 
         binding.button.clickEvent {
             ChildFragmentDialog.show(this)
-            dismiss()
+            //dismiss()
         }
 
         binding.button1.clickEvent {
@@ -47,32 +47,32 @@ class ParentFragmentDialog : BaseFragmentDialog<NotesDialogTestBinding>() {
 
     override fun onStart() {
         super.onStart()
-        Log.e("hehe", ">>>>>>>>>>> onStart")
+        Log.e("hehe", ">>>>>>>>>>> ParentFragmentDialog onStart")
     }
 
     override fun onResume() {
         super.onResume()
-        Log.e("hehe", ">>>>>>>>>>> onResume")
+        Log.e("hehe", ">>>>>>>>>>> ParentFragmentDialog onResume")
     }
 
     override fun onPause() {
         super.onPause()
-        Log.e("hehe", ">>>>>>>>>>> onPause")
+        Log.e("hehe", ">>>>>>>>>>> ParentFragmentDialog onPause")
     }
 
     override fun onStop() {
         super.onStop()
-        Log.e("hehe", ">>>>>>>>>>> onStop")
+        Log.e("hehe", ">>>>>>>>>>> ParentFragmentDialog onStop")
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        Log.e("hehe", ">>>>>>>>>>> onDestroyView")
+        Log.e("hehe", ">>>>>>>>>>> ParentFragmentDialog onDestroyView")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.e("hehe", ">>>>>>>>>>> onDestroy")
+        Log.e("hehe", ">>>>>>>>>>> ParentFragmentDialog onDestroy")
     }
 
     override fun dialogHMargin(): Int = 20.dp

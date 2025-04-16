@@ -35,8 +35,9 @@ class HttpActivity : BaseBindingActivity<NotesActivityHttpBinding>() {
     override fun initListener() {
         //rxjava封装的网络请求--> 回调api 转 flow流
         binding.bt1.clickEvent {
-            viewModel.rxRequest()
-            //viewModel.testRequest()
+//            viewModel.rxRequest()
+            viewModel.testRequest()
+//            finish()
             //Handler().postDelayed({ finish() }, 300)
         }
 

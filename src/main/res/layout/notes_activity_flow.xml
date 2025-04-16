@@ -15,6 +15,7 @@
         android:elevation="2dp"
         android:gravity="center"
         android:text="LiveData"
+        android:textColor="@color/black"
         android:textSize="20dp" />
 
     <LinearLayout
@@ -33,6 +34,7 @@
             android:elevation="2dp"
             android:gravity="center"
             android:text="Flow 冷流1"
+            android:textColor="@color/black"
             android:textSize="20dp" />
 
         <TextView
@@ -46,6 +48,7 @@
             android:elevation="2dp"
             android:gravity="center"
             android:text="Flow 冷流2"
+            android:textColor="@color/black"
             android:textSize="20dp" />
     </LinearLayout>
 
@@ -58,6 +61,7 @@
         android:elevation="2dp"
         android:gravity="center"
         android:text="sharedFlow 热流"
+        android:textColor="@color/black"
         android:textSize="20dp" />
 
     <TextView
@@ -69,6 +73,7 @@
         android:elevation="2dp"
         android:gravity="center"
         android:text="stateFlow 热流"
+        android:textColor="@color/black"
         android:textSize="20dp" />
 
     <LinearLayout
@@ -87,6 +92,7 @@
             android:elevation="2dp"
             android:gravity="center"
             android:text="Flow绑定生命周期:每次onStart后发送,onStop后停止发送接收(::::回到后台再回前台会重新触发流的发送,再次接收数据)"
+            android:textColor="@color/black"
             android:textSize="10sp" />
 
         <TextView
@@ -99,6 +105,7 @@
             android:elevation="2dp"
             android:gravity="center"
             android:text="Flow绑定生命周期:onStart后接收,每次onStop后停止接收(::::只会发送一次数据,回到后台后发送的数据,再回前台不会接收数据,也不会重新触发发送流)"
+            android:textColor="@color/black"
             android:textSize="10sp" />
 
         <TextView
@@ -111,6 +118,7 @@
             android:elevation="2dp"
             android:gravity="center"
             android:text="Flow绑定生命周期:在进入onStart前一直等待,进入onStart后开启/恢复协程,离开onStart时挂起协程,onDestroy时销毁协程协程挂起时会暂停发送/接收数据流 协程恢复后会继续发送/接收数据流"
+            android:textColor="@color/black"
             android:textSize="10sp" />
 
     </LinearLayout>
@@ -124,6 +132,7 @@
         android:elevation="2dp"
         android:gravity="center"
         android:text="FlowBus"
+        android:textColor="@color/black"
         android:textSize="20dp" />
 
     <ScrollView
@@ -136,7 +145,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:paddingHorizontal="8dp"
-            android:textColor="#000000"
+            android:textColor="@color/black"
             android:textSize="12sp"
             tools:text="阿斯加德教案设计扩大进口数据看阿斯加德教案设计扩大进口数据看" />
 

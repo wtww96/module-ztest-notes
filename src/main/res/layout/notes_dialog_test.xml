@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/shape_corners_10"
-    android:backgroundTint="#800000ff">
+    android:backgroundTint="#0000ff">
 
     <TextView
         android:id="@+id/text"
@@ -50,4 +50,20 @@
         app:backgroundTint="#00ff00"
         app:cornerRadius="20dp"
         app:layout_constraintTop_toBottomOf="@+id/button1" />
+
+
+    <TextView
+        android:id="@+id/tvBtn"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="40dp"
+        android:background="#000000"
+        android:elevation="5dp"
+        android:gravity="center"
+        android:text="我是按钮"
+        android:textColor="#ffffff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

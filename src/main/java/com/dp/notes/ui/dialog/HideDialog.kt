@@ -2,6 +2,7 @@ package com.dp.notes.ui.dialog
 
 import android.util.Log
 import android.view.Gravity
+import android.view.WindowManager
 import com.dp.core.base.BaseFragmentDialogHide
 import com.dp.core.extension.clickEvent
 import com.dp.core.viewbinding.bindings
@@ -19,7 +20,7 @@ class HideDialog : BaseFragmentDialogHide(R.layout.notes_dialog_test) {
     override fun initView() {
         Log.e("hehe", " ------------- initView")
         //弹窗弹出时,点击事件可以穿透到下面的View
-        //dialog?.window?.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL, WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL)
+        dialog?.window?.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL, WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL)
     }
 
     override fun initListener() {

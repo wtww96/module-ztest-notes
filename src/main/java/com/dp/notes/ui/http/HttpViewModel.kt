@@ -37,7 +37,7 @@ class HttpViewModel @Inject constructor(private val dataSource: TestRepository) 
     val flowResult = MutableLiveData<String>()
 
     fun testRequest() {
-        dataSource.testRequest().wrap(this) {
+        val job = dataSource.testRequest().wrap(this) {
             success {
                 Log.e("hehe", "testRequest 成功 = $it")
             }
@@ -45,6 +45,7 @@ class HttpViewModel @Inject constructor(private val dataSource: TestRepository) 
                 Log.e("hehe", "testRequest 失败 = $e")
             }
         }
+        job.cancel()
     }
 
     /**
@@ -78,28 +79,28 @@ class HttpViewModel @Inject constructor(private val dataSource: TestRepository) 
                 Log.e("hehe", "flowRequest1_1 失败 = $e")
             }
         }
-        dataSource.requestFlow()
-            .onStart {
-                Log.e("hehe", "flowRequest1_1 --------- flow.getData---onStart")
-                //emit(Test1Bean("onStart", emptyList(), Realtime()))
-            }
-            .onEach {
-                Log.e("hehe", "flowRequest1_1 --------- flow.getData=$it")
-            }.launchIn(viewModelScope)
-
-        dataSource.requestFlow().getOrNull()
-            .onStart {
-                Log.e("hehe", "flowRequest1_1 --------- flow.getOrNull---onStart")
-            }
-            .onEach {
-                Log.e("hehe", "flowRequest1_1 --------- flow.getOrNull")
-            }.launchIn(viewModelScope)
-
-        dataSource.requestFlowList().getOrList().onStart {
-            Log.e("hehe", "flowRequest1_1 --------- flow.getOrDefault---onStart")
-        }.onEach {
-            Log.e("hehe", "flowRequest1_1 --------- flow.getOrDefault")
-        }.launchIn(viewModelScope)
+//        dataSource.requestFlow()
+//            .onStart {
+//                Log.e("hehe", "flowRequest1_1 --------- flow.getData---onStart")
+//                //emit(Test1Bean("onStart", emptyList(), Realtime()))
+//            }
+//            .onEach {
+//                Log.e("hehe", "flowRequest1_1 --------- flow.getData=$it")
+//            }.launchIn(viewModelScope)
+//
+//        dataSource.requestFlow().getOrNull()
+//            .onStart {
+//                Log.e("hehe", "flowRequest1_1 --------- flow.getOrNull---onStart")
+//            }
+//            .onEach {
+//                Log.e("hehe", "flowRequest1_1 --------- flow.getOrNull")
+//            }.launchIn(viewModelScope)
+//
+//        dataSource.requestFlowList().getOrList().onStart {
+//            Log.e("hehe", "flowRequest1_1 --------- flow.getOrDefault---onStart")
+//        }.onEach {
+//            Log.e("hehe", "flowRequest1_1 --------- flow.getOrDefault")
+//        }.launchIn(viewModelScope)
     }
 
     /**
