@@ -16,6 +16,7 @@ import com.dp.core.loadsir.PageState
 class ErrorPage : PageState() {
 
     override fun createView(context: Context): View = AppCompatTextView(context).apply {
+        Log.e("hehe", "ErrorPage  >>>>>>>>>>>>>>>>>>>>>> createView ")
         text = "我是错误的页面"
         textSize = 30f
         setBackgroundColor(Color.parseColor("#ff0000"))

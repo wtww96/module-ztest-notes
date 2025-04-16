@@ -6,7 +6,7 @@ import androidx.lifecycle.lifecycleScope
 import com.dp.common.state.EmptyPage
 import com.dp.core.base.BaseBindingFragment
 import com.dp.core.extension.delayed
-import com.dp.core.loadsir.SuccessState
+import com.dp.core.loadsir.state.SuccessState
 import com.dp.notes.databinding.NotesFragmentState2Binding
 import kotlin.random.Random
 

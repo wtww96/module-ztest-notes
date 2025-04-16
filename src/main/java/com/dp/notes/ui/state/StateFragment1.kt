@@ -7,7 +7,7 @@ import com.dp.common.state.LoadingPage
 import com.dp.core.base.BaseBindingFragment
 import com.dp.core.extension.clickEvent
 import com.dp.core.extension.delayed
-import com.dp.core.loadsir.SuccessState
+import com.dp.core.loadsir.state.SuccessState
 import com.dp.notes.databinding.NotesFragmentState1Binding
 import kotlin.random.Random
 

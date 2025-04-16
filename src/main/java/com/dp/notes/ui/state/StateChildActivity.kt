@@ -1,7 +1,11 @@
 package com.dp.notes.ui.state
 
+import android.R
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.TextView
 import androidx.lifecycle.lifecycleScope
 import com.dp.common.state.EmptyPage
 import com.dp.common.state.LoadingPage
@@ -9,9 +13,10 @@ import com.dp.core.base.BaseBindingActivity
 import com.dp.core.extension.clickEvent
 import com.dp.core.extension.delayed
 import com.dp.core.extension.navigateTo
-import com.dp.core.loadsir.SuccessState
+import com.dp.core.loadsir.state.SuccessState
 import com.dp.notes.databinding.NotesActivityStateChildBinding
 import kotlin.random.Random
+
 
 /**
  * author Dq
@@ -28,6 +33,10 @@ class StateChildActivity : BaseBindingActivity<NotesActivityStateChildBinding>()
             loadSir.show<SuccessState>()
             //loadSir.show(SuccessState())
         }
+
+        loadSir.updatePage<EmptyPage> {
+            it.updateViewxxx("是大啊大大")
+        }
     }
 
     override fun onReload() {
@@ -40,7 +49,10 @@ class StateChildActivity : BaseBindingActivity<NotesActivityStateChildBinding>()
             loadSir.show<LoadingPage>()
             lifecycleScope.delayed(2000) {
                 if (isFlag) {
-                    loadSir.show<EmptyPage>(useAnim = false)
+                    loadSir.show<EmptyPage>(useAnim = false) {
+                        Log.d("hehe", "it=$it")
+                        Log.d("hehe", "it.clone=${it.clone()}")
+                    }
                 } else {
                     loadSir.show<SuccessState>()
                 }
@@ -48,7 +60,10 @@ class StateChildActivity : BaseBindingActivity<NotesActivityStateChildBinding>()
         }
 
         binding.btn2.clickEvent {
-            loadSir.show<EmptyPage> { it.updateView(Random.nextInt(3)) }
+            loadSir.show<EmptyPage>()
+
+//            loadSir.show<EmptyPage> { it.updateView(Random.nextInt(3)) }
+
 //            lifecycleScope.delayed(15000) {
 //                loadSir.show<SuccessState>()
 //            }
