@@ -5,11 +5,10 @@ import android.util.Log
 import androidx.lifecycle.lifecycleScope
 import com.dp.core.base.BaseActivity
 import com.dp.core.extension.clickEvent
-import com.dp.core.extension.navigateTo
 import com.dp.core.network.failure
 import com.dp.core.network.launchIn
-import com.dp.core.network.success
 import com.dp.core.network.wrap
+import com.dp.core.network.success
 import com.dp.core.viewbinding.bindings
 import com.dp.notes.R
 import com.dp.notes.databinding.NotesActivityTestBinding
@@ -17,7 +16,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.component.KoinScopeComponent
-import org.koin.core.qualifier.named
 import org.koin.core.scope.Scope
 
 /**
@@ -25,19 +23,16 @@ import org.koin.core.scope.Scope
  * date on 2022/9/14
  * description
  */
-class TestKoinActivity : BaseActivity(R.layout.notes_activity_test), KoinScopeComponent { //, AndroidScopeComponent KoinScopeComponent
+class TestKoinChildActivity : BaseActivity(R.layout.notes_activity_test), KoinScopeComponent {
     private val binding by bindings<NotesActivityTestBinding>()
     private val viewModel by viewModel<TestKoinViewModel>()
 
-    //实现 KoinScopeComponent 必须要在onDestroy中手动调用scope.close()
-    override val scope: Scope by lazy { getKoin().createScope("123", named("666666")) }
+    override val scope: Scope by lazy { getKoin().getScopeOrNull("123")!! }
 
-    //实现 AndroidScopeComponent 只有用activityScope的时候才不用在onDestroy中手动调用scope.close()
-    //override val scope: Scope by activityScope()
     override fun initView(bundle: Bundle?) {
-        Log.e("hehe", "TestKoinActivity >>>>>>>>>>>>>>>>> viewModel = $viewModel")
-        Log.e("hehe", "TestKoinActivity >>>>>>>>>>>>>>>>> scope = $scope")
-        binding.title.text = "Koin 依赖注入"
+        Log.e("hehe", "TestKoinChildActivity >>>>>>>>>>>>>>>>> viewModel = $viewModel")
+        Log.e("hehe", "TestKoinChildActivity >>>>>>>>>>>>>>>>> scope = $scope")
+        binding.title.text = "Koin 依赖注入 子页面>>>>>>>>>>>"
     }
 
     override fun initObserve() {
@@ -65,9 +60,6 @@ class TestKoinActivity : BaseActivity(R.layout.notes_activity_test), KoinScopeCo
     }
 
     override fun initListener() {
-        binding.btJump.clickEvent {
-            navigateTo<TestKoinChildActivity>()
-        }
         binding.button.clickEvent {
             binding.textview.add("开始请求rxRequest-->")
             viewModel.getRequest()
@@ -80,11 +72,6 @@ class TestKoinActivity : BaseActivity(R.layout.notes_activity_test), KoinScopeCo
                 viewModel.changeState("延迟4s发送的数据")
             }
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        scope.close()
     }
 }
 

@@ -26,7 +26,6 @@ dependencies {
     //ARouter
     kapt libs.arouter.compiler
 
-    implementation libs.koin.android
     implementation libs.flexbox
 
     //implementation 'com.tencent.mars:mars-xlog:1.2.5'

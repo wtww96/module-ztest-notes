@@ -3,8 +3,7 @@ package com.dp.notes
 import android.content.Context
 import android.util.Log
 import com.dp.common.task.AppInitManager.Companion.TASK_COMMON
-import com.dp.notes.ui.koin.di.repositoryModule
-import com.dp.notes.ui.koin.di.viewModelModule
+import com.dp.notes.ui.koin.di.testModules
 import com.rousetime.android_startup.AndroidStartup
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -28,7 +27,7 @@ class NotesInitTask : AndroidStartup<Unit>() {
         startKoin {
             androidLogger()
             androidContext(context)
-            modules(viewModelModule, repositoryModule)
+            modules(testModules)
         }
     }
 
