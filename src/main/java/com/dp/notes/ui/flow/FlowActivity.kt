@@ -121,7 +121,7 @@ class FlowActivity : BaseActivity(R.layout.notes_activity_flow) {
         //FlowBus
         testFlowBus()
         //FlowBus 事件总线接受数据
-        FlowBus.with<Int>(KEY_TEST).register(this) {
+        FlowBus.with<Int>(KEY_TEST).launch(this) {
             binding.logText.add("FlowActivity:FlowBus,register接受数据=$it")
         }
         //FlowBus 事件总线,页面处于可见状态才接受数据
@@ -388,6 +388,6 @@ class FlowActivity : BaseActivity(R.layout.notes_activity_flow) {
 
     override fun onDestroy() {
         super.onDestroy()
-        FlowBus.with<Int>(KEY_TEST).post(999999999)
+        FlowBus.with<Int>(KEY_TEST).emit(999999999)
     }
 }

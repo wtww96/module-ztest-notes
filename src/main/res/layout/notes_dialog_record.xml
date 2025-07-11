@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="#333333"
+    tools:ignore="ContentDescription,SpUsage">
+
+    <com.dp.notes.ui.wx.view.VoiceWaveView
+        android:id="@+id/waveView1"
+        android:layout_width="200dp"
+        android:layout_height="88dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="150dp"
+        android:background="#ff0000" />
+
+    <com.dp.notes.ui.wx.view.WXVoiceButton
+        android:id="@+id/waveView2"
+        android:layout_width="match_parent"
+        android:layout_height="88dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="260dp"
+        android:background="#ff0000" />
+
+    <!--    <com.dp.notes.ui.wx.view.WeChatVoiceWaveView-->
+    <!--        android:layout_width="200dp"-->
+    <!--        android:layout_height="88dp" />-->
+
+    <ImageView
+        android:id="@+id/ivDelete"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="153dp"
+        tools:src="@drawable/notes_ic_cancle_record_no" />
+
+    <ImageView
+        android:id="@+id/ivBg"
+        android:layout_width="match_parent"
+        android:layout_height="129dp"
+        android:layout_gravity="center_horizontal|bottom"
+        android:background="#FF9D9E9E" />
+
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="87dp"
+        android:textColor="#ff16181a"
+        android:textSize="16dp"
+        tools:text="松开 发送" />
+
+</FrameLayout>

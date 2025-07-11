@@ -147,6 +147,15 @@
             android:textAllCaps="false" />
 
         <Button
+            android:id="@+id/wx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="3dp"
+            android:padding="15dp"
+            android:text="微信语音"
+            android:textAllCaps="false" />
+
+        <Button
             android:id="@+id/other"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

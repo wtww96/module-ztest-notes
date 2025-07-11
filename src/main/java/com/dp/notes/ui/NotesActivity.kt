@@ -32,6 +32,7 @@ import com.dp.notes.ui.tablayout.TabLayoutActivity
 import com.dp.notes.ui.tablayout.TabLayoutNewActivity
 import com.dp.notes.ui.toast.ToastActivity
 import com.dp.notes.ui.webview.WebViewUseActivity
+import com.dp.notes.ui.wx.WxActivity
 
 /**
  * author Dq
@@ -57,7 +58,7 @@ class NotesActivity : BaseActivity(R.layout.notes_activity_notes) {
             binding.logText.add("网络连接状态监听 = $it")
         }
         //FlowBus 事件总线接受数据
-        FlowBus.with<Int>(KEY_TEST).register(this) {
+        FlowBus.with<Int>(KEY_TEST).launch(this) {
             binding.logText.add("主页已接收$KEY_TEST 发送的FlowBus数据=$it", true)
         }
         //FlowBus 事件总线,页面处于可见状态才接受数据
@@ -170,6 +171,10 @@ class NotesActivity : BaseActivity(R.layout.notes_activity_notes) {
         binding.tabLayout.setOnLongClickListener {
             navigateTo<TabLayoutNewActivity>()
             true
+        }
+
+        binding.wx.clickEvent {
+            navigateTo<WxActivity>()
         }
 
         binding.other.clickEvent {
