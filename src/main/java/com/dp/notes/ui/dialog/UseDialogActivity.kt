@@ -17,8 +17,8 @@ class UseDialogActivity : BaseBindingActivity<NotesActivityUseDialogBinding>() {
 
     override fun initListener() {
         binding.bt1.clickEvent {
-            //TestDialog(this).show()
-            ParentFragmentDialog.show(this)
+            TestDialog(this).show()
+            // ParentFragmentDialog.show(this)
         }
 
         binding.bt2.clickEvent {

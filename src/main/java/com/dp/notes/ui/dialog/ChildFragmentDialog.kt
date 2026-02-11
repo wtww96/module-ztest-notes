@@ -25,7 +25,10 @@ class ChildFragmentDialog : BaseFragmentDialog<NotesDialogTestBinding>() {
 
     override fun initView() {
         binding.button.text = "加上健康登记卡数据库"
-        binding.button.clickEvent { dismiss() }
+        binding.button.clickEvent {
+            // dismiss()
+            TestDialog(requireContext()).show()
+        }
 
         dialog?.setOnKeyListener { _, keyCode, event ->
             Log.e("hehe", " setOnKeyListener keyCode = $keyCode")
@@ -50,8 +53,8 @@ class ChildFragmentDialog : BaseFragmentDialog<NotesDialogTestBinding>() {
         }
 
         binding.tvBtn.clickEvent {
-            //moveButtonToRootView()
-            //moveButtonToDialogWindow()
+            // moveButtonToRootView()
+            // moveButtonToDialogWindow()
 
             binding.tvBtn.animate()
                 .rotation(360f)
@@ -59,8 +62,8 @@ class ChildFragmentDialog : BaseFragmentDialog<NotesDialogTestBinding>() {
                 .start()
 
             Handler().postDelayed({
-            moveButtonToWindow()
-            },5000)
+                moveButtonToWindow()
+            }, 5000)
         }
     }
 
@@ -80,7 +83,7 @@ class ChildFragmentDialog : BaseFragmentDialog<NotesDialogTestBinding>() {
         }
 
         // 从原父布局中移除按钮
-        //binding.tvBtn.alpha = 0f
+        // binding.tvBtn.alpha = 0f
         (binding.tvBtn.parent as? ViewGroup)?.removeView(binding.tvBtn)
         rootView.addView(binding.tvBtn, layoutParams)
 

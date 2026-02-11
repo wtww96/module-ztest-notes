@@ -21,7 +21,7 @@ class TestDialog(context: Context) : Dialog(context, R.style.Theme_Dialog_Base) 
         // 设置Dialog的宽度和高度
         // 设置Dialog的宽度和高度
         val params = window!!.attributes
-        params.width = LayoutParams.WRAP_CONTENT
+        params.width = LayoutParams.MATCH_PARENT
         params.height = LayoutParams.WRAP_CONTENT
         // 将Dialog的位置设置到屏幕外面
         // 将Dialog的位置设置到屏幕外面
