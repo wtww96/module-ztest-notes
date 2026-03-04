@@ -36,72 +36,76 @@ import com.dp.notes.databinding.NotesActivityStatusbarBinding
 class StatusbarActivity : BaseActivity(R.layout.notes_activity_statusbar) {
     private val binding by bindings<NotesActivityStatusbarBinding>()
 
-    private var isFull = false//默认不是全屏
+    private var isFull = false// 默认不是全屏
 
     override fun initView(bundle: Bundle?) {
-        //状态栏沉浸式修复高度和添加无逻辑返回
+        // 状态栏沉浸式修复高度和添加无逻辑返回
         binding.btBack.fitStatusBar().onBack()
 
         binding.tvContent.text = "状态栏高度:${statusHeight}" +
-                "\n底部导航栏高度:${navigationHeight}" +
-                "\n手机屏幕可用高度,像素px:${scHeight}" +
-                "\n手机屏幕真实高度,像素px:${screenSize.y}" +
-                "\n是否有底部导航栏11:${hasNavigationBar}"
+                                 "\n底部导航栏高度:${navigationHeight}" +
+                                 "\n手机屏幕可用高度,像素px:${scHeight}" +
+                                 "\n手机屏幕真实高度,像素px:${screenSize.y}" +
+                                 "\n是否有底部导航栏11:${hasNavigationBar}"
     }
 
     override fun initListener() {
-        //系统栏沉浸式
+        // 系统栏沉浸式
         binding.bt1.clickEvent {
             immerse(Type.systemBars())
         }
-        //仅状态栏沉浸式(其实还是全沉浸式,只不过给根布局设置paddingTop)
+        // 仅状态栏沉浸式(其实还是全沉浸式,只不过给根布局设置paddingTop)
         binding.bt2.clickEvent {
             immerse(Type.statusBars())
         }
-        //仅底部导航栏沉浸式(其实还是全沉浸式,只不过给根布局设置paddingBottom)
+        // 仅底部导航栏沉浸式(其实还是全沉浸式,只不过给根布局设置paddingBottom)
         binding.bt3.clickEvent {
             immerse(Type.navigationBars())
         }
-        //全屏开关
+        // 全屏开关
         binding.bt4.clickEvent {
             isFull = !isFull
             fullScreen(isFull)
             binding.bt4.text = "全屏开关:${if (!isFull) "开" else "关"}"
         }
-        //隐藏状态栏
+        // 隐藏状态栏
         binding.bt5.clickEvent {
             hideStatus()
         }
-        //显示状态栏
+        // 显示状态栏
         binding.bt6.clickEvent {
             showStatus()
         }
-        //隐藏底部导航栏
+        // 隐藏底部导航栏
         binding.bt7.clickEvent {
             hideNavigation()
         }
-        //显示底部导航栏
+        // 显示底部导航栏
         binding.bt8.clickEvent {
             showNavigation()
         }
-        //状态栏和底部导航栏高度
+        // 状态栏和底部导航栏高度
         binding.bt9.clickEvent {
             binding.tvContent.text = "状态栏高度:${statusHeight}" +
-                    "\n底部导航栏高度:${navigationHeight}"
+                                     "\n底部导航栏高度:${navigationHeight}"
         }
-        //修改状态栏和底部导航栏颜色
+        // 修改状态栏和底部导航栏颜色
         binding.bt10.clickEvent {
             statusColor(R.color.colorPrimary)
             navigationColor("#6600ff00")
+            // navigationColor("#00000000")
+            // if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            //     window.isNavigationBarContrastEnforced = false
+            // }
         }
-        //是否有底部导航栏
+        // 是否有底部导航栏
         binding.bt11.clickEvent {
             binding.tvContent.text = "是否有底部导航栏 = $hasNavigationBar"
         }
     }
 
     override fun onPageBack() {
-        //super.onPageBack()
+        // super.onPageBack()
         showToast("屏蔽系统返回")
     }
 }
